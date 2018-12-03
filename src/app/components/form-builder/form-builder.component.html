@@ -1,0 +1,19 @@
+<p>
+  form-builder works!
+</p>
+<app-form-setting *ngIf='currentFormElement' [formElement]='currentFormElement'></app-form-setting>
+<div draggable="true">Drag me!</div>
+<div draggable="true">Drag me!</div>
+
+<div class="gridster">
+  <gridster [options]="options">
+    <gridster-item [class.isCurrent]='item === currentFormElement' [item]="item" *ngFor="let item of dashboard"
+      (click)="setCurrentFormElement(item)">
+      <app-input [formElement]='item'></app-input>
+    </gridster-item>
+  </gridster>
+</div>
+<pre>
+  <!-- {{item.id}} -->
+  {{dashboard | json}}
+</pre>
