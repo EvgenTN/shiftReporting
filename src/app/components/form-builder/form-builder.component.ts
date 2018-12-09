@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GridsterConfig, GridsterItem } from 'angular-gridster2';
 import { FormElementBase } from 'src/app/formElementBase';
+import { FormElementTextbox } from 'src/app/formElementTextbox';
 
 @Component({
   selector: 'app-form-builder',
@@ -10,17 +11,22 @@ import { FormElementBase } from 'src/app/formElementBase';
 export class FormBuilderComponent implements OnInit {
   constructor() { }
 
-  currentFormElement: GridsterItem = null;
+  currentElement: GridsterItem = null;
+  currentElementId: number;
+  dragNewElement = new FormElementTextbox({
+    label: 'New'
+  });
 
   options: GridsterConfig = {
     gridType: 'fixed',
+    keepFixedHeightInMobile: true,
     // minCols: 18,
     // maxCols: 18,
     // minRows: 18,
     // maxRows: 18,
     fixedColWidth: 30,
     fixedRowHeight: 30,
-    margin: 2,
+    margin: 3,
     outerMarginTop: 15,
     outerMarginBottom: 15,
     outerMarginLeft: 15,
@@ -30,11 +36,16 @@ export class FormBuilderComponent implements OnInit {
     // enableEmptyCellClick: true,
     // emptyCellClickCallback: this.emptyCellClick.bind(this),
     emptyCellDropCallback: this.emptyCellClick.bind(this),
+    pushItems: true,
+    swap: true,
+    resizable: {
+      enabled: true,
+    },
     draggable: {
       delayStart: 0,
       enabled: true,
       ignoreContentClass: 'gridster-item-content',
-      ignoreContent: false,
+      // ignoreContent: true,
       dragHandleClass: 'drag-handler',
       // stop: DragComponent.eventStop,
       // start: DragComponent.eventStart,
@@ -42,56 +53,83 @@ export class FormBuilderComponent implements OnInit {
       // dropOverItemsCallback: DragComponent.overlapEvent,
     },
   };
+  dashboard: GridsterItem[] = [];
 
-  dashboard: GridsterItem[] = [
-    {
-      x: 1,
-      y: 0,
-      cols: 9,
-      rows: 1,
-      key: 'input1',
-      controlType: 'textbox'
-    },
-    {
-      x: 1,
-      y: 1,
-      cols: 9,
-      rows: 1,
-      key: 'input2',
-      controlType: 'textbox'
-    },
-    {
-      x: 1,
-      y: 2,
-      cols: 9,
-      rows: 1,
-      key: 'input3',
-      controlType: 'dropdown'
-    },
-  ];
+  // dashboard: GridsterItem[] = [
+  //   {
+  //     x: 1,
+  //     y: 0,
+  //     cols: 9,
+  //     rows: 1,
+  //     key: 'input1',
+  //     label: 'Input 1',
+  //     controlType: 'textbox'
+  //   },
+  //   {
+  //     x: 1,
+  //     y: 1,
+  //     cols: 9,
+  //     rows: 1,
+  //     key: 'input2',
+  //     label: 'Input 1',
+  //     options: [
+  //       '1',
+  //       '2',
+  //       '3',
+  //     ]
+  //     controlType: 'dropdown'
+  //   },
+  //   {
+  //     x: 1,
+  //     y: 2,
+  //     cols: 9,
+  //     rows: 1,
+  //     key: 'input3',
+  //     label: 'Input 1',
+  //     controlType: 'textarea',
+  //   },
+  // ];
 
 
   ngOnInit() {
-    // console.log(this.dashboard);
   }
 
-  setCurrentFormElement(item): void {
-    if (this.currentFormElement !== item) {
-      this.currentFormElement = item;
-      // console.log(item);
-
+  setCurrentElement(item): void {
+    if (this.currentElement !== item) {
+      this.currentElement = item;
+      this.currentElementId = this.getElementId(item);
     } else {
-      this.currentFormElement = null;
+      this.currentElement = null;
     }
+  }
+  getElementId(element): number {
+    return this.dashboard.findIndex(item => item === element);
+  }
+
+
+  setElement(element): void {
+    console.log(element);
+    const idElement = this.dashboard.findIndex(item => item === this.currentElement);
+    Object.assign(this.dashboard[idElement], element);
+    if (element.controlType !== 'dropdown') {
+      delete this.dashboard[idElement].options;
+    } else if (!element.options) {
+      this.dashboard[idElement].options = [];
+    }
+    this.changedOptions();
   }
 
   emptyCellClick(event: MouseEvent, item: GridsterItem) {
     item.cols = 9;
-    item.x = 1;
-    item.key = 'input';
-    item.controlType = 'range';
-    // console.log('empty cell click', event, item);
+    item.key = 'input-' + Date.now();
+    item.controlType = 'textbox';
+    item.resizeEnabled = true;
+    item.resizeEnabled = false;
     this.dashboard.push(item);
   }
-
+  changedOptions() {
+    if (this.options.api && this.options.api.optionsChanged) {
+      this.options.api.optionsChanged();
+    }
+  }
 }

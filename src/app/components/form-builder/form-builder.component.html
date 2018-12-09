@@ -1,19 +1,26 @@
 <p>
   form-builder works!
 </p>
-<app-form-setting *ngIf='currentFormElement' [formElement]='currentFormElement'></app-form-setting>
-<div draggable="true">Drag me!</div>
-<div draggable="true">Drag me!</div>
 
-<div class="gridster">
+<div class="container">
+  <div class="sidebar">
+    <p>Drag for Add new Element</p>
+    <div draggable="true" class="dragNewElement">
+      <app-input [formElement]='dragNewElement'></app-input>
+    </div>
+    <app-form-setting *ngIf='currentElement' [formElement]='currentElement' (setElement)="setElement($event)"></app-form-setting>
+
+  </div>
   <gridster [options]="options">
-    <gridster-item [class.isCurrent]='item === currentFormElement' [item]="item" *ngFor="let item of dashboard"
-      (click)="setCurrentFormElement(item)">
+    <gridster-item [class.isCurrent]='item === currentElement' [item]="item" *ngFor="let item of dashboard" (click)="setCurrentElement(item)">
       <app-input [formElement]='item'></app-input>
     </gridster-item>
   </gridster>
 </div>
+
 <pre>
   <!-- {{item.id}} -->
   {{dashboard | json}}
 </pre>
+
+<!--  -->

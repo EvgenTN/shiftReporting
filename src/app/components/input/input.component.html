@@ -1,7 +1,32 @@
-<div class="box" [class.isCurrent]='isCurrent'>
-  <label class="label"><p>{{formElement.key}}</p></label>
-  <input class="input" [type]='formElement.controlType'>
-  <button class="writeBtn"></button>
-  <button class="writeBtn"></button>
+<!-- <div [class.isCurrent]='isCurrent'> -->
 
-</div>
+  <div [ngSwitch]='formElement.controlType' class="container" [class.isCurrent]='isCurrent'>
+    <div *ngSwitchCase="'textbox'" class="box">
+      <label class="box__label">
+        <p>{{formElement.label}}</p>
+      </label>
+      <div class="box__inputArea">
+        <input class="box__input" [type]='formElement.type'>
+      </div>
+    </div>
+
+    <div *ngSwitchCase="'dropdown'" class="box">
+      <label class="box__label">
+        <p>{{formElement.label}}</p>
+      </label>
+      <div class="box__inputArea">
+        <select class="box__input">
+          <option *ngFor="let option of formElement.options">{{option}}</option>
+        </select>
+      </div>
+    </div>
+
+    <div *ngSwitchCase="'textarea'" class="boxTextarea">
+      <label class="boxTextarea__label">
+        <p>{{formElement.label}}</p>
+      </label>
+      <textarea class="box__input"></textarea>
+    </div>
+
+    <!-- <button class="writeBtn"></button> -->
+  <!-- </div> -->

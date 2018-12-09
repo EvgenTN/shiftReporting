@@ -1,0 +1,16 @@
+.settings{
+  label {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid green;
+    margin-bottom: 15px;
+    background: #fefecb;
+  }
+  input {
+    width: 100px;
+  }
+  select {
+    width: 100px;
+    background: white;
+  }
+}

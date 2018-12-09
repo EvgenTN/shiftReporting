@@ -1,6 +1,7 @@
 import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { FormElementBase } from 'src/app/formElementBase';
+// import { FormElementBase } from 'src/app/formElementBase';
+
 
 @Component({
   selector: 'app-form-setting',
@@ -11,24 +12,43 @@ export class FormSettingComponent implements OnInit, OnChanges {
   @Input() formElement;
   @Output() setElement: EventEmitter<any> = new EventEmitter();
 
-  elementSettingForm: FormGroup;
-
   controlTypes = [
     { key: 'textbox', value: 'Textbox' },
     { key: 'dropdown', value: 'Dropdown' },
+    { key: 'textarea', value: 'Text area' },
   ];
+
+  elementSettingForm: FormGroup;
+
   constructor(
     private fb: FormBuilder,
   ) { }
 
   ngOnInit() {
-    console.log(this.formElement.key);
+    console.log('FormSettingComponent init');
     this.formInit();
     this.elementSettingForm.valueChanges
-      .subscribe(value => {
-        // console.log(value);
-      });
+      .subscribe((value) => this.setOutputElement(value));
     this.formFill();
+  }
+
+  setOutputElement(value): void {
+    const result = {
+      label: value.label,
+      controlType: value.controlType,
+    };
+    if (value.controlType !== 'textarea') {
+      result['rows'] = 1;
+      result['cols'] = 9;
+
+    } else if (this.formElement.rows === 1) { result['rows'] = 2; }
+
+    if (value.optionsStr) {
+      result['options'] = value.optionsStr.split('\n');
+    }
+    if (value.controlType === 'textarea') { result['resizeEnabled'] = true; }
+    this.setElement.emit(result);
+
   }
 
   ngOnChanges() {
@@ -37,19 +57,27 @@ export class FormSettingComponent implements OnInit, OnChanges {
 
   formInit(): void {
     this.elementSettingForm = this.fb.group({
-      label: [],
-      controlType: [],
+      label: '',
+      controlType: '',
+      optionsStr: '',
     });
   }
+
   formFill(): void {
-    this.elementSettingForm.setValue({
-      label: [this.formElement.key],
-      controlType: [this.formElement.controlType]
-    });
-  }
-
-
-  onSubmit(): void {
-    console.log(this.elementSettingForm.value);
+    switch (this.formElement.controlType) {
+      case 'dropdown':
+        this.elementSettingForm.setValue({
+          label: this.formElement.label || '',
+          controlType: this.formElement.controlType,
+          optionsStr: this.formElement.options.join('\n') || '',
+        });
+        break;
+      default:
+        this.elementSettingForm.setValue({
+          label: this.formElement.label || '',
+          controlType: this.formElement.controlType,
+          optionsStr: '',
+        });
+    }
   }
 }

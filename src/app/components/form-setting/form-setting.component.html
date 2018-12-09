@@ -1,15 +1,19 @@
-<div>
-  <form [formGroup]="elementSettingForm" (ngSubmit)='onSubmit()'>
-    <label> Label
+<div class="settings">
+  <form class='settingsForm' [formGroup]="elementSettingForm">
+    <label>Label
       <input type='text' formControlName='label'>
     </label>
-    <label>
-      <select formControlName='controlType' >
+    <label>Control type
+      <select formControlName='controlType'>
         <option *ngFor="let controlType of controlTypes" [ngValue]="controlType.key">{{controlType.value}}</option>
-        <!-- <option [ngValue]="'dropdown'">Dropdown</option> -->
       </select>
     </label>
-    <button type='submit'>Save changes</button>
+    <textarea *ngIf="elementSettingForm.value.controlType == 'dropdown'" formControlName='optionsStr'></textarea>
+    <div>
+      <button type="cancel" (click)='cancel()'>Cancel</button>
+      <!-- <button type='submit'>Save changes</button> -->
+    </div>
   </form>
   <p>{{formElement | json}}</p>
+  <p>{{elementSettingForm}}</p>
 </div>

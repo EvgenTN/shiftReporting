@@ -1,13 +1,18 @@
+
 .isCurrent {
   box-shadow: 0 0 20px rgb(131, 7, 7);
+}
+.container {
+  height: 100%;
 }
 .box {
   display: flex;
   align-items: center;
-  height: 28px;
+  height: calc(100% - 2px);
   border: 1px solid grey;
-  
-  .label {
+
+  &__label {
+    padding-left: 3px;
     height: 100%;
     width: 120px;
     background: #fefecb;
@@ -15,7 +20,7 @@
     display: flex;  
     align-items: center;  
   }
-  .input {
+  &__inputArea {
     height: 100%;
     flex: 1;
     min-width: 0;
@@ -23,9 +28,19 @@
     border: 0;
     border-left: 5px solid red;
 
-
   }
-  .writeBtn {
+  &__input {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    border: none;
+    outline: none;
+    width: 100%;
+    cursor: default;
+    background: transparent;
+  }
+
+  &__writeBtn {
     height: 100%;
     width: 29px;
     border-radius: 0;
@@ -33,6 +48,19 @@
     border-left: 1px solid #b5b5b4;
     padding: 0;
     background: #cccccc;
+  }
+}
 
+.boxTextarea {
+  height: calc(100% - 2px);
+  border: 1px solid grey;
+  &__label {
+    padding-left: 3px;
+    height: 28px;
+    width: calc(100% - 3px);
+    background: #fefecb;
+    display: flex;  
+    align-items: center;  
+    border-bottom: 1px solid grey;
   }
 }

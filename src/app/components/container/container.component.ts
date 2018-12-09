@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormElementBase } from 'src/app/formElementBase';
+import { FormElementTextbox } from 'src/app/formElementTextbox';
 
 @Component({
   selector: 'app-container',
@@ -8,13 +9,14 @@ import { FormElementBase } from 'src/app/formElementBase';
 })
 export class ContainerComponent implements OnInit {
   form = [
-    new FormElementBase({
+    new FormElementTextbox({
       value: 'T',
       key: 'string',
       label: 'string',
       required: true,
       order: 1,
-      controlType: 'text',
+      controlType: 'textbox',
+      type: 'text',
     }),
     new FormElementBase({
       value: 'T2',
@@ -22,20 +24,9 @@ export class ContainerComponent implements OnInit {
       label: 'string2',
       required: true,
       order: 2,
-      controlType: 'radio',
+      controlType: 'dropdown',
     }),
   ];
-
-  // form = [
-  //   {
-  //     id: 0,
-  //     type: 'text',
-  //   },
-  //   {
-  //     id: 1,
-  //     type: 'select',
-  //   }
-  // ]
 
   constructor() { }
 
