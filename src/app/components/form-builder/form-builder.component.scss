@@ -5,8 +5,10 @@ app-input{
 }
 
 gridster {
+  position: relative;
+  box-sizing: border-box;
   background:greenyellow;
-  min-height: 20em;  
+  height: 100%;  
   max-width: 900px;
   overflow-x: hidden;
   overflow: visible;
@@ -18,8 +20,10 @@ gridster {
   box-shadow: 0 0 5px 5px rgba(0, 131, 136, 0.2), 0 6px 10px 0 rgba(0, 131, 136,.14), 0 1px 18px 0 rgba(0, 131, 136,.12);
 }
 .container {
+  position: relative;
+  height:400px;
   display: flex;
-  flex: 1;
+  // flex: 1;
 }
 .sidebar{
   padding: 15px;
@@ -30,4 +34,8 @@ gridster {
 .dragNewElement {
   max-width: 200px;
   margin-bottom: 20px;
+}
+.settings {
+  position: absolute;
+  z-index: 5;
 }

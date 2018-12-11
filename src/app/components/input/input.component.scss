@@ -40,7 +40,9 @@
     background: transparent;
   }
 
-  &__writeBtn {
+
+}
+  .button {
     height: 100%;
     width: 29px;
     border-radius: 0;
@@ -49,7 +51,6 @@
     padding: 0;
     background: #cccccc;
   }
-}
 
 .boxTextarea {
   height: calc(100% - 2px);

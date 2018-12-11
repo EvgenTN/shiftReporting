@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GridsterConfig, GridsterItem } from 'angular-gridster2';
 import { FormElementBase } from 'src/app/formElementBase';
 import { FormElementTextbox } from 'src/app/formElementTextbox';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-form-builder',
@@ -20,19 +21,16 @@ export class FormBuilderComponent implements OnInit {
   options: GridsterConfig = {
     gridType: 'fixed',
     keepFixedHeightInMobile: true,
-    // minCols: 18,
-    // maxCols: 18,
-    // minRows: 18,
-    // maxRows: 18,
+    minRows: 10,
     fixedColWidth: 30,
     fixedRowHeight: 30,
-    margin: 3,
+    margin: 0,
     outerMarginTop: 15,
     outerMarginBottom: 15,
     outerMarginLeft: 15,
     outerMarginRight: 15,
     enableEmptyCellDrop: true,
-    // displayGrid: 'always',
+    displayGrid: 'always',
     // enableEmptyCellClick: true,
     // emptyCellClickCallback: this.emptyCellClick.bind(this),
     emptyCellDropCallback: this.emptyCellClick.bind(this),
@@ -53,42 +51,42 @@ export class FormBuilderComponent implements OnInit {
       // dropOverItemsCallback: DragComponent.overlapEvent,
     },
   };
-  dashboard: GridsterItem[] = [];
+  // dashboard: GridsterItem[] = [];
 
-  // dashboard: GridsterItem[] = [
-  //   {
-  //     x: 1,
-  //     y: 0,
-  //     cols: 9,
-  //     rows: 1,
-  //     key: 'input1',
-  //     label: 'Input 1',
-  //     controlType: 'textbox'
-  //   },
-  //   {
-  //     x: 1,
-  //     y: 1,
-  //     cols: 9,
-  //     rows: 1,
-  //     key: 'input2',
-  //     label: 'Input 1',
-  //     options: [
-  //       '1',
-  //       '2',
-  //       '3',
-  //     ]
-  //     controlType: 'dropdown'
-  //   },
-  //   {
-  //     x: 1,
-  //     y: 2,
-  //     cols: 9,
-  //     rows: 1,
-  //     key: 'input3',
-  //     label: 'Input 1',
-  //     controlType: 'textarea',
-  //   },
-  // ];
+  dashboard: GridsterItem[] = [
+    {
+      x: 1,
+      y: 0,
+      cols: 9,
+      rows: 1,
+      key: 'input1',
+      label: 'Input 1',
+      controlType: 'textbox'
+    },
+    {
+      x: 1,
+      y: 1,
+      cols: 9,
+      rows: 1,
+      key: 'input2',
+      label: 'Input 1',
+      options: [
+        '1',
+        '2',
+        '3',
+      ],
+      controlType: 'dropdown'
+    },
+    {
+      x: 1,
+      y: 2,
+      cols: 9,
+      rows: 2,
+      key: 'input3',
+      label: 'Input 1',
+      controlType: 'textarea',
+    },
+  ];
 
 
   ngOnInit() {
@@ -102,13 +100,14 @@ export class FormBuilderComponent implements OnInit {
       this.currentElement = null;
     }
   }
+
   getElementId(element): number {
     return this.dashboard.findIndex(item => item === element);
   }
 
 
   setElement(element): void {
-    console.log(element);
+    // console.log(element);
     const idElement = this.dashboard.findIndex(item => item === this.currentElement);
     Object.assign(this.dashboard[idElement], element);
     if (element.controlType !== 'dropdown') {
@@ -119,11 +118,19 @@ export class FormBuilderComponent implements OnInit {
     this.changedOptions();
   }
 
+  deleteElement($event): void {
+    this.dashboard.splice(this.currentElementId, 1);
+    this.currentElement = null;
+    this.currentElementId = null;
+  }
+
+
+
   emptyCellClick(event: MouseEvent, item: GridsterItem) {
+    console.log(event);
     item.cols = 9;
     item.key = 'input-' + Date.now();
     item.controlType = 'textbox';
-    item.resizeEnabled = true;
     item.resizeEnabled = false;
     this.dashboard.push(item);
   }
@@ -131,5 +138,9 @@ export class FormBuilderComponent implements OnInit {
     if (this.options.api && this.options.api.optionsChanged) {
       this.options.api.optionsChanged();
     }
+  }
+  selectSubmit(e): void {
+    this.currentElement = null;
+    this.currentElementId = null;
   }
 }

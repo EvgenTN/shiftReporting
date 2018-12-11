@@ -1,5 +1,6 @@
 <div class="settings">
-  <form class='settingsForm' [formGroup]="elementSettingForm">
+  <p>Settings</p>
+  <form class='settingsForm' [formGroup]="elementSettingForm" (ngSubmit)="onSubmit()">
     <label>Label
       <input type='text' formControlName='label'>
     </label>
@@ -8,12 +9,16 @@
         <option *ngFor="let controlType of controlTypes" [ngValue]="controlType.key">{{controlType.value}}</option>
       </select>
     </label>
-    <textarea *ngIf="elementSettingForm.value.controlType == 'dropdown'" formControlName='optionsStr'></textarea>
+    <label *ngIf="elementSettingForm.value.controlType == 'dropdown'">Possible values
+      <textarea formControlName='optionsStr'></textarea>
+    </label>
     <div>
-      <button type="cancel" (click)='cancel()'>Cancel</button>
-      <!-- <button type='submit'>Save changes</button> -->
+
+      <button type="reset" (click)='dltElement()'>Delete this element</button>
+      <button type='submit'>Save changes</button>
+
     </div>
   </form>
-  <p>{{formElement | json}}</p>
-  <p>{{elementSettingForm}}</p>
+  <!-- <p>{{formElement | json}}</p>
+  <p>{{elementSettingForm}}</p> -->
 </div>
