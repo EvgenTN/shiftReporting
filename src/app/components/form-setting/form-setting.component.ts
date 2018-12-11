@@ -91,11 +91,9 @@ export class FormSettingComponent implements OnInit, OnChanges {
 
 
   dltElement($event): void {
-
     this.deleteElement.emit($event);
   }
   onSubmit($event): void {
-
     this.selectSubmit.emit($event);
   }
 }
