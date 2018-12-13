@@ -4,6 +4,7 @@ import { FormElementBase } from 'src/app/formElementBase';
 import { FormElementTextbox } from 'src/app/formElementTextbox';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { ShiftReportingService } from 'src/app/shift-reporting.service';
+import { dashboard } from 'src/app/data/dashboard';
 
 @Component({
   selector: 'app-form-builder',
@@ -14,23 +15,30 @@ export class FormBuilderComponent implements OnInit {
   constructor(
     private shiftReportingService: ShiftReportingService
   ) { }
+  // TODO chose currentElement
+  // currentEplement: GridsterItem = null;
+  currentElement: GridsterItem = dashboard[0];
 
-  currentElement: GridsterItem = null;
+
   currentElementId: number;
   dragNewElement = new FormElementTextbox({
     label: 'New'
   });
   options: GridsterConfig = {
     emptyCellDropCallback: this.emptyCellClick.bind(this),
+    displayGrid: 'always',
+    draggable: {
+      delayStart: 0,
+      enabled: true,
+      ignoreContentClass: 'gridster-item-content',
+      dragHandleClass: 'drag-handler',
+      dropOverItems: false,
+    },
   };
-
   dashboard: GridsterItem[] = [];
 
 
   ngOnInit() {
-    // this.shiftReportingService.getGridsterOptions()
-    //   .subscribe(options => this.options = options);
-
     Object.assign(this.options, this.shiftReportingService.getGridsterOptions());
     this.getDashboard();
   }

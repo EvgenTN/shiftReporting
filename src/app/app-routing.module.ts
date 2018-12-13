@@ -3,9 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormBuilderComponent } from './components/form-builder/form-builder.component';
 import { ContainerComponent } from './components/container/container.component';
 
-const appRouters = [
-  { path: 'form-build', component: FormBuilderComponent },
-  { path: 'container', component: ContainerComponent }
+export const appRouters = [
+  { path: 'form-build', component: FormBuilderComponent, title: 'Form-build' },
+  { path: 'container', component: ContainerComponent, title: 'Container' }
 ];
 
 @NgModule({

@@ -1,20 +1,34 @@
 .settings{
-  // width: 40%;
   border: 2px solid grey;
   padding: 15px;
-  label {
+  &__label {
+
+    span {
+      height: 28px;
+    }
     display: flex;
     justify-content: space-between;
     border: 1px solid green;
     margin-bottom: 10px;
     background: #fefecb;
-    width: 200px;
+    flex-wrap: wrap;
+
   }
   input {
-    width: 100px;
+    height: 28px;
+
+    width: 100%;
+    flex-wrap: wrap;
   }
   select {
-    width: 100px;
+    height: 28px;
+
+    flex-wrap: wrap;
+    width: 100%;
     background: white;
+  }
+  textarea {
+    flex-wrap: wrap;
+    width: 100%;
   }
 }

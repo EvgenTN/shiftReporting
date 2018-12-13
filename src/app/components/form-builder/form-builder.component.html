@@ -1,6 +1,3 @@
-<p>
-  form-builder works!
-</p>
 
 <div class="container">
   <div class="sidebar">
@@ -8,7 +5,7 @@
     <div draggable="true" class="dragNewElement">
       <app-input [formElement]='dragNewElement'></app-input>
     </div>
-    <div *ngIf='currentElement' class="settings">
+    <div  >
       <app-form-setting [formElement]='currentElement' (selectSubmit)="selectSubmit()" (deleteElement)="deleteElement($event)" (setElement)="setElement($event)"></app-form-setting>
 
     </div>
@@ -17,15 +14,12 @@
   <gridster [options]="options">
     <gridster-item [class.isCurrent]='item === currentElement' [item]="item" *ngFor="let item of dashboard" (click)="setCurrentElement(item)">
       <app-input [formElement]='item'></app-input>
-    </gridster-item>
-    <!-- <app-form-setting *ngIf='currentElement' class="settingsBlock" [class.isShow]='item === currentElement' [formElement]='currentElement'
-      (setElement)="setElement($event)"></app-form-setting> -->
+    </gridster-item>   
   </gridster>
 </div>
-
 <pre>
-  <!-- {{item.id}} -->
-  {{dashboard | json}}
+  <!-- {{dashboard | json}} -->
 </pre>
 
-<!--  -->
+
+<!-- *ngIf='currentElement' class="settings"-->
