@@ -1,3 +1,7 @@
-<h1>
-Shift Reporter
-</h1>
+<div class="container">
+  <gridster [options]="options">
+    <gridster-item [class.isCurrent]='item === currentElement' [item]="item" *ngFor="let item of dashboard">
+      <app-input [formElement]='item'></app-input>
+    </gridster-item>
+  </gridster>
+</div>

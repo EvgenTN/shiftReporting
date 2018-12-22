@@ -1,41 +1,31 @@
-app-input{
+.container {
   position: relative;
-  height: 30px;
-  background: red;
+  height: 400px ;
+  display: flex;
+  padding: 15px;
 }
 
 gridster {
   position: relative;
   box-sizing: border-box;
-  background:greenyellow;
-  height: 100%;  
-  max-width: 900px;
+  background:rgba(172, 255, 47, 0.288);
+  max-width: 1000px;
   overflow-x: hidden;
   overflow: visible;
   margin: 0 auto
 }
 .isCurrent {
-  // transition: none;
   z-index: 2;
   box-shadow: 0 0 5px 5px rgba(0, 131, 136, 0.2), 0 6px 10px 0 rgba(0, 131, 136,.14), 0 1px 18px 0 rgba(0, 131, 136,.12);
 }
-.container {
-  position: relative;
-  height:400px;
-  display: flex;
-  // flex: 1;
-}
+
 .sidebar{
-  padding: 15px;
-  width: 267px;
-  border: 3px solid red;
+  padding: 5px;
+  margin-right: 15px;
+  border: 2px solid grey;
 
 }
 .dragNewElement {
   max-width: 200px;
   margin-bottom: 20px;
-}
-.settings {
-  position: absolute;
-  z-index: 5;
 }

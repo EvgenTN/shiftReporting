@@ -19,13 +19,16 @@
     // text-align: center;
     display: flex;  
     align-items: center;  
+    p {
+      margin: 0;
+    }
   }
   &__inputArea {
     height: 100%;
     flex: 1;
     min-width: 0;
     padding: 0;
-    border: 0;
+    border: none;
     border-left: 5px solid red;
 
   }
@@ -38,7 +41,10 @@
     width: 100%;
     cursor: default;
     background: transparent;
+    
   }
+
+  
 
 
 }
@@ -64,4 +70,18 @@
     align-items: center;  
     border-bottom: 1px solid grey;
   }
+  &__input {
+    height: calc(100% - 30px);
+    padding: 0;
+    margin: 0;
+    border: none;
+    outline: none;
+    width: 100%;
+    cursor: default;
+    background: transparent;
+    
+  }
+}
+.plr3 {
+  padding: 0 3px;
 }

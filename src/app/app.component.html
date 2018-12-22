@@ -1,10 +1,11 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<button>
-  <a routerLink='/form-build'>Form build</a>
-</button>
-<button>
-    <a routerLink='/container'>Container</a>
-</button>
+<h1>
+  Shift Reporter
+</h1>
+<p>{{isActive}}</p>
+<div>
+  <button *ngFor="let item of appRouters" routerLinkActive="active" routerLink="/{{item.path}}">
+    {{item.title}}
+  </button>
+</div>
 <router-outlet></router-outlet>
-<!-- <app-container></app-container> -->
-<!-- <app-form-builder></app-form-builder> -->
