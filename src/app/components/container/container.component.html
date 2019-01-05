@@ -1,7 +1,10 @@
 <div class="container">
   <gridster [options]="options">
-    <gridster-item [class.isCurrent]='item === currentElement' [item]="item" *ngFor="let item of dashboard">
+    <gridster-item *ngFor="let item of dashboard" [class.isCurrent]='item === currentElement' [item]="item">
       <app-input [formElement]='item'></app-input>
     </gridster-item>
   </gridster>
+</div>
+<div class="dd" *ngFor="let item of dashboard">
+  <app-elements   [elementOptions]="item"></app-elements>
 </div>

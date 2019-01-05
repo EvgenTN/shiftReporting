@@ -1,4 +1,5 @@
 import { GridsterItem } from 'angular-gridster2';
+import { LabelComponent } from '../elements/elements';
 
 export const dashboard: GridsterItem[] = [
   {
@@ -8,7 +9,7 @@ export const dashboard: GridsterItem[] = [
     rows: 1,
     key: 'input1',
     label: 'Input 1',
-    controlType: 'textbox'
+    controlType: LabelComponent
   },
   {
     x: 1,

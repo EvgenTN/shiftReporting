@@ -1,0 +1,17 @@
+.label {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  background: #fefecb;
+
+  p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    &:hover {
+      overflow: visible;
+      background: #fefecb;
+
+    }
+  }
+}

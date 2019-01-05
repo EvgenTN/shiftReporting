@@ -10,6 +10,7 @@ import { GridsterModule } from 'angular-gridster2';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormSettingComponent } from './components/form-setting/form-setting.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ElementsModule } from './elements/elements.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserModule,
     GridsterModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ElementsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
