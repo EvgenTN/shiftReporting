@@ -8,7 +8,8 @@
     <label class='settings__label'>
       <p>Control type</p>
       <select formControlName='controlType'>
-        <option *ngFor="let controlType of controlTypes" [ngValue]="controlType.key">{{controlType.value}}</option>
+        <option *ngFor="let controlType of controlTypes" 
+        [ngValue]="controlType.component">{{controlType.value}}</option>
       </select>
     </label>
     <label class='settings__label' *ngIf="elementSettingForm.value.controlType == 'dropdown'">Possible values

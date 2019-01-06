@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { GridsterConfig, GridsterItem } from 'angular-gridster2';
-import { FormElementBase } from 'src/app/formElementBase';
 import { FormElementTextbox } from 'src/app/formElementTextbox';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { ShiftReportingService } from 'src/app/shift-reporting.service';
 import { dashboard } from 'src/app/data/dashboard';
+import { FormElement, Element } from '../../models';
+import { LabelComponent } from 'src/app/elements/elements';
 
 @Component({
   selector: 'app-form-builder',
@@ -17,13 +17,14 @@ export class FormBuilderComponent implements OnInit {
   ) { }
   // TODO chose currentElement
   // currentEplement: GridsterItem = null;
-  currentElement: GridsterItem = dashboard[0];
-
+  currentElement: FormElement = dashboard[0];
 
   currentElementId: number;
-  dragNewElement = new FormElementTextbox({
-    label: 'New'
-  });
+  dragNewElement: Element = {
+    value: 'New1111',
+    component: LabelComponent,
+  };
+
   options: GridsterConfig = {
     emptyCellDropCallback: this.emptyCellClick.bind(this),
     displayGrid: 'always',
@@ -34,17 +35,22 @@ export class FormBuilderComponent implements OnInit {
       dragHandleClass: 'drag-handler',
       dropOverItems: false,
     },
+    resizable: {
+      enabled: true,
+    },
   };
-  dashboard: GridsterItem[] = [];
+
+  dashboard: FormElement[] = [];
 
 
   ngOnInit() {
     Object.assign(this.options, this.shiftReportingService.getGridsterOptions());
     this.getDashboard();
   }
+
   getDashboard(): void {
     this.shiftReportingService.getDashboard()
-      .subscribe(dashboard => this.dashboard = dashboard);
+      .subscribe(value => this.dashboard = value);
   }
 
   setCurrentElement(item): void {
@@ -81,12 +87,11 @@ export class FormBuilderComponent implements OnInit {
 
 
   emptyCellClick(event: MouseEvent, item: GridsterItem) {
-    console.log(event);
-    item.cols = 9;
-    item.key = 'input-' + Date.now();
-    item.controlType = 'textbox';
-    item.resizeEnabled = false;
-    this.dashboard.push(item);
+    const element: Element = {
+      key: 'elem-' + Date.now(),
+      component: LabelComponent,
+    };
+    this.dashboard.push({ gridster: item, element: element });
   }
 
   changedOptions() {

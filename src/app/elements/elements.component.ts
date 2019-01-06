@@ -1,19 +1,25 @@
 import { Component, OnInit, Input } from '@angular/core';
-// import { LabelComponent } from './elements/label/label.component';
-import { GridsterItem } from 'angular-gridster2';
+import { ElementsService } from './elements.service';
+import { Element } from '../models';
+import { LabelComponent } from './elements/label/label.component';
 
 @Component({
   selector: 'app-elements',
   templateUrl: './elements.component.html',
-  styleUrls: ['./elements.component.scss']
+  styleUrls: ['./elements.component.scss'],
+  providers: [
+    ElementsService
+  ]
 })
 export class ElementsComponent implements OnInit {
 
-  @Input() elementOptions: GridsterItem;
+  @Input() element: Element;
 
-  constructor() { }
+  constructor(public elementsService: ElementsService) { }
 
   ngOnInit() {
+    this.elementsService.setElement(this.element);
+    // console.log(this.element);
   }
-
+ 
 }
