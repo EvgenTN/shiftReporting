@@ -3,11 +3,10 @@
   <div class="sidebar">
     <p>Drag for Add new Element</p>
     <div draggable="true" class="dragNewElement">
-      <div>{{dragNewElement | json}}</div>
       <app-elements [element]="dragNewElement"></app-elements>
     </div>
     <div>
-      <!-- <app-form-setting [formElement]='currentElement' 
+      <!-- <app-form-setting [element]='currentElement.element' 
       (selectSubmit)="selectSubmit()" 
       (deleteElement)="deleteElement($event)" 
       (setElement)="setElement($event)">

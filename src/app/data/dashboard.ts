@@ -1,7 +1,9 @@
-import { LabelComponent } from '../elements/elements';
+import { LabelComponent, InputComponent } from '../elements/elements';
 import { FormElement } from '../models';
+import { ElementLabel } from '../elements/models/elementLabel';
+import { ElementInput } from '../elements/models/elementInput';
 
-export const dashboard: FormElement[] = [
+export const dashboard: any[] = [
   {
     gridster: {
       x: 1,
@@ -11,26 +13,29 @@ export const dashboard: FormElement[] = [
     },
     element: {
       component: LabelComponent,
-      key: 'input1',
-      value: 'Input1',
-      name: 'input1',
-      options: []
+      key: 'label1',
+      label: 'Label 1',
+      name: 'label1',
+      // options: []
     },
   },
   {
     gridster: {
       x: 1,
       y: 2,
-      cols: 3,
+      cols: 4,
       rows: 1,
     },
-    element: {
-      component: LabelComponent,
-      key: 'input1',
-      value: 'Input23',
-      name: 'input1',
-      options: []
+    element: new ElementLabel()
+  },
+  {
+    gridster: {
+      x: 1,
+      y: 3,
+      cols: 4,
+      rows: 1,
     },
+    element: new ElementInput()
   },
 
   // {

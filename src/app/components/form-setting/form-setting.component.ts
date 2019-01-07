@@ -1,8 +1,7 @@
 import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ShiftReportingService } from 'src/app/shift-reporting.service';
-import { ControlType } from 'src/app/models';
-// import { FormElementBase } from 'src/app/formElementBase';
+import { ControlType, Element } from 'src/app/models';
 
 
 @Component({
@@ -11,7 +10,7 @@ import { ControlType } from 'src/app/models';
   styleUrls: ['./form-setting.component.scss']
 })
 export class FormSettingComponent implements OnInit, OnChanges {
-  @Input() formElement: any;
+  @Input() element: Element;
   @Output() setElement: EventEmitter<any> = new EventEmitter();
   @Output() deleteElement: EventEmitter<any> = new EventEmitter();
   @Output() selectSubmit: EventEmitter<any> = new EventEmitter();
@@ -37,6 +36,7 @@ export class FormSettingComponent implements OnInit, OnChanges {
 
   formInit(): void {
     this.elementSettingForm = this.fb.group({
+      name: '',
       label: '',
       controlType: '',
       optionsStr: '',

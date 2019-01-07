@@ -5,6 +5,7 @@ import { ShiftReportingService } from 'src/app/shift-reporting.service';
 import { dashboard } from 'src/app/data/dashboard';
 import { FormElement, Element } from '../../models';
 import { LabelComponent } from 'src/app/elements/elements';
+import { ElementLabel } from 'src/app/elements/models/elementLabel';
 
 @Component({
   selector: 'app-form-builder',
@@ -20,10 +21,7 @@ export class FormBuilderComponent implements OnInit {
   currentElement: FormElement = dashboard[0];
 
   currentElementId: number;
-  dragNewElement: Element = {
-    value: 'New1111',
-    component: LabelComponent,
-  };
+  dragNewElement = new ElementLabel('New label');
 
   options: GridsterConfig = {
     emptyCellDropCallback: this.emptyCellClick.bind(this),
@@ -46,6 +44,7 @@ export class FormBuilderComponent implements OnInit {
   ngOnInit() {
     Object.assign(this.options, this.shiftReportingService.getGridsterOptions());
     this.getDashboard();
+    console.log(new ElementLabel());
   }
 
   getDashboard(): void {
@@ -67,16 +66,16 @@ export class FormBuilderComponent implements OnInit {
   }
 
 
-  setElement(element): void {
-    const idElement = this.dashboard.findIndex(item => item === this.currentElement);
-    Object.assign(this.dashboard[idElement], element);
-    if (element.controlType !== 'dropdown') {
-      delete this.dashboard[idElement].options;
-    } else if (!element.options) {
-      this.dashboard[idElement].options = [];
-    }
-    this.changedOptions();
-  }
+  // setElement(element): void {
+  //   const idElement = this.dashboard.findIndex(item => item === this.currentElement);
+  //   Object.assign(this.dashboard[idElement], element);
+  //   if (element.controlType !== 'dropdown') {
+  //     delete this.dashboard[idElement].options;
+  //   } else if (!element.options) {
+  //     this.dashboard[idElement].options = [];
+  //   }
+  //   this.changedOptions();
+  // }
 
   deleteElement($event): void {
     this.dashboard.splice(this.currentElementId, 1);
@@ -87,11 +86,7 @@ export class FormBuilderComponent implements OnInit {
 
 
   emptyCellClick(event: MouseEvent, item: GridsterItem) {
-    const element: Element = {
-      key: 'elem-' + Date.now(),
-      component: LabelComponent,
-    };
-    this.dashboard.push({ gridster: item, element: element });
+    this.dashboard.push({ gridster: item, element: new ElementLabel() });
   }
 
   changedOptions() {
