@@ -8,10 +8,10 @@ export class ElementLabel extends Element {
     label: 'textbox'
   };
 
-  constructor(label?: 'string') {
+  constructor(label?: string) {
     super();
     this.label = label || 'Label';
     this.component = LabelComponent;
-    this.key = 'label-' + Date.now();
+    this.key = 'label' + Date.now();
   }
 }

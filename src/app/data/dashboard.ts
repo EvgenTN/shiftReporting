@@ -1,5 +1,4 @@
 import { LabelComponent, InputComponent } from '../elements/elements';
-import { FormElement } from '../models';
 import { ElementLabel } from '../elements/models/elementLabel';
 import { ElementInput } from '../elements/models/elementInput';
 
@@ -17,6 +16,11 @@ export const dashboard: any[] = [
       label: 'Label 1',
       name: 'label1',
       // options: []
+      settings:
+      {
+        label: 'textbox',
+        name: 'textbox'
+      }
     },
   },
   {

@@ -1,7 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { ElementsService } from './elements.service';
-import { Element } from '../models';
-import { LabelComponent } from './elements/label/label.component';
+import { ElementType } from './models';
 
 @Component({
   selector: 'app-elements',
@@ -11,15 +10,13 @@ import { LabelComponent } from './elements/label/label.component';
     ElementsService
   ]
 })
-export class ElementsComponent implements OnInit {
+export class ElementsComponent implements OnChanges {
 
-  @Input() element: Element;
+  @Input() element: ElementType;
 
   constructor(public elementsService: ElementsService) { }
 
-  ngOnInit() {
+  ngOnChanges() {
     this.elementsService.setElement(this.element);
-    // console.log(this.element);
   }
- 
 }

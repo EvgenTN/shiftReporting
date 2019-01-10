@@ -15,8 +15,8 @@ export class ElementInput extends Element {
   constructor() {
     super();
     this.component = InputComponent;
-    this.key = 'input-' + Date.now();
-    this.placeholder = '';
-    this.type = 'date';
+    this.key = 'input' + Date.now();
+    this.placeholder = 'Textbox';
+    this.type = 'text';
     }
 }

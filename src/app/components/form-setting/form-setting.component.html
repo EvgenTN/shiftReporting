@@ -1,4 +1,4 @@
-<div class="settings">
+<!-- <div class="settings">
   <p>Settings</p>
   <form [formGroup]="elementSettingForm" (ngSubmit)="onSubmit()">
     <label class='settings__label'>
@@ -21,7 +21,12 @@
       <button type='submit'>Save changes</button>
 
     </div>
-  </form>
-  <!-- <p>{{formElement | json}}</p>
-  <p>{{elementSettingForm}}</p> -->
-</div>
+  </form> 
+</div> -->
+<div>formsettings</div>
+<p>Type</p>
+<select [formControl]="elementType">
+  <option *ngFor="let controlType of controlTypes" 
+  [ngValue]="controlType">{{controlType.value}}</option>
+</select>
+<!-- <p>{{elementType.value}}</p> -->

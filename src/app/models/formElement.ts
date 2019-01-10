@@ -1,7 +1,7 @@
 import { GridsterItem } from 'angular-gridster2';
-import { Element } from './index';
+import { ElementType } from '../elements/models';
 
 export class FormElement {
   gridster: GridsterItem;
-  element: Element;
+  element: ElementType;
 }

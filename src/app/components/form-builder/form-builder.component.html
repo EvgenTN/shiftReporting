@@ -5,12 +5,12 @@
     <div draggable="true" class="dragNewElement">
       <app-elements [element]="dragNewElement"></app-elements>
     </div>
-    <div>
-      <!-- <app-form-setting [element]='currentElement.element' 
+    <div *ngIf="currentElement">
+      <app-form-setting [element]='currentElement.element' 
       (selectSubmit)="selectSubmit()" 
       (deleteElement)="deleteElement($event)" 
       (setElement)="setElement($event)">
-    </app-form-setting> -->
+    </app-form-setting>
     </div>
 
   </div>

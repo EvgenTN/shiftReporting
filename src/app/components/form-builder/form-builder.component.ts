@@ -5,7 +5,7 @@ import { ShiftReportingService } from 'src/app/shift-reporting.service';
 import { dashboard } from 'src/app/data/dashboard';
 import { FormElement, Element } from '../../models';
 import { LabelComponent } from 'src/app/elements/elements';
-import { ElementLabel } from 'src/app/elements/models/elementLabel';
+import { ElementInput, ElementLabel } from 'src/app/elements/models';
 
 @Component({
   selector: 'app-form-builder',
@@ -20,7 +20,7 @@ export class FormBuilderComponent implements OnInit {
   // currentEplement: GridsterItem = null;
   currentElement: FormElement = dashboard[0];
 
-  currentElementId: number;
+  currentElementId: number = 0;
   dragNewElement = new ElementLabel('New label');
 
   options: GridsterConfig = {
@@ -44,7 +44,7 @@ export class FormBuilderComponent implements OnInit {
   ngOnInit() {
     Object.assign(this.options, this.shiftReportingService.getGridsterOptions());
     this.getDashboard();
-    console.log(new ElementLabel());
+    // console.log(new ElementLabel());
   }
 
   getDashboard(): void {
@@ -65,7 +65,9 @@ export class FormBuilderComponent implements OnInit {
     return this.dashboard.findIndex(item => item === element);
   }
 
-
+  setElement(element): void {
+    this.dashboard[this.currentElementId].element = new element.elementClass;
+  }
   // setElement(element): void {
   //   const idElement = this.dashboard.findIndex(item => item === this.currentElement);
   //   Object.assign(this.dashboard[idElement], element);
