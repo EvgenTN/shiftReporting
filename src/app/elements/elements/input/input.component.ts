@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ElementsService } from '../../elements.service';
-import { ElementInput, ElementType } from '../../models';
+import { ElementType } from '../../models';
 
 @Component({
   selector: 'app-input',

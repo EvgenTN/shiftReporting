@@ -7,9 +7,7 @@ import { ControlType, FormElement } from './models';
 import { controlTypes } from './data/controlTypes';
 
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class ShiftReportingService {
 
   constructor() { }
@@ -17,6 +15,7 @@ export class ShiftReportingService {
   getGridsterOptions(): GridsterConfig {
     return options;
   }
+
   getDashboard(): Observable<FormElement[]> {
     return of(dashboard);
   }
@@ -24,9 +23,8 @@ export class ShiftReportingService {
   getControlTypes(): ControlType[] {
     return controlTypes;
   }
+
   getControlTypeCompByKey(key: string): Component {
     return controlTypes.find(item => item.key === key).component;
   }
 }
-
-

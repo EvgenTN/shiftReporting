@@ -17,7 +17,7 @@ export class FormSettingComponent implements OnInit, OnChanges {
   @Output() deleteElement: EventEmitter<any> = new EventEmitter();
   @Output() selectSubmit: EventEmitter<any> = new EventEmitter();
 
-  elementSettingForm: FormGroup;
+  elementSettings: FormGroup;
   controlTypes: ControlType[] = [];
   elementType = new FormControl();
 
@@ -48,6 +48,8 @@ export class FormSettingComponent implements OnInit, OnChanges {
     //   .subscribe((value) => this.setOutputElement(value));
     // this.formFill();
   }
+
+  
 
   // formInit(): void {
   //   this.elementSettingForm = this.fb.group({

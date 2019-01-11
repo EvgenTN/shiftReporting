@@ -12,7 +12,8 @@ gridster {
   max-width: 1000px;
   overflow-x: hidden;
   overflow: visible;
-  margin: 0 auto
+  margin: 0 auto;
+  cursor: default;
 }
 .isCurrent {
   z-index: 2;

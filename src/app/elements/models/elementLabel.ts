@@ -3,8 +3,7 @@ import { LabelComponent } from '../elements';
 
 export class ElementLabel extends Element {
   label: string;
-  settings = {
-    name: 'textbox',
+  private _settings = {
     label: 'textbox'
   };
 
@@ -13,5 +12,6 @@ export class ElementLabel extends Element {
     this.label = label || 'Label';
     this.component = LabelComponent;
     this.key = 'label' + Date.now();
+    this.settings = Object.assign(this.settings, this._settings);
   }
 }

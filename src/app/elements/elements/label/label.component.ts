@@ -1,7 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { ElementsService } from '../../elements.service';
-import { Element } from 'src/app/models';
-import { ElementLabel, ElementType } from '../../models';
+import { ElementType } from '../../models';
 
 @Component({
   selector: 'app-label',

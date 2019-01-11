@@ -20,7 +20,7 @@ export class FormBuilderComponent implements OnInit {
   // currentEplement: GridsterItem = null;
   currentElement: FormElement = dashboard[0];
 
-  currentElementId: number = 0;
+  currentElementId = 0;
   dragNewElement = new ElementLabel('New label');
 
   options: GridsterConfig = {
@@ -45,6 +45,7 @@ export class FormBuilderComponent implements OnInit {
     Object.assign(this.options, this.shiftReportingService.getGridsterOptions());
     this.getDashboard();
     // console.log(new ElementLabel());
+    // console.log(new ElementInput());
   }
 
   getDashboard(): void {

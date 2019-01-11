@@ -24,9 +24,10 @@
   </form> 
 </div> -->
 <div>formsettings</div>
-<p>Type</p>
+<span>Type </span>
 <select [formControl]="elementType">
   <option *ngFor="let controlType of controlTypes" 
   [ngValue]="controlType">{{controlType.value}}</option>
 </select>
+
 <!-- <p>{{elementType.value}}</p> -->
