@@ -1,6 +1,7 @@
 import { LabelComponent, InputComponent } from '../elements/elements';
 import { ElementLabel } from '../elements/models/elementLabel';
 import { ElementInput } from '../elements/models/elementInput';
+import { ElementDropdown } from '../elements/models';
 
 export const dashboard: any[] = [
   {
@@ -30,7 +31,7 @@ export const dashboard: any[] = [
       cols: 4,
       rows: 1,
     },
-    element: new ElementLabel()
+    element: new ElementDropdown()
   },
   {
     gridster: {

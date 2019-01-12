@@ -25,6 +25,7 @@
 </div> -->
 <div>formsettings</div>
 <span>Type </span>
+
 <select [formControl]="elementType">
   <option *ngFor="let controlType of controlTypes" 
   [ngValue]="controlType">{{controlType.value}}</option>

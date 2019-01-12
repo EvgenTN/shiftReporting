@@ -5,7 +5,7 @@ import { ShiftReportingService } from 'src/app/shift-reporting.service';
 import { dashboard } from 'src/app/data/dashboard';
 import { FormElement, Element } from '../../models';
 import { LabelComponent } from 'src/app/elements/elements';
-import { ElementInput, ElementLabel } from 'src/app/elements/models';
+import { ElementInput, ElementLabel, ElementDropdown } from 'src/app/elements/models';
 
 @Component({
   selector: 'app-form-builder',
@@ -28,7 +28,8 @@ export class FormBuilderComponent implements OnInit {
     displayGrid: 'always',
     draggable: {
       delayStart: 0,
-      enabled: true,
+      // ToDo
+      enabled: false,
       ignoreContentClass: 'gridster-item-content',
       dragHandleClass: 'drag-handler',
       dropOverItems: false,
@@ -44,7 +45,7 @@ export class FormBuilderComponent implements OnInit {
   ngOnInit() {
     Object.assign(this.options, this.shiftReportingService.getGridsterOptions());
     this.getDashboard();
-    // console.log(new ElementLabel());
+    // console.log(new ElementDropdown());
     // console.log(new ElementInput());
   }
 

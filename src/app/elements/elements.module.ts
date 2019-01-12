@@ -4,18 +4,20 @@ import { ElementsComponent } from './elements.component';
 import { LabelComponent } from './elements/label/label.component';
 import { InputComponent } from './elements/input/input.component';
 import { ElementsService } from './elements.service';
+import { DropdownComponent } from './elements/dropdown/dropdown.component';
 
 @NgModule({
-  declarations: [ElementsComponent, LabelComponent, InputComponent],
+  declarations: [ElementsComponent, LabelComponent, InputComponent, DropdownComponent],
   imports: [
     CommonModule
   ],
   exports: [
-    ElementsComponent
+    ElementsComponent,
   ],
   entryComponents: [
     LabelComponent,
-    InputComponent
+    InputComponent,
+    DropdownComponent
   ]
 })
 export class ElementsModule { }
