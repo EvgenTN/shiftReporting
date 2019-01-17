@@ -30,5 +30,6 @@
   <option *ngFor="let controlType of controlTypes" 
   [ngValue]="controlType">{{controlType.value}}</option>
 </select>
+<app-elements [element]="selectControlType"></app-elements>
 
 <!-- <p>{{elementType.value}}</p> -->

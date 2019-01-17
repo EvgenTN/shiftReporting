@@ -2,7 +2,7 @@ import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angu
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { ShiftReportingService } from 'src/app/shift-reporting.service';
 import { ControlType, Element } from 'src/app/models';
-import { ElementType } from 'src/app/elements/models';
+import { ElementType, ElementDropdown, ElementLabel } from 'src/app/elements/models';
 import { controlTypes } from 'src/app/data/controlTypes';
 
 
@@ -20,6 +20,7 @@ export class FormSettingComponent implements OnInit, OnChanges {
   elementSettings: FormGroup;
   controlTypes: ControlType[] = [];
   elementType = new FormControl();
+  selectControlType = new ElementDropdown();
 
   constructor(
     private shiftReportingService: ShiftReportingService,
@@ -35,6 +36,8 @@ export class FormSettingComponent implements OnInit, OnChanges {
   ngOnInit() {
     this.controlTypes = this.shiftReportingService.getControlTypes();
     this.updateElementType();
+    this.selectControlType.options = this.controlTypes;
+    console.log(this.selectControlType);
 
     this.elementType.valueChanges
       .subscribe(value => {
