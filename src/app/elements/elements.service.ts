@@ -1,21 +1,27 @@
 import { Injectable } from '@angular/core';
-import { Element } from '../models';
 import { ElementType } from './models';
+import { FormGroup } from '@angular/forms';
 
 @Injectable()
 export class ElementsService {
 
   private element: ElementType;
-
+  private form: FormGroup;
   constructor() { }
 
   getElement(): ElementType {
-    // console.log('get >> ' + this.element.value);
     return this.element;
   }
 
   setElement(value: ElementType): void {
-    // console.log('set >> ' + value.value);
     this.element = { ...value };
+  }
+
+  getForm(): FormGroup {
+    return this.form;
+  }
+
+  setForm(value: FormGroup): void {
+    this.form = value;
   }
 }

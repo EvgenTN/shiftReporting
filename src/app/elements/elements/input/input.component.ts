@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ElementsService } from '../../elements.service';
 import { ElementType } from '../../models';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-input',
@@ -9,6 +10,7 @@ import { ElementType } from '../../models';
 })
 export class InputComponent implements OnInit {
   private element: ElementType;
+  private form: FormGroup;
 
   constructor(
     public elementsService: ElementsService
@@ -16,5 +18,9 @@ export class InputComponent implements OnInit {
 
   ngOnInit() {
     this.element = this.elementsService.getElement();
+    this.form = this.elementsService.getForm();
+    console.log(this.form);
+    console.log(this.element);
+    
   }
 }

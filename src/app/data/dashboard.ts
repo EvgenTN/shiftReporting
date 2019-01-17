@@ -4,25 +4,34 @@ import { ElementInput } from '../elements/models/elementInput';
 import { ElementDropdown } from '../elements/models';
 
 export const dashboard: any[] = [
+  // {
+  //   gridster: {
+  //     x: 1,
+  //     y: 1,
+  //     cols: 3,
+  //     rows: 1,
+  //   },
+  //   element: {
+  //     component: LabelComponent,
+  //     key: 'label1',
+  //     label: 'Label 1',
+  //     name: 'label1',
+  //     // options: []
+  //     settings:
+  //     {
+  //       label: 'textbox',
+  //       name: 'textbox'
+  //     }
+  //   },
+  // },
   {
     gridster: {
       x: 1,
       y: 1,
-      cols: 3,
+      cols: 4,
       rows: 1,
     },
-    element: {
-      component: LabelComponent,
-      key: 'label1',
-      label: 'Label 1',
-      name: 'label1',
-      // options: []
-      settings:
-      {
-        label: 'textbox',
-        name: 'textbox'
-      }
-    },
+    element: new ElementLabel()
   },
   {
     gridster: {
@@ -42,6 +51,8 @@ export const dashboard: any[] = [
     },
     element: new ElementInput()
   },
+  
+  
 
   // {
   //   x: 1,

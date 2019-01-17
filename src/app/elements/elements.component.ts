@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { ElementsService } from './elements.service';
 import { ElementType } from './models';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-elements',
@@ -13,10 +14,13 @@ import { ElementType } from './models';
 export class ElementsComponent implements OnChanges {
 
   @Input() element: ElementType;
+  @Input() form: FormGroup;
 
   constructor(public elementsService: ElementsService) { }
 
   ngOnChanges() {
     this.elementsService.setElement(this.element);
+    this.elementsService.setForm(this.form);
+    // console.log(this.form);
   }
 }

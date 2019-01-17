@@ -29,7 +29,7 @@ export class FormBuilderComponent implements OnInit {
     draggable: {
       delayStart: 0,
       // ToDo
-      // enabled: false,
+      enabled: true,
       ignoreContentClass: 'gridster-item-content',
       dragHandleClass: 'drag-handler',
       dropOverItems: false,

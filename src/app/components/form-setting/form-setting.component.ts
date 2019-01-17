@@ -22,6 +22,17 @@ export class FormSettingComponent implements OnInit, OnChanges {
   elementType = new FormControl();
   selectControlType = new ElementDropdown();
 
+  settingsForm: FormGroup;
+
+  rrr() {
+    const group: FormGroup = this.fb.group({});
+    this.element.settings.map(item => {
+      group.addControl(item.key, this.fb.control(item.value));
+    });
+
+    return group;
+  }
+
   constructor(
     private shiftReportingService: ShiftReportingService,
     private fb: FormBuilder,
@@ -37,7 +48,13 @@ export class FormSettingComponent implements OnInit, OnChanges {
     this.controlTypes = this.shiftReportingService.getControlTypes();
     this.updateElementType();
     this.selectControlType.options = this.controlTypes;
-    console.log(this.selectControlType);
+    // console.log(this.element.settings);
+    console.log(this.rrr());
+    // this.rrr();
+    // this.settingsForm = this.fb.group(this.rrr());
+    this.settingsForm = this.rrr();
+
+
 
     this.elementType.valueChanges
       .subscribe(value => {
@@ -52,7 +69,7 @@ export class FormSettingComponent implements OnInit, OnChanges {
     // this.formFill();
   }
 
-  
+
 
   // formInit(): void {
   //   this.elementSettingForm = this.fb.group({
