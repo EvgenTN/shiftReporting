@@ -19,8 +19,8 @@ export class InputComponent implements OnInit {
   ngOnInit() {
     this.element = this.elementsService.getElement();
     this.form = this.elementsService.getForm();
-    console.log(this.form);
-    console.log(this.element);
     
+    // console.log(this.form);
+    // console.log(this.element);
   }
 }

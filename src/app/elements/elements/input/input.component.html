@@ -1,4 +1,14 @@
-  <input class="input"
-  [placeholder]="element.placeholder"
-  [type]="element.type"
+<form *ngIf="form" [formGroup]="form">
+  <input class="input" 
+  [placeholder]="element.placeholder" 
+  [type]="element.type" 
+  [formControlName]="element.key"
+  [value]="element.value"
   >
+</form>
+
+<input *ngIf="!form"
+ class="input" 
+[placeholder]="element.placeholder" 
+[type]="element.type" 
+>

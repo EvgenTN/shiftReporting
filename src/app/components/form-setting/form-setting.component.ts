@@ -49,7 +49,7 @@ export class FormSettingComponent implements OnInit, OnChanges {
     this.updateElementType();
     this.selectControlType.options = this.controlTypes;
     // console.log(this.element.settings);
-    console.log(this.rrr());
+    // console.log(this.rrr());
     // this.rrr();
     // this.settingsForm = this.fb.group(this.rrr());
     this.settingsForm = this.rrr();
