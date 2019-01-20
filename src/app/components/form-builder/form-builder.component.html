@@ -9,7 +9,10 @@
       <app-form-setting [element]='currentElement.element' 
       (selectSubmit)="selectSubmit()" 
       (deleteElement)="deleteElement($event)" 
-      (setElement)="setElement($event)">
+      (changeElementType)="changeElementType($event)"
+      (setElement)="setElement($event)"
+
+      >
     </app-form-setting>
     </div>
 
@@ -21,7 +24,7 @@
     [item]="item.gridster" 
     (click)="setCurrentElement(item)">
       <!-- <app-input [formElement]='item'></app-input> -->
-      <app-elements   [element]="item.element"></app-elements>
+      <app-elements [element]="item.element"></app-elements>
 
     </gridster-item>   
   </gridster>

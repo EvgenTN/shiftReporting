@@ -13,11 +13,12 @@ import { controlTypes } from 'src/app/data/controlTypes';
 })
 export class FormSettingComponent implements OnInit, OnChanges {
   @Input() element: ElementType;
-  @Output() setElement: EventEmitter<any> = new EventEmitter();
+  @Output() changeElementType: EventEmitter<any> = new EventEmitter();
   @Output() deleteElement: EventEmitter<any> = new EventEmitter();
   @Output() selectSubmit: EventEmitter<any> = new EventEmitter();
+  @Output() setElement: EventEmitter<any> = new EventEmitter();
 
-  elementSettings: FormGroup;
+
   controlTypes: ControlType[] = [];
   elementType = new FormControl();
   selectControlType = new ElementDropdown();
@@ -48,25 +49,17 @@ export class FormSettingComponent implements OnInit, OnChanges {
     this.controlTypes = this.shiftReportingService.getControlTypes();
     this.updateElementType();
     this.selectControlType.options = this.controlTypes;
-    // console.log(this.element.settings);
-    // console.log(this.rrr());
-    // this.rrr();
-    // this.settingsForm = this.fb.group(this.rrr());
     this.settingsForm = this.rrr();
-
-
-
     this.elementType.valueChanges
       .subscribe(value => {
-        this.setElement.emit(value);
+        this.changeElementType.emit(value);
       });
-    // console.log(this.controlTypes);
+    this.settingsForm.valueChanges
+      .subscribe((value) => this.setElementOutput(value));
+  }
 
-    // // console.log('FormSettingComponent init');
-    // this.formInit();
-    // this.elementSettingForm.valueChanges
-    //   .subscribe((value) => this.setOutputElement(value));
-    // this.formFill();
+  setElementOutput(value): void {
+    this.setElement.emit(value);
   }
 
 

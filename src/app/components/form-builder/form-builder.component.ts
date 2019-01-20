@@ -4,7 +4,6 @@ import { FormElementTextbox } from 'src/app/formElementTextbox';
 import { ShiftReportingService } from 'src/app/shift-reporting.service';
 import { dashboard } from 'src/app/data/dashboard';
 import { FormElement, Element } from '../../models';
-import { LabelComponent } from 'src/app/elements/elements';
 import { ElementInput, ElementLabel, ElementDropdown } from 'src/app/elements/models';
 
 @Component({
@@ -67,9 +66,18 @@ export class FormBuilderComponent implements OnInit {
     return this.dashboard.findIndex(item => item === element);
   }
 
-  setElement(element): void {
+  changeElementType(element): void {
+    console.log('changeElementType');
     this.dashboard[this.currentElementId].element = new element.elementClass;
   }
+  setElement(element): void {
+    // console.log('setElement');
+    Object.assign(this.dashboard[this.currentElementId].element, element);
+    // console.log(this.dashboard[this.currentElementId].element);
+
+  }
+
+
   // setElement(element): void {
   //   const idElement = this.dashboard.findIndex(item => item === this.currentElement);
   //   Object.assign(this.dashboard[idElement], element);
