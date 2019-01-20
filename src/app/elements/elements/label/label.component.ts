@@ -16,5 +16,7 @@ export class LabelComponent implements OnInit {
 
   ngOnInit() {
     this.element = this.elementsService.getElement();
+    console.log(this.element);
+    
   }
 }

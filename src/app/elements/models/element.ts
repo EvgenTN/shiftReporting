@@ -4,12 +4,16 @@ export class Element {
   component: any;
   name?: string;
   key?: string;
-  settings: { key: string, component: any, label: string, value?: any }[]
-    = [
-      { key: 'name', component: InputComponent, label: 'Name', value: this.name },
-      { key: 'isRequired', component: InputComponent, label: 'isRequired', value: false }
-    ];
+  isRequired?: boolean;
+  settings: { key: string, component: any, label: string, value?: any, placeholder?: string }[];
 
-  constructor() { }
+  constructor() {
+    this.name = '';
+    this.isRequired = false;
+    this.settings = [
+      { key: 'name', component: InputComponent, label: 'Name', value: this.name, placeholder: 'Enter name' },
+      { key: 'isRequired', component: InputComponent, label: 'isRequired', value: this.isRequired }
+    ];
+  }
 }
 

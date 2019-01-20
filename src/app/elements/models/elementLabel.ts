@@ -17,4 +17,5 @@ export class ElementLabel extends Element {
     ];
     this.settings = this.settings.concat(this._settings);
   }
+  
 }

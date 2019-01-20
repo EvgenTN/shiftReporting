@@ -5,10 +5,13 @@ import { options } from './data/gridsterOptions';
 import { dashboard } from './data/dashboard';
 import { ControlType, FormElement } from './models';
 import { controlTypes } from './data/controlTypes';
+import { ElementType } from './elements/models';
 
 
 @Injectable({ providedIn: 'root' })
 export class ShiftReportingService {
+
+  dashboard = dashboard;
 
   constructor() { }
 
@@ -17,7 +20,7 @@ export class ShiftReportingService {
   }
 
   getDashboard(): Observable<FormElement[]> {
-    return of(dashboard);
+    return of(this.dashboard);
   }
 
   getControlTypes(): ControlType[] {
@@ -26,5 +29,9 @@ export class ShiftReportingService {
 
   getControlTypeCompByKey(key: string): Component {
     return controlTypes.find(item => item.key === key).component;
+  }
+  setDashboard(newdashboard: FormElement[]): void {
+    this.dashboard = [...newdashboard];
+
   }
 }

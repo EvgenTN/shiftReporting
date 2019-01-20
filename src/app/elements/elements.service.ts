@@ -10,10 +10,13 @@ export class ElementsService {
   constructor() { }
 
   getElement(): ElementType {
+    
     return this.element;
   }
 
   setElement(value: ElementType): void {
+    // console.log('set', value);
+
     this.element = { ...value };
   }
 

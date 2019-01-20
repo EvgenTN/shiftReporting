@@ -1,29 +1,7 @@
-import { LabelComponent, InputComponent } from '../elements/elements';
 import { ElementLabel } from '../elements/models/elementLabel';
-import { ElementInput } from '../elements/models/elementInput';
 import { ElementDropdown } from '../elements/models';
 
 export const dashboard: any[] = [
-  // {
-  //   gridster: {
-  //     x: 1,
-  //     y: 1,
-  //     cols: 3,
-  //     rows: 1,
-  //   },
-  //   element: {
-  //     component: LabelComponent,
-  //     key: 'label1',
-  //     label: 'Label 1',
-  //     name: 'label1',
-  //     // options: []
-  //     settings:
-  //     {
-  //       label: 'textbox',
-  //       name: 'textbox'
-  //     }
-  //   },
-  // },
   {
     gridster: {
       x: 1,
@@ -33,26 +11,28 @@ export const dashboard: any[] = [
     },
     element: new ElementLabel()
   },
-  {
-    gridster: {
-      x: 1,
-      y: 2,
-      cols: 4,
-      rows: 1,
-    },
-    element: new ElementDropdown()
-  },
-  {
-    gridster: {
-      x: 1,
-      y: 3,
-      cols: 4,
-      rows: 1,
-    },
-    element: new ElementInput()
-  },
-  
-  
+
+  // {
+  //   gridster: {
+  //     x: 1,
+  //     y: 2,
+  //     cols: 4,
+  //     rows: 1,
+  //   },
+  //   element: new ElementDropdown()
+  // },
+
+  // {
+  //   gridster: {
+  //     x: 1,
+  //     y: 3,
+  //     cols: 4,
+  //     rows: 1,
+  //   },
+  //   element: new ElementLabel()
+  // },
+
+
 
   // {
   //   x: 1,

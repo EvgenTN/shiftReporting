@@ -25,7 +25,7 @@ export class FormSettingComponent implements OnInit, OnChanges {
 
   settingsForm: FormGroup;
 
-  rrr() {
+  formInit() {
     const group: FormGroup = this.fb.group({});
     this.element.settings.map(item => {
       group.addControl(item.key, this.fb.control(item.value));
@@ -49,16 +49,22 @@ export class FormSettingComponent implements OnInit, OnChanges {
     this.controlTypes = this.shiftReportingService.getControlTypes();
     this.updateElementType();
     this.selectControlType.options = this.controlTypes;
-    this.settingsForm = this.rrr();
+    this.settingsForm = this.formInit();
     this.elementType.valueChanges
       .subscribe(value => {
         this.changeElementType.emit(value);
       });
     this.settingsForm.valueChanges
       .subscribe((value) => this.setElementOutput(value));
+    // console.log(this.element);
+
   }
 
   setElementOutput(value): void {
+    this.element.settings.map(item => {
+      this.element[item.key] = value[item.key];
+      this.element.settings.find(elem => elem.key === item.key).value = value[item.key];
+    });
     this.setElement.emit(value);
   }
 
@@ -118,7 +124,7 @@ export class FormSettingComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
     this.updateElementType();
-
+    // console.log(this.element);
     // console.log(this.element);
 
     // if (this.elementSettingForm) { this.formFill(); }

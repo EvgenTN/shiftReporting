@@ -23,6 +23,6 @@ export class ElementsComponent implements OnChanges {
   ngOnChanges() {
     this.elementsService.setElement(this.element);
     this.elementsService.setForm(this.form);
-    console.log('ElementsComponent');
+    // console.log('ElementsComponent', this.element);
   }
 }

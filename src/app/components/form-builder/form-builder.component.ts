@@ -44,13 +44,14 @@ export class FormBuilderComponent implements OnInit {
   ngOnInit() {
     Object.assign(this.options, this.shiftReportingService.getGridsterOptions());
     this.getDashboard();
-    // console.log(new ElementDropdown());
-    // console.log(new ElementInput());
   }
 
   getDashboard(): void {
     this.shiftReportingService.getDashboard()
-      .subscribe(value => this.dashboard = value);
+      .subscribe(value => {
+        // console.log('observable');
+        this.dashboard = value;
+      });
   }
 
   setCurrentElement(item): void {
@@ -71,10 +72,8 @@ export class FormBuilderComponent implements OnInit {
     this.dashboard[this.currentElementId].element = new element.elementClass;
   }
   setElement(element): void {
-    // console.log('setElement');
     Object.assign(this.dashboard[this.currentElementId].element, element);
-    // console.log(this.dashboard[this.currentElementId].element);
-
+    this.shiftReportingService.setDashboard(this.dashboard);
   }
 
 
