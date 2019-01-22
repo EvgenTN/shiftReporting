@@ -8,13 +8,14 @@ import { ElementType } from '../../models';
   styleUrls: ['./dropdown.component.scss']
 })
 export class DropdownComponent implements OnInit {
-  private element: ElementType;
+  private _element: ElementType;
   constructor(
     public elementsService: ElementsService
   ) { }
 
   ngOnInit() {
-    this.element = this.elementsService.getElement();
+    this.elementsService.element
+      .subscribe(value => this._element = value);
   }
 
 }

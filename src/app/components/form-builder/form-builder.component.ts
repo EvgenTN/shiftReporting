@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { GridsterConfig, GridsterItem } from 'angular-gridster2';
-import { FormElementTextbox } from 'src/app/formElementTextbox';
 import { ShiftReportingService } from 'src/app/shift-reporting.service';
-import { dashboard } from 'src/app/data/dashboard';
-import { FormElement, Element } from '../../models';
-import { ElementInput, ElementLabel, ElementDropdown } from 'src/app/elements/models';
+import { FormElement } from '../../models';
+import { ElementLabel } from 'src/app/elements/models';
 
 @Component({
   selector: 'app-form-builder',
@@ -12,15 +10,11 @@ import { ElementInput, ElementLabel, ElementDropdown } from 'src/app/elements/mo
   styleUrls: ['./form-builder.component.scss']
 })
 export class FormBuilderComponent implements OnInit {
-  constructor(
-    private shiftReportingService: ShiftReportingService
-  ) { }
-  // TODO chose currentElement
-  // currentEplement: GridsterItem = null;
-  currentElement: FormElement = dashboard[0];
 
-  currentElementId = 0;
+  dashboard: FormElement[];
+  currentElement: FormElement = null;
   dragNewElement = new ElementLabel('New label');
+  currentElementId: number;
 
   options: GridsterConfig = {
     emptyCellDropCallback: this.emptyCellClick.bind(this),
@@ -38,8 +32,10 @@ export class FormBuilderComponent implements OnInit {
     },
   };
 
-  dashboard: FormElement[] = [];
 
+  constructor(
+    private shiftReportingService: ShiftReportingService
+  ) { }
 
   ngOnInit() {
     Object.assign(this.options, this.shiftReportingService.getGridsterOptions());
@@ -47,17 +43,18 @@ export class FormBuilderComponent implements OnInit {
   }
 
   getDashboard(): void {
-    this.shiftReportingService.getDashboard()
-      .subscribe(value => {
-        // console.log('observable');
-        this.dashboard = value;
-      });
+    this.shiftReportingService.dashboard.subscribe(value => {
+      this.dashboard = value;
+      // TODO chose currentElement
+      this.currentElement = this.dashboard[0];
+      this.currentElementId = 0;
+    });
   }
 
   setCurrentElement(item): void {
     if (this.currentElement !== item) {
       this.currentElement = item;
-      this.currentElementId = this.getElementId(item);
+      this.currentElementId = this.getElementId(item);      
     } else {
       this.currentElement = null;
     }
@@ -68,12 +65,13 @@ export class FormBuilderComponent implements OnInit {
   }
 
   changeElementType(element): void {
-    console.log('changeElementType');
+    // console.log('changeElementType');
     this.dashboard[this.currentElementId].element = new element.elementClass;
   }
+
   setElement(element): void {
     Object.assign(this.dashboard[this.currentElementId].element, element);
-    this.shiftReportingService.setDashboard(this.dashboard);
+    // this.shiftRep=ortingService.setDashboard(this.dashboard);
   }
 
 

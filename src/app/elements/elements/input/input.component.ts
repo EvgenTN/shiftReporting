@@ -9,18 +9,27 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./input.component.scss']
 })
 export class InputComponent implements OnInit {
-  private element: ElementType;
-  private form: FormGroup;
+  private _element: ElementType;
+  private _form: FormGroup;
 
   constructor(
     public elementsService: ElementsService
   ) { }
 
   ngOnInit() {
-    this.element = this.elementsService.getElement();
-    this.form = this.elementsService.getForm();
-    
+    this.getData();
+
+
     // console.log(this.form);
     // console.log(this.element);
+  }
+
+  getData(): void {
+    this.elementsService.element
+      .subscribe(value => this._element = value);
+    this.elementsService.form
+      .subscribe(value => this._form = value);
+    // console.log(this._element);
+
   }
 }

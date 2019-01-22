@@ -25,19 +25,36 @@ export class FormSettingComponent implements OnInit, OnChanges {
 
   settingsForm: FormGroup;
 
-  formInit() {
-    const group: FormGroup = this.fb.group({});
-    this.element.settings.map(item => {
-      group.addControl(item.key, this.fb.control(item.value));
-    });
-
-    return group;
-  }
 
   constructor(
     private shiftReportingService: ShiftReportingService,
     private fb: FormBuilder,
   ) { }
+
+
+
+  ngOnInit() {
+
+    this.controlTypes = this.shiftReportingService.getControlTypes();
+    this.updateElementType();
+    this.selectControlType.options = this.controlTypes;
+    this.settingsForm = this.formInit();
+    this.elementType.valueChanges
+      .subscribe(value => {
+        if (value.component !== this.element.component) {
+          this.changeElementType.emit(value);
+        }
+      });
+    this.settingsForm.valueChanges
+      .subscribe((value) => {
+        this.setElementOutput(value)
+      });
+  }
+  ngOnChanges() {
+    this.settingsForm = this.formInit();
+    this.updateElementType();
+
+  }
 
   updateElementType() {
     this.elementType.setValue(
@@ -45,25 +62,18 @@ export class FormSettingComponent implements OnInit, OnChanges {
     );
   }
 
-  ngOnInit() {
-    this.controlTypes = this.shiftReportingService.getControlTypes();
-    this.updateElementType();
-    this.selectControlType.options = this.controlTypes;
-    this.settingsForm = this.formInit();
-    this.elementType.valueChanges
-      .subscribe(value => {
-        this.changeElementType.emit(value);
-      });
-    this.settingsForm.valueChanges
-      .subscribe((value) => this.setElementOutput(value));
-    // console.log(this.element);
-
+  formInit(): FormGroup {
+    const group: FormGroup = this.fb.group({});
+    this.element.settings.map((item, id) => {
+      this.element.settings[id].value = this.element[item.key];
+      group.addControl(item.key, this.fb.control(this.element[item.key]));
+    });
+    return group;
   }
 
   setElementOutput(value): void {
     this.element.settings.map(item => {
       this.element[item.key] = value[item.key];
-      this.element.settings.find(elem => elem.key === item.key).value = value[item.key];
     });
     this.setElement.emit(value);
   }
@@ -121,15 +131,6 @@ export class FormSettingComponent implements OnInit, OnChanges {
   //   this.setElement.emit(result);
 
   // }
-
-  ngOnChanges() {
-    this.updateElementType();
-    // console.log(this.element);
-    // console.log(this.element);
-
-    // if (this.elementSettingForm) { this.formFill(); }
-  }
-
 
   // dltElement($event): void {
   //   this.deleteElement.emit($event);

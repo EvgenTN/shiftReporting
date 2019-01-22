@@ -42,10 +42,10 @@ export class ContainerComponent implements OnInit {
 
   ngOnInit() {
     Object.assign(this.options, this.shiftReportingService.getGridsterOptions());
-    this.getDashboard();
+    // this.getDashboard();
   }
-  getDashboard(): void {
-    this.shiftReportingService.getDashboard()
-      .subscribe(dashboard => this.dashboard = dashboard);
-  }
+  // getDashboard(): void {
+  //   this.shiftReportingService.getDashboard()
+  //     .subscribe(dashboard => this.dashboard = dashboard);
+  // }
 }

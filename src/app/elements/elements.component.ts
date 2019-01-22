@@ -2,7 +2,6 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { ElementsService } from './elements.service';
 import { ElementType } from './models';
 import { FormGroup } from '@angular/forms';
-import { dashboard } from '../data/dashboard';
 
 @Component({
   selector: 'app-elements',
@@ -12,17 +11,21 @@ import { dashboard } from '../data/dashboard';
     ElementsService
   ]
 })
-export class ElementsComponent implements OnChanges {
+export class ElementsComponent implements OnInit, OnChanges {
 
   @Input() element: ElementType;
   @Input() form: FormGroup;
-  // @Input() dashboard;
 
-  constructor(public elementsService: ElementsService) { }
+  constructor(public elementsService: ElementsService) {
+  }
 
   ngOnChanges() {
     this.elementsService.setElement(this.element);
     this.elementsService.setForm(this.form);
-    // console.log('ElementsComponent', this.element);
+  }
+
+  ngOnInit() {
+    // console.log(this.element);
+    // console.log(this.form);
   }
 }

@@ -1,3 +1,21 @@
+<div>formsettings</div>
+<span>Type </span>
+
+<select [formControl]="elementType">
+  <option *ngFor="let controlType of controlTypes" [ngValue]="controlType">{{controlType.value}}</option>
+</select>
+
+<form [formGroup]="settingsForm">
+  <div *ngFor="let item of element.settings">
+    <label>{{item.label}}</label>
+    <div class="element">
+      <app-elements [element]="item" [form]="settingsForm"></app-elements>
+    </div>
+  </div>
+
+</form>
+
+
 <!-- <div class="settings">
   <p>Settings</p>
   <form [formGroup]="elementSettingForm" (ngSubmit)="onSubmit()">
@@ -23,19 +41,3 @@
     </div>
   </form> 
 </div> -->
-<div>formsettings</div>
-<span>Type </span>
-
-<select [formControl]="elementType">
-  <option *ngFor="let controlType of controlTypes" 
-  [ngValue]="controlType">{{controlType.value}}</option>
-</select>
-
-<form [formGroup]="settingsForm" >
-  <div *ngFor="let item of element.settings">
-    <label>{{item.label}}</label>
-    <app-elements [element]="item" [form]="settingsForm"></app-elements>
-  </div>
-  
-</form>
-

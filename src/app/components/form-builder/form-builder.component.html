@@ -9,9 +9,9 @@
 
 
     <div *ngIf="currentElement">
-      <app-form-setting [element]='currentElement.element' (selectSubmit)="selectSubmit()" (deleteElement)="deleteElement($event)"
+      <app-form-setting  [element]='currentElement.element' (selectSubmit)="selectSubmit()" (deleteElement)="deleteElement($event)"
         (changeElementType)="changeElementType($event)" (setElement)="setElement($event)">
-        X </app-form-setting>
+      </app-form-setting>
     </div>
 
   </div>
@@ -19,7 +19,6 @@
     <gridster-item [class.isCurrent]='item === currentElement' *ngFor="let item of dashboard" [item]="item.gridster"
       (click)="setCurrentElement(item)">
       <app-elements [element]="item.element"></app-elements>
-
     </gridster-item>
   </gridster>
 </div>
@@ -27,7 +26,8 @@
 
 
 <div *ngFor="let item of dashboard">
-  {{item | json}}
+  <p>{{item | json}}</p>
+  <p>___</p>
 </div>
 
 
