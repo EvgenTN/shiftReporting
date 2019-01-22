@@ -1,4 +1,22 @@
-<div class="settings">
+<div>formsettings</div>
+<span>Type </span>
+
+<select [formControl]="elementType">
+  <option *ngFor="let controlType of controlTypes" [ngValue]="controlType">{{controlType.value}}</option>
+</select>
+
+<form [formGroup]="settingsForm">
+  <div *ngFor="let item of element.settings">
+    <label>{{item.label}}</label>
+    <div class="element">
+      <app-elements [element]="item" [form]="settingsForm"></app-elements>
+    </div>
+  </div>
+
+</form>
+
+
+<!-- <div class="settings">
   <p>Settings</p>
   <form [formGroup]="elementSettingForm" (ngSubmit)="onSubmit()">
     <label class='settings__label'>
@@ -8,7 +26,8 @@
     <label class='settings__label'>
       <p>Control type</p>
       <select formControlName='controlType'>
-        <option *ngFor="let controlType of controlTypes" [ngValue]="controlType.key">{{controlType.value}}</option>
+        <option *ngFor="let controlType of controlTypes" 
+        [ngValue]="controlType.component">{{controlType.value}}</option>
       </select>
     </label>
     <label class='settings__label' *ngIf="elementSettingForm.value.controlType == 'dropdown'">Possible values
@@ -20,7 +39,5 @@
       <button type='submit'>Save changes</button>
 
     </div>
-  </form>
-  <!-- <p>{{formElement | json}}</p>
-  <p>{{elementSettingForm}}</p> -->
-</div>
+  </form> 
+</div> -->

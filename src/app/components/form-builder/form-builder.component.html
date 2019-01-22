@@ -1,25 +1,34 @@
-
 <div class="container">
   <div class="sidebar">
+
+
     <p>Drag for Add new Element</p>
     <div draggable="true" class="dragNewElement">
-      <app-input [formElement]='dragNewElement'></app-input>
+      <app-elements [element]="dragNewElement"></app-elements>
     </div>
-    <div  >
-      <app-form-setting [formElement]='currentElement' (selectSubmit)="selectSubmit()" (deleteElement)="deleteElement($event)" (setElement)="setElement($event)"></app-form-setting>
 
+
+    <div *ngIf="currentElement">
+      <app-form-setting  [element]='currentElement.element' (selectSubmit)="selectSubmit()" (deleteElement)="deleteElement($event)"
+        (changeElementType)="changeElementType($event)" (setElement)="setElement($event)">
+      </app-form-setting>
     </div>
 
   </div>
   <gridster [options]="options">
-    <gridster-item [class.isCurrent]='item === currentElement' [item]="item" *ngFor="let item of dashboard" (click)="setCurrentElement(item)">
-      <app-input [formElement]='item'></app-input>
-    </gridster-item>   
+    <gridster-item [class.isCurrent]='item === currentElement' *ngFor="let item of dashboard" [item]="item.gridster"
+      (click)="setCurrentElement(item)">
+      <app-elements [element]="item.element"></app-elements>
+    </gridster-item>
   </gridster>
 </div>
-<pre>
-  <!-- {{dashboard | json}} -->
-</pre>
+
+
+
+<div *ngFor="let item of dashboard">
+  <p>{{item | json}}</p>
+  <p>___</p>
+</div>
 
 
 <!-- *ngIf='currentElement' class="settings"-->

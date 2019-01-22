@@ -3,6 +3,7 @@ import { FormElementBase } from 'src/app/formElementBase';
 import { FormElementTextbox } from 'src/app/formElementTextbox';
 import { ShiftReportingService } from 'src/app/shift-reporting.service';
 import { GridsterConfig, GridsterItem } from 'angular-gridster2';
+import { FormElement } from 'src/app/models';
 
 @Component({
   selector: 'app-container',
@@ -10,7 +11,7 @@ import { GridsterConfig, GridsterItem } from 'angular-gridster2';
   styleUrls: ['./container.component.scss']
 })
 export class ContainerComponent implements OnInit {
-  dashboard: GridsterItem[];
+  dashboard: FormElement[];
   options: GridsterConfig = {
 
   };
@@ -41,10 +42,10 @@ export class ContainerComponent implements OnInit {
 
   ngOnInit() {
     Object.assign(this.options, this.shiftReportingService.getGridsterOptions());
-    this.getDashboard();
+    // this.getDashboard();
   }
-  getDashboard(): void {
-    this.shiftReportingService.getDashboard()
-      .subscribe(dashboard => this.dashboard = dashboard);
-  }
+  // getDashboard(): void {
+  //   this.shiftReportingService.getDashboard()
+  //     .subscribe(dashboard => this.dashboard = dashboard);
+  // }
 }

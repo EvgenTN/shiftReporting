@@ -1,4 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+@import './assets/styles/variables';
+@import './assets/styles/reset';
+@import './assets/styles/base';
 
-body {font-family: 'Ubuntu', sans-serif;}
+body {font-family: 'Comfortaa', sans-serif;}
 p {padding: 0; margin: 0}
