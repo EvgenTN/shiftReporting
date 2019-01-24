@@ -16,36 +16,16 @@ export class ContainerComponent implements OnInit {
 
   };
 
-  form = [
-    new FormElementTextbox({
-      value: 'T',
-      key: 'string',
-      label: 'string',
-      required: true,
-      order: 1,
-      controlType: 'textbox',
-      type: 'text',
-    }),
-    new FormElementBase({
-      value: 'T2',
-      key: 'string2',
-      label: 'string2',
-      required: true,
-      order: 2,
-      controlType: 'dropdown',
-    }),
-  ];
-
   constructor(
     private shiftReportingService: ShiftReportingService
   ) { }
 
   ngOnInit() {
     Object.assign(this.options, this.shiftReportingService.getGridsterOptions());
-    // this.getDashboard();
+    this.getDashboard();
   }
-  // getDashboard(): void {
-  //   this.shiftReportingService.getDashboard()
-  //     .subscribe(dashboard => this.dashboard = dashboard);
-  // }
+  getDashboard(): void {
+    this.shiftReportingService.dashboard
+      .subscribe(value => this.dashboard = value);
+  }
 }
