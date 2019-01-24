@@ -45,13 +45,13 @@ export class FormSettingComponent implements OnInit, OnChanges {
           this.changeElementType.emit(value);
         }
       });
-    this.settingsForm.valueChanges
-      .subscribe((value) => {
-        this.setElementOutput(value)
-      });
   }
   ngOnChanges() {
     this.settingsForm = this.formInit();
+    this.settingsForm.valueChanges
+      .subscribe((value) => {
+        this.setElement.emit(value);
+      });
     this.updateElementType();
 
   }
@@ -71,12 +71,12 @@ export class FormSettingComponent implements OnInit, OnChanges {
     return group;
   }
 
-  setElementOutput(value): void {
-    this.element.settings.map(item => {
-      this.element[item.key] = value[item.key];
-    });
-    this.setElement.emit(value);
-  }
+  // setElementOutput(value): void {
+  //   this.element.settings.map(item => {
+  //     this.element[item.key] = value[item.key];
+  //   });
+  //   this.setElement.emit(value);
+  // }
 
 
 
