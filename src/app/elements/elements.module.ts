@@ -5,10 +5,11 @@ import { LabelComponent } from './elements/label/label.component';
 import { InputComponent } from './elements/input/input.component';
 import { DropdownComponent } from './elements/dropdown/dropdown.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CheckboxComponent } from './elements/checkbox/checkbox.component';
 
 
 @NgModule({
-  declarations: [ElementsComponent, LabelComponent, InputComponent, DropdownComponent],
+  declarations: [ElementsComponent, LabelComponent, InputComponent, DropdownComponent, CheckboxComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -19,7 +20,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   entryComponents: [
     LabelComponent,
     InputComponent,
-    DropdownComponent
+    DropdownComponent,
+    CheckboxComponent
   ]
 })
 export class ElementsModule { }

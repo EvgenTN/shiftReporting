@@ -12,9 +12,9 @@ export class ElementLabel extends Element {
     this.label = label || 'Label';
     this.component = LabelComponent;
     this.key = 'label' + Date.now();
-    this._settings = [
-      { key: 'label', component: InputComponent, label: 'Label' },
-    ];
+    // this._settings = [
+    //   { key: 'label', component: InputComponent, label: 'Label' },
+    // ];
     this.settings = this.settings.concat(this._settings);
   }
 
