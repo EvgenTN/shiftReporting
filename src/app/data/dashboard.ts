@@ -1,5 +1,5 @@
 import { ElementLabel } from '../elements/models/elementLabel';
-import { ElementDropdown } from '../elements/models';
+import { ElementDropdown, ElementInput } from '../elements/models';
 
 export const dashboard: any[] = [
   {
@@ -12,25 +12,25 @@ export const dashboard: any[] = [
     element: new ElementLabel()
   },
 
-  // {
-  //   gridster: {
-  //     x: 1,
-  //     y: 2,
-  //     cols: 4,
-  //     rows: 1,
-  //   },
-  //   element: new ElementDropdown()
-  // },
+  {
+    gridster: {
+      x: 1,
+      y: 2,
+      cols: 4,
+      rows: 1,
+    },
+    element: new ElementDropdown()
+  },
 
-  // {
-  //   gridster: {
-  //     x: 1,
-  //     y: 3,
-  //     cols: 4,
-  //     rows: 1,
-  //   },
-  //   element: new ElementLabel()
-  // },
+  {
+    gridster: {
+      x: 1,
+      y: 3,
+      cols: 4,
+      rows: 1,
+    },
+    element: new ElementInput()
+  },
 
 
 
