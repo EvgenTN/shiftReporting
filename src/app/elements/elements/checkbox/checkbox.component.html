@@ -1,3 +1,9 @@
-<p>
-  checkbox works!
-</p>
+<div class="checkbox">
+  <svg width="16" height="16" [class.isChecked]="_element.isChecked">
+    <path *ngIf="_element.isChecked"  fill="none" stroke="white" stroke-width="3"
+    d="M 1,7
+    l 6, 6
+    l 8, -12"
+    ></path>
+  </svg>
+</div>
