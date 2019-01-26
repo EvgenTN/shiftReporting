@@ -1,5 +1,5 @@
 import { ElementLabel } from '../elements/models/elementLabel';
-import { ElementDropdown, ElementInput } from '../elements/models';
+import { ElementDropdown, ElementInput, ElementCheckbox } from '../elements/models';
 
 export const dashboard: any[] = [
   {
@@ -31,8 +31,24 @@ export const dashboard: any[] = [
     },
     element: new ElementInput()
   },
-
-
+  {
+    gridster: {
+      x: 5,
+      y: 1,
+      cols: 1,
+      rows: 1,
+    },
+    element: new ElementCheckbox(false)
+  },
+  {
+    gridster: {
+      x: 5,
+      y: 2,
+      cols: 1,
+      rows: 1,
+    },
+    element: new ElementCheckbox(true)
+  },
 
   // {
   //   x: 1,
