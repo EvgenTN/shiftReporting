@@ -1,34 +1,11 @@
-.settings{
-  border: 2px solid grey;
-  padding: 15px;
-  &__label {
-
-    span {
-      height: 28px;
-    }
+.settingsForm {
+  &__item {
+    margin-bottom: 15px;
+  }
+  
+}
+.inLine {
     display: flex;
     justify-content: space-between;
-    border: 1px solid green;
-    margin-bottom: 10px;
-    background: #fefecb;
-    flex-wrap: wrap;
-
+    align-items: center;
   }
-  input {
-    height: 28px;
-
-    width: 100%;
-    flex-wrap: wrap;
-  }
-  select {
-    height: 28px;
-
-    flex-wrap: wrap;
-    width: 100%;
-    background: white;
-  }
-  textarea {
-    flex-wrap: wrap;
-    width: 100%;
-  }
-}
