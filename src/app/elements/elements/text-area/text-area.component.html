@@ -1,3 +1,20 @@
-<p>
-  text-area works!
-</p>
+<!-- <div class="textarea">
+  <input class="input"
+  [placeholder]="_element.placeholder"
+  [value]="_element.value"
+  >
+</div> -->
+<form *ngIf="_form && _element" [formGroup]="_form">
+  <input class="textarea" 
+  [placeholder]="_element.placeholder" 
+  [type]="textarea" 
+  [formControlName]="_element.key"
+  [value]="_element.value"
+  >
+</form>
+
+<input *ngIf="!_form && _element"
+ class="textarea" 
+[placeholder]="_element.placeholder" 
+[type]="textarea" 
+>
