@@ -21,13 +21,12 @@ export class ElementsComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    // console.log('element');
     this.elementsService.setElement(this.element);
     this.elementsService.setForm(this.form);
+    // if (this.form) { this.elementsService.setForm(this.form); }
   }
 
   ngOnInit() {
-    // console.log(this.element);
-    // console.log(this.form);
+
   }
 }

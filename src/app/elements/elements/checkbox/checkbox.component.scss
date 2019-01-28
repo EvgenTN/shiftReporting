@@ -4,13 +4,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  input {
-    width: 24px;
-    height: 24px;
-    background: transparent;
-    color: white;
-
-  }
+  
   svg {
     // width: 100%;
     // height: 100%;
@@ -22,7 +16,11 @@
 
     }  
   } 
-  // .input {
-  //   display: none;
-  // }
+  .input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
 }
