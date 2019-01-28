@@ -26,7 +26,8 @@
 
 
 <div *ngFor="let item of dashboard">
-  <p>{{item | json}}</p>
+  <span>{{item.element.key | json}} => </span>
+  <span>{{item.element.value | json}}</span>
   <p>___</p>
 </div>
 

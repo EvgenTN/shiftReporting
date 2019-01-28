@@ -1,9 +1,9 @@
 import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { ShiftReportingService } from 'src/app/shift-reporting.service';
-import { ControlType, Element } from 'src/app/models';
+import { ControlType } from 'src/app/models';
 import { ElementType, ElementDropdown, ElementLabel } from 'src/app/elements/models';
-import { controlTypes } from 'src/app/data/controlTypes';
+import { CheckboxComponent } from 'src/app/elements/elements';
 
 
 @Component({
@@ -22,7 +22,7 @@ export class FormSettingComponent implements OnInit, OnChanges {
   controlTypes: ControlType[] = [];
   elementType = new FormControl();
   selectControlType = new ElementDropdown();
-
+  checkboxComponent = CheckboxComponent;
   settingsForm: FormGroup;
 
 
@@ -34,11 +34,10 @@ export class FormSettingComponent implements OnInit, OnChanges {
 
 
   ngOnInit() {
-
     this.controlTypes = this.shiftReportingService.getControlTypes();
     this.updateElementType();
     this.selectControlType.options = this.controlTypes;
-    this.settingsForm = this.formInit();
+    // this.settingsForm = this.formInit();
     this.elementType.valueChanges
       .subscribe(value => {
         if (value.component !== this.element.component) {
@@ -50,6 +49,7 @@ export class FormSettingComponent implements OnInit, OnChanges {
     this.settingsForm = this.formInit();
     this.settingsForm.valueChanges
       .subscribe((value) => {
+        // console.log(value);
         this.setElement.emit(value);
       });
     this.updateElementType();
@@ -68,6 +68,8 @@ export class FormSettingComponent implements OnInit, OnChanges {
       this.element.settings[id].value = this.element[item.key];
       group.addControl(item.key, this.fb.control(this.element[item.key]));
     });
+    // console.log(group.value);
+
     return group;
   }
 

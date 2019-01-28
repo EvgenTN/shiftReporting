@@ -5,14 +5,15 @@
   <option *ngFor="let controlType of controlTypes" [ngValue]="controlType">{{controlType.value}}</option>
 </select>
 
-<form [formGroup]="settingsForm">
-  <div *ngFor="let item of element.settings">
-    <label>{{item.label}}</label>
-    <div class="element">
-      <app-elements [element]="item" [form]="settingsForm"></app-elements>
-    </div>
+<form [formGroup]="settingsForm" class="settingsForm">
+  <div *ngFor="let item of element.settings" class="settingsForm__item" [class.inLine]="item.component===checkboxComponent">
+    <label for={{item.key}}>{{item.label}}</label>
+    <div class="
+    element">
+    <app-elements [element]="item" [form]="settingsForm" 
+    [isNoBorder]="item.component === checkboxComponent"></app-elements>
   </div>
-
+  </div>
 </form>
 
 

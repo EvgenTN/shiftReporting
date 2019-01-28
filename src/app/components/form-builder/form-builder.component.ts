@@ -52,6 +52,7 @@ export class FormBuilderComponent implements OnInit {
   }
 
   setCurrentElement(item): void {
+    event.preventDefault();
     if (this.currentElement !== item) {
       this.currentElement = item;
       this.currentElementId = this.getElementId(item);
