@@ -23,22 +23,4 @@ export class ElementsService {
   setForm(form: FormGroup): void {
     this._formSource.next(form);
   }
-
-  // getElement(): ElementType {
-  //   return this.element;
-  // }
-
-  // setElement(value: ElementType): void {
-  //   // console.log('set', value);
-
-  //   this.element = { ...value };
-  // }
-
-  // getForm(): FormGroup {
-  //   return this.form;
-  // }
-
-  // setForm(value: FormGroup): void {
-  //   this.form = value;
-  // }
 }

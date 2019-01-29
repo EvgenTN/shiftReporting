@@ -1,4 +1,11 @@
 <form class="checkbox" *ngIf="_form && _element" [formGroup]="_form">
+  <label class="container">
+    <input  type="checkbox" id={{_element.key}} [formControlName]="_element.key" [value]="_element.value">
+    <span class="checkmark"></span>   
+  </label>
+</form>
+
+<!-- <form class="checkbox" *ngIf="_form && _element" [formGroup]="_form">
   <input class="input" type="checkbox" id={{_element.key}} [formControlName]="_element.key" [value]="_element.value">
   <label for={{_element.key}}>
     <svg width="16" height="16" [class.isChecked]="_element.value">
@@ -8,4 +15,4 @@
     l 8, -12"></path>
     </svg>
   </label>
-</form>
+</form> -->

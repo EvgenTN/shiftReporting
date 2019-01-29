@@ -46,8 +46,8 @@ export class FormBuilderComponent implements OnInit {
     this.shiftReportingService.dashboard.subscribe(value => {
       this.dashboard = value;
       // TODO chose currentElement
-      this.currentElement = this.dashboard[0];
-      this.currentElementId = 0;
+      // this.currentElement = this.dashboard[0];
+      // this.currentElementId = 0;
     });
   }
 
@@ -66,12 +66,12 @@ export class FormBuilderComponent implements OnInit {
   }
 
   changeElementType(element): void {
-    // console.log('changeElementType');
     this.dashboard[this.currentElementId].element = new element.elementClass;
   }
 
   setElement(element): void {
     Object.assign(this.dashboard[this.currentElementId].element, element);
+    this.shiftReportingService.updateDashboard(this.dashboard);
     // this.shiftRep=ortingService.setDashboard(this.dashboard);
   }
 
