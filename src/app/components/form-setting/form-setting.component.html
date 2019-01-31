@@ -6,39 +6,14 @@
 </select>
 
 <form [formGroup]="settingsForm" class="settingsForm">
-  <div *ngFor="let item of element.settings" class="settingsForm__item" [class.inLine]="item.component===checkboxComponent">
+  <div *ngFor="let item of element.settings" class="settingsForm__item" [class.inLine]="item.componentKey==='checkbox'">
     <label for={{item.key}}>{{item.label}}</label>
     <div class="
     element">
     <app-elements [element]="item" [form]="settingsForm" 
-    [isNoBorder]="item.component === checkboxComponent"></app-elements>
+    [isNoBorder]="item.componentKey === 'checkbox'"></app-elements>
   </div>
   </div>
 </form>
 
 
-<!-- <div class="settings">
-  <p>Settings</p>
-  <form [formGroup]="elementSettingForm" (ngSubmit)="onSubmit()">
-    <label class='settings__label'>
-      <span>Label</span>
-      <input type='text'  formControlName='label'>
-    </label>
-    <label class='settings__label'>
-      <p>Control type</p>
-      <select formControlName='controlType'>
-        <option *ngFor="let controlType of controlTypes" 
-        [ngValue]="controlType.component">{{controlType.value}}</option>
-      </select>
-    </label>
-    <label class='settings__label' *ngIf="elementSettingForm.value.controlType == 'dropdown'">Possible values
-      <textarea formControlName='optionsStr'></textarea>
-    </label>
-    <div>Control type
-
-      <button type="reset" (click)='dltElement()'>Delete this element</button>
-      <button type='submit'>Save changes</button>
-
-    </div>
-  </form> 
-</div> -->

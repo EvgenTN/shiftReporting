@@ -1,3 +1,6 @@
+.form {
+  height: 100%;
+}
 .textarea {
   height: 100%;
   padding: 0 2px;
@@ -5,4 +8,5 @@
   width: calc(100% - 4px);
   outline: none;
   cursor: inherit;
+  resize: none;
 }
