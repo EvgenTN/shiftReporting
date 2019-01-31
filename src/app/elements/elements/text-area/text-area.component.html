@@ -1,3 +1,7 @@
-<p>
-  text-area works!
-</p>
+<form [formGroup]="_form">
+  <textarea class="textarea" 
+  [placeholder]="_element.placeholder" 
+  [formControlName]="_element.key" 
+  [value]="_element.value"
+  ></textarea>
+</form>
