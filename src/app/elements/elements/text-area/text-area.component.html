@@ -1,13 +1,7 @@
-<!-- <div class="textarea">
-  <input class="input"
-  [placeholder]="_element.placeholder"
-  [value]="_element.value"
-  >
-</div> -->
+<form [formGroup]="_form">
   <textarea class="textarea" 
   [placeholder]="_element.placeholder" 
-  [formControlName]="_element.key"
+  [formControlName]="_element.key" 
   [value]="_element.value"
-  [formGroup]="_form"
   ></textarea>
-
+</form>

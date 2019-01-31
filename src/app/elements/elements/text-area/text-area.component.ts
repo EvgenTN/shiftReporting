@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ElementType } from '../../models';
 import { ElementsService } from '../../elements.service';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-text-area',
@@ -14,17 +14,31 @@ export class TextAreaComponent implements OnInit {
   private _form: FormGroup;
 
   constructor(
-    public elementsService: ElementsService
+    private elementsService: ElementsService,
+    private fb: FormBuilder,
   ) { }
 
   ngOnInit() {
-    this.getData();
+    this.elementsService.element
+      .subscribe(value => {
+        this._element = value;
+      });
+    this.getForm();
   }
 
-  getData(): void {
-    this.elementsService.element
-      .subscribe(value => this._element = value);
+  getForm(): void {
     this.elementsService.form
-      .subscribe(value => this._form = value);
+      .subscribe(value => {
+        if (value) {
+          this._form = value;
+        } else {
+          this._form = this.formInit();
+        }
+      });
+  }
+  formInit(): FormGroup {
+    const group = this.fb.group({});
+    group.addControl(this._element.key, this.fb.control(this._element.value));
+    return group;
   }
 }
