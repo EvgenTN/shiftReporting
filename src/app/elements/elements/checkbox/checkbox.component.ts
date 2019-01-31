@@ -22,7 +22,9 @@ export class CheckboxComponent implements OnInit {
 
   ngOnInit() {
     this.elementsService.element
-      .subscribe(value => { this._element = value; });
+      .subscribe(value => {
+        this._element = value;
+      });
     this.getForm();
 
   }
@@ -39,7 +41,7 @@ export class CheckboxComponent implements OnInit {
   }
   formInit(): FormGroup {
     const group = this.fb.group({});
-    group.addControl(this._element.key, this.fb.control(''));
+    group.addControl(this._element.key, this.fb.control(this._element.value));
     return group;
   }
 }
