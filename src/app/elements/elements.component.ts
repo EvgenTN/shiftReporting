@@ -15,6 +15,7 @@ export class ElementsComponent implements OnInit, OnChanges {
 
   @Input() element: ElementType;
   @Input() form: FormGroup;
+  @Input() isNoBorder: boolean;
 
   constructor(public elementsService: ElementsService) {
   }
@@ -22,10 +23,10 @@ export class ElementsComponent implements OnInit, OnChanges {
   ngOnChanges() {
     this.elementsService.setElement(this.element);
     this.elementsService.setForm(this.form);
+    // if (this.form) { this.elementsService.setForm(this.form); }
   }
 
   ngOnInit() {
-    // console.log(this.element);
-    // console.log(this.form);
+
   }
 }

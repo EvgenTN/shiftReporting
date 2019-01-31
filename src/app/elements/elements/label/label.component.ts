@@ -15,8 +15,11 @@ export class LabelComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-   this.elementsService.element
-   .subscribe(value => this._element = value);
+    this.elementsService.element
+      .subscribe(value => {
+        // console.log(value);
+        this._element = value;
+      });
     // console.log(this.element);
 
   }

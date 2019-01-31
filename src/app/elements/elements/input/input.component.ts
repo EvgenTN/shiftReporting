@@ -18,8 +18,6 @@ export class InputComponent implements OnInit {
 
   ngOnInit() {
     this.getData();
-
-
     // console.log(this.form);
     // console.log(this.element);
   }
