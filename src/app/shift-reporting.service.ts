@@ -14,7 +14,6 @@ export class ShiftReportingService {
   private dashboardSource = new BehaviorSubject<FormElement[]>(dashboard);
   dashboard = this.dashboardSource.asObservable();
 
-  // private currentElementId
 
   constructor() { }
 
@@ -26,20 +25,16 @@ export class ShiftReportingService {
     return options;
   }
 
-  // getDashboard(): Observable<FormElement[]> {
-  //   return of(this.dashboard);
-  // }
-
   getControlTypes(): ControlType[] {
     return controlTypes;
+  }
+
+  getControlTypeComponentByKey(key): any {
+    return this.getControlTypes().find(item => item.key === key).component;
   }
 
   getControlTypeCompByKey(key: string): Component {
     return controlTypes.find(item => item.key === key).component;
   }
 
-  // setDashboard(newdashboard: FormElement[]): void {
-  //   this.dashboard = [...newdashboard];
-
-  // }
 }
