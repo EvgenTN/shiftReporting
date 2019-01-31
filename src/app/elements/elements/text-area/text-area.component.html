@@ -4,17 +4,10 @@
   [value]="_element.value"
   >
 </div> -->
-<form *ngIf="_form && _element" [formGroup]="_form">
-  <input class="textarea" 
+  <textarea class="textarea" 
   [placeholder]="_element.placeholder" 
-  [type]="textarea" 
   [formControlName]="_element.key"
   [value]="_element.value"
-  >
-</form>
+  [formGroup]="_form"
+  ></textarea>
 
-<input *ngIf="!_form && _element"
- class="textarea" 
-[placeholder]="_element.placeholder" 
-[type]="textarea" 
->
