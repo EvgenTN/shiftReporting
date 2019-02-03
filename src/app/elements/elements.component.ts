@@ -26,7 +26,10 @@ export class ElementsComponent implements OnInit, OnChanges {
   ) { }
 
   ngOnChanges() {
+    // console.log(this.element);
+
     this.elementsService.setElement(this.element);
+    // if (this.element) { console.log(this.element.value); }
     this.elementsService.setForm(this.form);
     this.component = this.shiftReportingService.getControlTypeComponentByKey(this.element.componentKey);
   }

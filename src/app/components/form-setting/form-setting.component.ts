@@ -34,6 +34,7 @@ export class FormSettingComponent implements OnInit, OnChanges {
 
 
   ngOnInit() {
+    console.log(this.element);
     this.controlTypes = this.shiftReportingService.getControlTypes();
     this.updateElementType();
     this.selectControlType.options = this.controlTypes;
@@ -46,6 +47,7 @@ export class FormSettingComponent implements OnInit, OnChanges {
 
   }
   ngOnChanges() {
+    // console.log(this.element.settings);
     this.settingsForm = this.formInit();
     this.settingsForm.valueChanges
       .subscribe((value) => {
@@ -65,9 +67,13 @@ export class FormSettingComponent implements OnInit, OnChanges {
   formInit(): FormGroup {
     const group: FormGroup = this.fb.group({});
     this.element.settings.map((item, id) => {
-      this.element.settings[id].value = this.element[item.key];
-      group.addControl(item.key, this.fb.control(this.element[item.key]));
+      this.element.settings[id].value = this.element.getValue(item.key);
+      console.log(this.element.getValue(item.key));
+      group.addControl(item.key, this.fb.control(this.element.getValue(item.key)));
+      // group.addControl(item.key, this.fb.control('13'));
+
     });
+    // console.log(group.value);
     return group;
   }
 

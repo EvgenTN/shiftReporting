@@ -1,3 +1,5 @@
-<select [id]="_element.key">
-  <option *ngFor="let option of _element.options" [value]=option>{{option.value}}</option>
-</select>
+<form class="dropdown" *ngIf="_form && _element" [formGroup]="_form">
+  <select id={{_element.key}} [formControlName]="_element.key">
+    <option *ngFor="let option of _element.options" [value]="option.key">{{option.value}}</option>
+  </select>
+</form>
