@@ -6,10 +6,12 @@
     <div draggable="true" class="dragNewElement">
       <app-elements [element]="dragNewElement"></app-elements>
     </div>
-
+    <!-- <div *ngIf="currentElement">
+      <input type="number" [(ngModel)]="number">
+    </div> -->
 
     <div *ngIf="currentElement">
-      <app-form-setting  [element]='currentElement.element' (selectSubmit)="selectSubmit()" (deleteElement)="deleteElement($event)"
+      <app-form-setting [element]='currentElement.element' (selectSubmit)="selectSubmit()" (deleteElement)="deleteElement($event)"
         (changeElementType)="changeElementType($event)" (setElement)="setElement($event)">
       </app-form-setting>
     </div>
@@ -26,8 +28,8 @@
 
 
 <div *ngFor="let item of dashboard">
-  <span>{{item.element.key | json}} => </span>
-  <span>{{item.element.value | json}}</span>
+  <span>{{item.element.options | json}} => </span>
+  <!-- <span>{{item.element.value | json}}</span> -->
   <p>___</p>
 </div>
 

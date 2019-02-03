@@ -3,6 +3,8 @@ import { GridsterConfig, GridsterItem } from 'angular-gridster2';
 import { ShiftReportingService } from 'src/app/shift-reporting.service';
 import { FormElement } from '../../models';
 import { ElementLabel } from 'src/app/elements/models';
+import { GridsterCompact } from 'angular-gridster2/lib/gridsterCompact.service';
+import { NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-form-builder',
@@ -48,10 +50,14 @@ export class FormBuilderComponent implements OnInit {
       // TODO chose currentElement
       // this.currentElement = this.dashboard[0];
       // this.currentElementId = 0;
+      console.log(value[0].element.settings[2]);
+
     });
   }
 
   setCurrentElement(item): void {
+    console.log('setCurrentElement');
+    
     event.preventDefault();
     if (this.currentElement !== item) {
       this.currentElement = item;
@@ -66,26 +72,22 @@ export class FormBuilderComponent implements OnInit {
   }
 
   changeElementType(element): void {
-    this.dashboard[this.currentElementId].element = new element.elementClass;
+    // console.log(element);
+    const item = new FormElement;
+    item.element = new element.elementClass;
+    Object.assign(this.dashboard[this.currentElementId].gridster, item.element.getGridsterItemOptions());
+    this.dashboard[this.currentElementId].element = item.element;
+    this.shiftReportingService.updateDashboard(this.dashboard);
+    this.changedOptions();
   }
 
   setElement(element): void {
-    Object.assign(this.dashboard[this.currentElementId].element, element);
+    console.log('setElement', element);
+    this.dashboard[this.currentElementId].element.setValue(element);
+    // element.options = 
+    // Object.assign(this.dashboard[this.currentElementId].element, element);
     this.shiftReportingService.updateDashboard(this.dashboard);
-    // this.shiftRep=ortingService.setDashboard(this.dashboard);
   }
-
-
-  // setElement(element): void {
-  //   const idElement = this.dashboard.findIndex(item => item === this.currentElement);
-  //   Object.assign(this.dashboard[idElement], element);
-  //   if (element.controlType !== 'dropdown') {
-  //     delete this.dashboard[idElement].options;
-  //   } else if (!element.options) {
-  //     this.dashboard[idElement].options = [];
-  //   }
-  //   this.changedOptions();
-  // }
 
   deleteElement($event): void {
     this.dashboard.splice(this.currentElementId, 1);
@@ -96,7 +98,10 @@ export class FormBuilderComponent implements OnInit {
 
 
   emptyCellClick(event: MouseEvent, item: GridsterItem) {
-    this.dashboard.push({ gridster: item, element: new ElementLabel() });
+    const element = new ElementLabel;
+    Object.assign(item, element.getGridsterItemOptions());
+    this.dashboard.push({ gridster: item, element: element });
+    console.log(element);
   }
 
   changedOptions() {

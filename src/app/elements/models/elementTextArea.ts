@@ -4,7 +4,7 @@ import { TextAreaComponent, InputComponent } from '../elements';
 export class ElementTextArea extends Element {
     placeholder: string;
     private _settings = [
-        { key: 'placeholder', componentKey: 'textarea', component: InputComponent, label: 'placeholder'}
+        { key: 'placeholder', componentKey: 'input', component: InputComponent, label: 'placeholder'}
     ];
 
     constructor() {

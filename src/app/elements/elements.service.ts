@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ElementType, Element } from './models';
+import { ElementType } from './models';
 import { FormGroup } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 
@@ -12,11 +12,10 @@ export class ElementsService {
   private _formSource = new BehaviorSubject<FormGroup>(null);
   form = this._formSource.asObservable();
 
-
-
   constructor() { }
 
   setElement(element: ElementType): void {
+    // console.log('setElement', element.settings);
     this._elementSource.next(element);
   }
 
