@@ -7,12 +7,18 @@ export class ElementTextArea extends Element {
         { key: 'placeholder', componentKey: 'input', component: InputComponent, label: 'placeholder'}
     ];
 
-    constructor() {
+    private _gridsterItemOptions = {
+        maxItemRows: Infinity,
+        maxItemCols: Infinity,
+    };
+
+    constructor(key?: string) {
         super();
         this.componentKey = 'textarea';
         this.component = TextAreaComponent;
-        this.key = 'textarea' + Date.now();
+        this.key = key ? key : 'textarea' + Date.now();
         this.placeholder = 'textarea';
         this.settings = this.settings.concat(this._settings);
+        Object.assign(this.gridsterItemOptions, this._gridsterItemOptions);
     }
 }

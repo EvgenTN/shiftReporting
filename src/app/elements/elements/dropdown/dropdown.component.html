@@ -1,5 +1,5 @@
 <form class="dropdown" *ngIf="_form && _element" [formGroup]="_form">
-  <select id={{_element.key}} [formControlName]="_element.key">
+  <select id={{_element.key}} [formControlName]="_element.key" placeholder="_element.">
     <option *ngFor="let option of _element.options" [value]="option.key">{{option.value}}</option>
   </select>
 </form>
