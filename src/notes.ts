@@ -4,7 +4,6 @@ class element {
     y: number,
     rows: number,
     cols: number,
-    
   };
   element: {
     componentKey: string;
@@ -12,7 +11,7 @@ class element {
     key?: string;
     isRequired?: boolean;
     // value?: any;
-  }
+  };
 }
 
 class values {

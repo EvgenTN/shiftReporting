@@ -14,7 +14,7 @@ export class ContainerComponent implements OnInit {
   dashboard: FormElement[];
   options: GridsterConfig = {
     resizable: {
-      enabled: false
+      enabled: false,
     }
   };
 
