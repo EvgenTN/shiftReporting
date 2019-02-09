@@ -3,15 +3,18 @@ import { DropdownComponent, InputComponent, TextAreaComponent } from '../element
 
 export class ElementDropdown extends Element {
 
+  placeholder: string;
 
   private _settings = [
     { key: 'options', componentKey: 'textarea', component: TextAreaComponent, label: 'Options' },
+    { key: 'placeholder', componentKey: 'input', component: InputComponent, label: 'Placeholder'},
+
   ];
 
   private _gridsterItemOptions = {
+    rows: 1,
+    maxItemCols: Infinity,
     maxItemRows: 1,
-    maxItemCols: undefined,
-    resizeEnabled: true,
   };
 
   value: { key: string, value: string };
@@ -29,6 +32,7 @@ export class ElementDropdown extends Element {
     //   'test 2',
     //   'test 3',
     // ];
+    this.placeholder = '';
     this.componentKey = 'dropdown';
     this.component = DropdownComponent;
     this.key = key ? key : 'dropdown' + Date.now();

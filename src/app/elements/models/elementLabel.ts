@@ -8,9 +8,9 @@ export class ElementLabel extends Element {
   ];
 
   private _gridsterItemOptions = {
+    rows: 1,
+    maxItemCols: Infinity,
     maxItemRows: 1,
-    maxItemCols: undefined,
-    resizeEnabled: true,
   };
 
   constructor(label?: string) {

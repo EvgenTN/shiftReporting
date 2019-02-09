@@ -13,7 +13,9 @@ import { FormElement } from 'src/app/models';
 export class ContainerComponent implements OnInit {
   dashboard: FormElement[];
   options: GridsterConfig = {
-
+    resizable: {
+      enabled: false;
+    }
   };
 
   constructor(
@@ -26,6 +28,12 @@ export class ContainerComponent implements OnInit {
   }
   getDashboard(): void {
     this.shiftReportingService.dashboard
-      .subscribe(value => this.dashboard = value);
+      .subscribe(value => {
+        this.dashboard = value;
+        // .map(item => {
+        //   item.gridster.resizeEnabled = false;
+        //   return item;
+        // });
+      });
   }
 }

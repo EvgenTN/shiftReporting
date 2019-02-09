@@ -7,7 +7,8 @@ export class ElementCheckbox extends Element {
   private _gridsterItemOptions = {
     rows: 1,
     cols: 1,
-    resizeEnabled: false,
+    maxItemCols: 1,
+    maxItemRows: 1,
   };
 
   constructor(value?: boolean, key?: string) {
