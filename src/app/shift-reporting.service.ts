@@ -50,8 +50,6 @@ export class ShiftReportingService {
     return controlTypes.find(item => item.key === key).component;
   }
   getControlTypeByKey(key: string): ControlType {
-    console.log(key);
-
     return controlTypes.find(item => item.key === key);
   }
 }

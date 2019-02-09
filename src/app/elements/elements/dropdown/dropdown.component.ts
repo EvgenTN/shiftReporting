@@ -10,7 +10,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
   styleUrls: ['./dropdown.component.scss']
 })
 export class DropdownComponent implements OnInit {
- 
+
   private _element: ElementType;
   private _form: FormGroup = new FormGroup({});
 

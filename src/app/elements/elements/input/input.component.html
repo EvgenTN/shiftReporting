@@ -1,5 +1,5 @@
-<form *ngIf="_form && _element" [formGroup]="_form">
-  <input class="input" 
+<form class="form" *ngIf="_form && _element" [formGroup]="_form">
+  <input class="input"
   [placeholder]="_element.placeholder" 
   [type]="_element.type" 
   [formControlName]="_element.key"
@@ -7,8 +7,8 @@
   >
 </form>
 
-<input *ngIf="!_form && _element"
+<!-- <input *ngIf="!_form && _element"
  class="input" 
 [placeholder]="_element.placeholder" 
 [type]="_element.type" 
->
+> -->

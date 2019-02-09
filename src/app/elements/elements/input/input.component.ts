@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ElementsService } from '../../elements.service';
 import { ElementType } from '../../models';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-input',
@@ -13,7 +13,8 @@ export class InputComponent implements OnInit {
   private _form: FormGroup;
 
   constructor(
-    public elementsService: ElementsService
+    private elementsService: ElementsService,
+    private fb: FormBuilder,
   ) { }
 
   ngOnInit() {
@@ -26,8 +27,18 @@ export class InputComponent implements OnInit {
     this.elementsService.element
       .subscribe(value => this._element = value);
     this.elementsService.form
-      .subscribe(value => this._form = value);
-    // console.log(this._element);
+      .subscribe(value => {
+          if (value) {
+            this._form = value;
+          } else {
+            this._form = this.formInit();
+          }
+        });
+  }
 
+  formInit(): FormGroup {
+    const group = this.fb.group({});
+    group.addControl(this._element.key, this.fb.control(this._element.value));
+    return group;
   }
 }
