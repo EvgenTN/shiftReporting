@@ -68,7 +68,7 @@ export class FormSettingComponent implements OnInit, OnChanges {
     const group: FormGroup = this.fb.group({});
     this.element.settings.map((item, id) => {
       this.element.settings[id].value = this.element.getValue(item.key);
-      console.log(this.element.getValue(item.key));
+      // console.log(this.element.getValue(item.key));
       group.addControl(item.key, this.fb.control(this.element.getValue(item.key)));
       // group.addControl(item.key, this.fb.control('13'));
 

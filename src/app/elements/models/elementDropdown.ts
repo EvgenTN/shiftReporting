@@ -3,11 +3,9 @@ import { DropdownComponent, InputComponent, TextAreaComponent } from '../element
 
 export class ElementDropdown extends Element {
 
-  placeholder: string;
 
   private _settings = [
     { key: 'options', componentKey: 'textarea', component: TextAreaComponent, label: 'Options' },
-    { key: 'placeholder', componentKey: 'input', component: InputComponent, label: 'Placeholder'},
 
   ];
 
@@ -32,7 +30,6 @@ export class ElementDropdown extends Element {
     //   'test 2',
     //   'test 3',
     // ];
-    this.placeholder = '';
     this.componentKey = 'dropdown';
     this.component = DropdownComponent;
     this.key = key ? key : 'dropdown' + Date.now();
@@ -52,7 +49,6 @@ export class ElementDropdown extends Element {
   }
 
   setValue(props): void {
-    console.log(props);
     for (const key in props) {
       if (props.hasOwnProperty(key)) {
         if (key === 'options') {
