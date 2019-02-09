@@ -1,18 +1,18 @@
 import { Element } from './element';
 import { InputComponent, TextAreaComponent, DropdownComponent } from '../elements';
 
-const types: Array<{ key: string, type: string }> = [
-  { key: 'text', type: 'text' },
-  { key: 'radio', type: 'radio' },
-  { key: 'password', type: 'password' },
-  { key: 'date', type: 'date' },
+const types: Array<{ key: string, value: string }> = [
+  { key: 'text', value: 'text' },
+  { key: 'password', value: 'password' },
+  { key: 'date', value: 'date' },
+  { key: 'number', value: 'number' },
 ];
 
 export class ElementInput extends Element {
   placeholder: string;
   type: string;
   private _settings = [
-    { key: 'type', componentKey: 'dropdown', component: DropdownComponent, label: 'type' },
+    { key: 'type', componentKey: 'dropdown', component: DropdownComponent, label: 'InputType', options: types },
     { key: 'placeholder', componentKey: 'input', component: InputComponent, label: 'Placeholder'}
   ];
 

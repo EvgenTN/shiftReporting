@@ -8,7 +8,7 @@ export class Element {
   key?: string;
   isRequired?: boolean;
   value?: any;
-  settings: { key: string, componentKey: string, label: string, placeholder?: string, value?: any }[];
+  settings: { key: string, componentKey: string, label: string, placeholder?: string, value?: any, options?: any[] }[];
 
   gridsterItemOptions: {} = {};
 

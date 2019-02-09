@@ -32,7 +32,6 @@ export class FormSettingComponent implements OnInit, OnChanges {
   ) { }
 
 
-
   ngOnInit() {
     console.log(this.element);
     this.controlTypes = this.shiftReportingService.getControlTypes();
@@ -44,7 +43,6 @@ export class FormSettingComponent implements OnInit, OnChanges {
           this.changeElementType.emit(value);
         }
       });
-
   }
   ngOnChanges() {
     // console.log(this.element.settings);
@@ -52,10 +50,8 @@ export class FormSettingComponent implements OnInit, OnChanges {
     this.settingsForm.valueChanges
       .subscribe((value) => {
         this.setElement.emit(value);
-
       });
     this.updateElementType();
-
   }
 
   updateElementType() {
@@ -68,80 +64,8 @@ export class FormSettingComponent implements OnInit, OnChanges {
     const group: FormGroup = this.fb.group({});
     this.element.settings.map((item, id) => {
       this.element.settings[id].value = this.element.getValue(item.key);
-      // console.log(this.element.getValue(item.key));
       group.addControl(item.key, this.fb.control(this.element.getValue(item.key)));
-      // group.addControl(item.key, this.fb.control('13'));
-
     });
-    // console.log(group.value);
     return group;
   }
-
-  // setElementOutput(value): void {
-  //   this.element.settings.map(item => {
-  //     this.element[item.key] = value[item.key];
-  //   });
-  //   this.setElement.emit(value);
-  // }
-
-
-
-  // formInit(): void {
-  //   this.elementSettingForm = this.fb.group({
-  //     name: '',
-  //     label: '',
-  //     controlType: '',
-  //     optionsStr: '',
-  //   });
-  // }
-
-  // formFill(): void {
-  //   switch (this.formElement.controlType) {
-  //     case 'dropdown':
-  //       this.elementSettingForm.setValue({
-  //         label: this.formElement.label || '',
-  //         controlType: this.formElement.controlType,
-  //         optionsStr: this.formElement.options.join('\n') || '',
-  //       });
-  //       break;
-  //     default:
-  //       this.elementSettingForm.setValue({
-  //         label: this.formElement.label || '',
-  //         controlType: this.formElement.controlType,
-  //         optionsStr: '',
-  //       });
-  //   }
-  // }
-
-
-
-
-  // setOutputElement(value): void {
-  //   const result = {
-  //     label: value.label,
-  //     controlType: value.controlType,
-  //   };
-  //   if (value.controlType !== 'textarea') {
-  //     result['rows'] = 1;
-  //     result['cols'] = 9;
-
-  //   } else if (this.formElement.rows === 1) { result['rows'] = 2; }
-
-  //   if (value.optionsStr) {
-  //     result['options'] = value.optionsStr.split('\n');
-  //     result['options'] = result['options'].filter(item => !!item);
-  //   }
-  //   if (value.controlType === 'textarea') {
-  //     result['resizeEnabled'] = true;
-  //   } else { result['resizeEnabled'] = false; }
-  //   this.setElement.emit(result);
-
-  // }
-
-  // dltElement($event): void {
-  //   this.deleteElement.emit($event);
-  // }
-  // onSubmit($event): void {
-  //   this.selectSubmit.emit($event);
-  // }
 }

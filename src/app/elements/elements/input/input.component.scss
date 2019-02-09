@@ -1,8 +1,16 @@
-.input {
+.form {
   height: 100%;
+}
+
+.input {
+  display: block;
   padding: 0 2px;
+  height: 100%;
   border: 0;
   width: calc(100% - 4px);
   outline: none;
   cursor: inherit;
+}
+input[type="date"] { 
+  color: red;
 }

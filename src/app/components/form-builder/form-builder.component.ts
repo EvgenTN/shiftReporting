@@ -3,8 +3,6 @@ import { GridsterConfig, GridsterItem } from 'angular-gridster2';
 import { ShiftReportingService } from 'src/app/shift-reporting.service';
 import { FormElement } from '../../models';
 import { ElementLabel } from 'src/app/elements/models';
-import { GridsterCompact } from 'angular-gridster2/lib/gridsterCompact.service';
-import { NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-form-builder',
@@ -50,14 +48,12 @@ export class FormBuilderComponent implements OnInit {
       // TODO chose currentElement
       // this.currentElement = this.dashboard[0];
       // this.currentElementId = 0;
-      console.log(value[0].element.settings[2]);
-
     });
   }
 
   setCurrentElement(item): void {
     console.log('setCurrentElement');
-    
+
     event.preventDefault();
     if (this.currentElement !== item) {
       this.currentElement = item;
@@ -84,8 +80,6 @@ export class FormBuilderComponent implements OnInit {
   setElement(element): void {
     console.log('setElement', element);
     this.dashboard[this.currentElementId].element.setValue(element);
-    // element.options = 
-    // Object.assign(this.dashboard[this.currentElementId].element, element);
     this.shiftReportingService.updateDashboard(this.dashboard);
   }
 
@@ -94,8 +88,6 @@ export class FormBuilderComponent implements OnInit {
     this.currentElement = null;
     this.currentElementId = null;
   }
-
-
 
   emptyCellClick(event: MouseEvent, item: GridsterItem) {
     const element = new ElementLabel;
