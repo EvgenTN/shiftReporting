@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GridsterConfig, GridsterItem } from 'angular-gridster2';
 import { ShiftReportingService } from 'src/app/shift-reporting.service';
-import { FormElement } from '../../models';
+import { FormElement, ControlType } from '../../models';
 import { ElementLabel } from 'src/app/elements/models';
 
 @Component({
@@ -15,6 +15,8 @@ export class FormBuilderComponent implements OnInit {
   currentElement: FormElement = null;
   dragNewElement = new ElementLabel('New label');
   currentElementId: number;
+  controlTypes: ControlType[] = [];
+  typeNewElement = null;
 
   options: GridsterConfig = {
     emptyCellDropCallback: this.emptyCellClick.bind(this),
@@ -38,6 +40,9 @@ export class FormBuilderComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.controlTypes = this.shiftReportingService.getControlTypes();
+    // console.log(this.controlTypes);
+
     Object.assign(this.options, this.shiftReportingService.getGridsterOptions());
     this.getDashboard();
   }
@@ -52,8 +57,7 @@ export class FormBuilderComponent implements OnInit {
   }
 
   setCurrentElement(item): void {
-    console.log('setCurrentElement');
-
+    // console.log('setCurrentElement');
     event.preventDefault();
     if (this.currentElement !== item) {
       this.currentElement = item;
@@ -68,7 +72,7 @@ export class FormBuilderComponent implements OnInit {
   }
 
   changeElementType(element): void {
-    // console.log(element);
+    // console.log(element.elementClass);
     const item = new FormElement;
     item.element = new element.elementClass;
     Object.assign(this.dashboard[this.currentElementId].gridster, item.element.getGridsterItemOptions());
@@ -78,7 +82,7 @@ export class FormBuilderComponent implements OnInit {
   }
 
   setElement(element): void {
-    console.log('setElement', element);
+    // console.log('setElement', element);
     this.dashboard[this.currentElementId].element.setValue(element);
     this.shiftReportingService.updateDashboard(this.dashboard);
   }
@@ -89,11 +93,17 @@ export class FormBuilderComponent implements OnInit {
     this.currentElementId = null;
   }
 
+  setTypeNewElement(elementClass) {
+    this.typeNewElement = elementClass;
+    // console.log(this.typeNewElement);
+
+  }
+
   emptyCellClick(event: MouseEvent, item: GridsterItem) {
-    const element = new ElementLabel;
+    const element = new this.typeNewElement();
     Object.assign(item, element.getGridsterItemOptions());
     this.dashboard.push({ gridster: item, element: element });
-    console.log(element);
+    // console.log(event);
   }
 
   changedOptions() {

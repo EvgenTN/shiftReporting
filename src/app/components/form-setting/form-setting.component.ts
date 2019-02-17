@@ -15,7 +15,7 @@ export class FormSettingComponent implements OnInit, OnChanges {
   @Input() element: ElementType;
   @Output() changeElementType: EventEmitter<any> = new EventEmitter();
   @Output() deleteElement: EventEmitter<any> = new EventEmitter();
-  @Output() selectSubmit: EventEmitter<any> = new EventEmitter();
+  // @Output() selectSubmit: EventEmitter<any> = new EventEmitter();
   @Output() setElement: EventEmitter<any> = new EventEmitter();
 
 
@@ -33,7 +33,7 @@ export class FormSettingComponent implements OnInit, OnChanges {
 
 
   ngOnInit() {
-    console.log(this.element);
+    // console.log(this.element);
     this.controlTypes = this.shiftReportingService.getControlTypes();
     this.updateElementType();
     this.selectControlType.options = this.controlTypes;
@@ -67,5 +67,9 @@ export class FormSettingComponent implements OnInit, OnChanges {
       group.addControl(item.key, this.fb.control(this.element.getValue(item.key)));
     });
     return group;
+  }
+  deleteItem() {
+    // console.log('deleteItem');
+    this.deleteElement.emit()
   }
 }

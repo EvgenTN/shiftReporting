@@ -9,7 +9,7 @@ export const dashboard: any[] = [
     element: {
       label: 'Label 1',
       componentKey: 'label',
-      name: 'string',
+      name: 'name',
       key: 'label1',
       isRequired: false,
     }
