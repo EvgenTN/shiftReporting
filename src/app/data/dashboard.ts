@@ -42,21 +42,12 @@ export const dashboard: any[] = [
       cols: 4,
       rows: 1,
     },
-    element: { componentKey: 'input' }
+    element: { componentKey: 'input'}
   },
   {
     gridster: {
       x: 5,
       y: 1,
-      cols: 1,
-      rows: 1,
-    },
-    element: { componentKey: 'checkbox' }
-  },
-  {
-    gridster: {
-      x: 5,
-      y: 2,
       cols: 1,
       rows: 1,
     },

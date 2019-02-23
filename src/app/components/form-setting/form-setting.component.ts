@@ -70,6 +70,6 @@ export class FormSettingComponent implements OnInit, OnChanges {
   }
   deleteItem() {
     // console.log('deleteItem');
-    this.deleteElement.emit()
+    this.deleteElement.emit();
   }
 }

@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormElementBase } from 'src/app/formElementBase';
-import { FormElementTextbox } from 'src/app/formElementTextbox';
 import { ShiftReportingService } from 'src/app/shift-reporting.service';
 import { GridsterConfig, GridsterItem } from 'angular-gridster2';
 import { FormElement } from 'src/app/models';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-container',
@@ -18,22 +17,32 @@ export class ContainerComponent implements OnInit {
     }
   };
 
+  containerForm: FormGroup;
+
   constructor(
-    private shiftReportingService: ShiftReportingService
+    private shiftReportingService: ShiftReportingService,
+    private fb: FormBuilder
   ) { }
 
   ngOnInit() {
     Object.assign(this.options, this.shiftReportingService.getGridsterOptions());
     this.getDashboard();
+    this.containerForm = this.formInit();
   }
   getDashboard(): void {
     this.shiftReportingService.dashboard
       .subscribe(value => {
         this.dashboard = value;
-        // .map(item => {
-        //   item.gridster.resizeEnabled = false;
-        //   return item;
-        // });
       });
+  }
+  formInit(): FormGroup {
+    const group: FormGroup = this.fb.group({});
+    this.dashboard.map((item, id) => {
+      group.addControl(item.element.key, this.fb.control(item.element.getValue('value')));
+    });
+    return group;
+  }
+  submit () {
+    console.log(this.containerForm.value);
   }
 }

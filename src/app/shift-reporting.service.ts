@@ -1,11 +1,10 @@
 import { Injectable, Component } from '@angular/core';
 import { GridsterConfig, GridsterItem } from 'angular-gridster2';
-import { Observable, of, BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { options } from './data/gridsterOptions';
 import { dashboard } from './data/dashboard';
 import { ControlType, FormElement } from './models';
 import { controlTypes } from './data/controlTypes';
-import { ElementType } from './elements/models';
 
 
 @Injectable({ providedIn: 'root' })

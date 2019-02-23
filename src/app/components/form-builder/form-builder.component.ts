@@ -42,8 +42,6 @@ export class FormBuilderComponent implements OnInit {
 
   ngOnInit() {
     this.controlTypes = this.shiftReportingService.getControlTypes();
-    // console.log(this.controlTypes);
-
     Object.assign(this.options, this.shiftReportingService.getGridsterOptions());
     this.getDashboard();
   }
@@ -62,7 +60,7 @@ export class FormBuilderComponent implements OnInit {
       });
       return varItem;
     });
-    // console.log(result);
+    console.log(result);
     this.resaltDashboard = result;
   }
 

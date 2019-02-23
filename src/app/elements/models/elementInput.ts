@@ -28,7 +28,7 @@ export class ElementInput extends Element {
     this.component = InputComponent;
     this.key = key ? key : 'input' + Date.now();
     this.placeholder = 'input';
-    this.type = 'number';
+    this.type = 'text';
     this.settings = Object.assign(this.settings, this._settings);
     Object.assign(this.gridsterItemOptions, this._gridsterItemOptions);
   }
