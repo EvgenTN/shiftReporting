@@ -12,6 +12,7 @@ import { ElementLabel } from 'src/app/elements/models';
 export class FormBuilderComponent implements OnInit {
 
   dashboard: FormElement[];
+  resaltDashboard: FormElement[];
   currentElement: FormElement = null;
   dragNewElement = new ElementLabel('New label');
   currentElementId: number;
@@ -45,6 +46,24 @@ export class FormBuilderComponent implements OnInit {
 
     Object.assign(this.options, this.shiftReportingService.getGridsterOptions());
     this.getDashboard();
+  }
+
+  confirmDashboard(): void {
+    const delProp = [
+      'gridsterItemOptions',
+      'settings',
+      '_gridsterItemOptions',
+      '_settings',
+    ];
+    const result: FormElement[] = this.dashboard.map(item => {
+      const varItem = JSON.parse(JSON.stringify(item));
+      delProp.map(prop => {
+        delete varItem.element[prop];
+      });
+      return varItem;
+    });
+    // console.log(result);
+    this.resaltDashboard = result;
   }
 
   getDashboard(): void {

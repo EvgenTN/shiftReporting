@@ -14,9 +14,7 @@ export class ShiftReportingService {
   private dashboardSource = new BehaviorSubject<FormElement[]>(this.createDashboard(dashboard));
   dashboard = this.dashboardSource.asObservable();
 
-
   constructor() { }
-
 
   createDashboard(arr: FormElement[]): FormElement[] {
     return arr.map(item => {
