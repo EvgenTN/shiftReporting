@@ -22,7 +22,7 @@
 
   <gridster [options]="options">
     <gridster-item [class.isCurrent]='item === currentElement' *ngFor="let item of dashboard" [item]="item.gridster"
-      (dblclick)="setCurrentElement(item)">
+      (click)="setCurrentElement(item)">
       <app-elements [element]="item.element"></app-elements>
     </gridster-item>
   </gridster>

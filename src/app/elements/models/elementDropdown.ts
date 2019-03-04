@@ -16,7 +16,6 @@ export class ElementDropdown extends Element {
   };
 
   value: { key: string, value: string };
-  // options: Array<string>;
   options: Array<{ key: string, value: string }>;
 
   constructor(key?: string) {
@@ -25,11 +24,6 @@ export class ElementDropdown extends Element {
       { key: 'test1', value: 'test 1' },
       { key: 'test2', value: 'test 2' },
       { key: 'test3', value: 'test 3' }];
-    // this.options = [
-    //   'test 1',
-    //   'test 2',
-    //   'test 3',
-    // ];
     this.componentKey = 'dropdown';
     this.component = DropdownComponent;
     this.key = key ? key : 'dropdown' + Date.now();
@@ -54,7 +48,6 @@ export class ElementDropdown extends Element {
         if (key === 'options') {
           this[key] = this.setOptionsFromString(props[key]);
         } else { this[key] = props[key]; }
-        // console.log(key);
       }
     }
   }

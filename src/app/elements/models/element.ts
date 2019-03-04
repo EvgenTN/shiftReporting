@@ -27,11 +27,9 @@ export class Element {
   }
 
   setValue(props): void {
-    // console.log(props);
     for (const key in props) {
       if (props.hasOwnProperty(key)) {
         this[key] = props[key];
-        // console.log(key);
       }
     }
   }

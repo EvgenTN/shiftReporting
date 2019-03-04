@@ -18,11 +18,13 @@ export class FormBuilderComponent implements OnInit {
   currentElementId: number;
   controlTypes: ControlType[] = [];
   typeNewElement = null;
+  itemDragResize: GridsterItem;
 
   options: GridsterConfig = {
     emptyCellDropCallback: this.emptyCellClick.bind(this),
     displayGrid: 'always',
     draggable: {
+      start: (item) => this.itemDragResize = { ...item },
       delayStart: 0,
       // ToDo
       enabled: true,
@@ -32,6 +34,7 @@ export class FormBuilderComponent implements OnInit {
     },
     resizable: {
       enabled: true,
+      start: (item) => this.itemDragResize = { ...item },
     },
   };
 
@@ -74,9 +77,18 @@ export class FormBuilderComponent implements OnInit {
   }
 
   setCurrentElement(item): void {
-    // console.log('setCurrentElement');
     event.preventDefault();
-    if (this.currentElement !== item) {
+    let isDragResize = false;
+    for (const key in item.gridster) {
+      if (item.gridster.hasOwnProperty(key)) {
+        if (item.gridster[key] !== this.itemDragResize[key] && !isDragResize) {
+          isDragResize = true;
+        }
+        const element = item[key];
+      }
+    }
+
+    if (this.currentElement !== item && !isDragResize) {
       this.currentElement = item;
       this.currentElementId = this.getElementId(item);
     } else {
@@ -89,7 +101,6 @@ export class FormBuilderComponent implements OnInit {
   }
 
   changeElementType(element): void {
-    // console.log(element.elementClass);
     const item = new FormElement;
     item.element = new element.elementClass;
     Object.assign(this.dashboard[this.currentElementId].gridster, item.element.getGridsterItemOptions());
@@ -99,7 +110,6 @@ export class FormBuilderComponent implements OnInit {
   }
 
   setElement(element): void {
-    // console.log('setElement', element);
     this.dashboard[this.currentElementId].element.setValue(element);
     this.shiftReportingService.updateDashboard(this.dashboard);
   }
@@ -112,7 +122,6 @@ export class FormBuilderComponent implements OnInit {
 
   setTypeNewElement(elementClass) {
     this.typeNewElement = elementClass;
-    // console.log(this.typeNewElement);
 
   }
 
@@ -120,7 +129,6 @@ export class FormBuilderComponent implements OnInit {
     const element = new this.typeNewElement();
     Object.assign(item, element.getGridsterItemOptions());
     this.dashboard.push({ gridster: item, element: element });
-    // console.log(event);
   }
 
   changedOptions() {

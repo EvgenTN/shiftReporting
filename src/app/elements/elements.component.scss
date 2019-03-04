@@ -2,7 +2,6 @@ div {
   width: calc(100% - 2px);
   height: calc(100% - 2px);
   border: 1px solid grey;
-  // padding: 2px;
   cursor: inherit;
   &.noBorder {
 border: none;

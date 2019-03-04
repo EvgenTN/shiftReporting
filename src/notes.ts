@@ -1,4 +1,4 @@
-class element {
+class Elementt {
   gridster: {
     x: number,
     y: number,
@@ -14,7 +14,7 @@ class element {
   };
 }
 
-class values {
+class Values {
   key: string;
   value: any;
 }
