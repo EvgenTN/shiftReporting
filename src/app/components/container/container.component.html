@@ -1,10 +1,14 @@
-<div class="container">
+<form [formGroup]="containerForm" class="container" (submit)="submit()">
   <gridster [options]="options">
     <gridster-item *ngFor="let item of dashboard" [class.isCurrent]='item === currentElement' [item]="item.gridster">
-      <app-elements   [element]="item.element"></app-elements>
+      <app-elements [form]="containerForm"  [element]="item.element"></app-elements>
     </gridster-item>
   </gridster>
-</div>
+  <button type="submit">submit</button>
+</form>
 <!-- <div class="dd" *ngFor="let item of dashboard">
   <app-elements   [element]="item.element"></app-elements>
 </div> -->
+<!-- <pre>
+  {{ containerForm.value | json }}
+</pre> -->

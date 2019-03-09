@@ -1,11 +1,17 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<h1>
-  {{title}}
-</h1>
-<p>{{isActive}}</p>
-<div>
-  <button *ngFor="let item of appRouters" routerLinkActive="active" routerLink="/{{item.path}}">
-    {{item.title}}
-  </button>
+<div class="header">
+  <div class="wrapper">
+    <h1>
+      {{title}}
+    </h1>
+    <div>
+      <button *ngFor="let item of appRouters" routerLinkActive="active" routerLink="/{{item.path}}">
+        {{item.title}}
+      </button>
+    </div>
+  </div>
+
 </div>
+
+
 <router-outlet></router-outlet>

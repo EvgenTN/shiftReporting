@@ -2,27 +2,20 @@
 
   <div class="sidebar">
     <div>
-      <button (click)="confirmDashboard()">Confirm</button>
+      <button class="button" (click)="confirmDashboard()">Confirm</button>
     </div>
     <p class="title">New Element</p>
-    <div draggable="true" class="drag-new-element" *ngFor="let ctrlType of controlTypes"
-      (mousedown)="setTypeNewElement(ctrlType.elementClass)">
-      <p>New {{ctrlType.value}}</p>
-    </div>
+    <app-new-element></app-new-element>
     <hr>
     <div *ngIf="currentElement">
       <p class="title">Element Settings</p>
-      <app-form-setting [element]='currentElement.element' (selectSubmit)="selectSubmit()"
-        (deleteElement)="deleteElement($event)" (changeElementType)="changeElementType($event)"
-        (setElement)="setElement($event)">
-      </app-form-setting>
+      <app-form-setting></app-form-setting>
     </div>
-
   </div>
 
   <gridster [options]="options">
-    <gridster-item [class.isCurrent]='item === currentElement' *ngFor="let item of dashboard" [item]="item.gridster"
-      (dblclick)="setCurrentElement(item)">
+    <gridster-item [class.isCurrent]='i === currentElementId' *ngFor="let item of dashboard; let i = index" [item]="item.gridster"
+      (click)="setCurrentElement(item)">
       <app-elements [element]="item.element"></app-elements>
     </gridster-item>
   </gridster>
@@ -30,10 +23,10 @@
 
 
 
-<div *ngFor="let item of dashboard">
+<!-- <div *ngFor="let item of dashboard">
   <pre>{{resaltDashboard | json}} => </pre>
   <p>___</p>
-</div>
+</div> -->
 
 
 <!-- *ngIf='currentElement' class="settings"-->

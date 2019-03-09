@@ -15,7 +15,6 @@ export class ElementsService {
   constructor() { }
 
   setElement(element: ElementType): void {
-    // console.log('setElement', element.settings);
     this._elementSource.next(element);
   }
 

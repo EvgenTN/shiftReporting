@@ -8,5 +8,5 @@ import { appRouters } from './app-routing.module';
 })
 export class AppComponent {
   appRouters = appRouters;
-  title = 'shiftReporting';
+  title = 'Shift Reporting';
 }

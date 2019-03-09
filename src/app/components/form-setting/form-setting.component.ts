@@ -1,64 +1,67 @@
-import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { ShiftReportingService } from 'src/app/shift-reporting.service';
 import { ControlType } from 'src/app/models';
-import { ElementType, ElementDropdown, ElementLabel } from 'src/app/elements/models';
-import { CheckboxComponent } from 'src/app/elements/elements';
-
+import { ElementType, ElementDropdown } from 'src/app/elements/models';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-form-setting',
   templateUrl: './form-setting.component.html',
   styleUrls: ['./form-setting.component.scss']
 })
-export class FormSettingComponent implements OnInit, OnChanges {
-  @Input() element: ElementType;
-  @Output() changeElementType: EventEmitter<any> = new EventEmitter();
-  @Output() deleteElement: EventEmitter<any> = new EventEmitter();
-  // @Output() selectSubmit: EventEmitter<any> = new EventEmitter();
-  @Output() setElement: EventEmitter<any> = new EventEmitter();
+export class FormSettingComponent implements OnInit, OnDestroy {
+  private _currentElementIdSubscribe: Subscription;
+  private _settingsFormSubscribe: Subscription;
+  private _elementTypeSubscribe: Subscription;
 
-
+  element: ElementType;
+  currentElementId: number;
   controlTypes: ControlType[] = [];
-  elementType = new FormControl();
-  selectControlType = new ElementDropdown();
-  checkboxComponent = CheckboxComponent;
+  elementType: FormGroup;
   settingsForm: FormGroup;
-
 
   constructor(
     private shiftReportingService: ShiftReportingService,
     private fb: FormBuilder,
   ) { }
 
-
   ngOnInit() {
-    // console.log(this.element);
     this.controlTypes = this.shiftReportingService.getControlTypes();
-    this.updateElementType();
-    this.selectControlType.options = this.controlTypes;
-    this.elementType.valueChanges
-      .subscribe(value => {
-        if (value.component !== this.element.component) {
-          this.changeElementType.emit(value);
-        }
-      });
+    this.onChangeElementId();
   }
-  ngOnChanges() {
-    // console.log(this.element.settings);
-    this.settingsForm = this.formInit();
-    this.settingsForm.valueChanges
-      .subscribe((value) => {
-        this.setElement.emit(value);
-      });
-    this.updateElementType();
+  ngOnDestroy() {
+    this._currentElementIdSubscribe.unsubscribe();
   }
 
-  updateElementType() {
-    this.elementType.setValue(
-      this.controlTypes.find(item => item.component === this.element.component)
-    );
+  onChangeElementId() {
+    this._currentElementIdSubscribe = this.shiftReportingService.currentElementId
+      .subscribe(value => {
+        this.currentElementId = value;
+        this.element = this.shiftReportingService.getDashboardBuildElementById(value);
+        this.elementType = this.formTypeInit();
+        this.elementType.patchValue({
+          controlTypes: this.shiftReportingService.getControlTypeByKey(this.element.componentKey),
+          name: this.shiftReportingService.getControlTypeByKey(this.element.componentKey).value
+        });
+        this.elementType.valueChanges.subscribe(val => {
+          this.shiftReportingService.changeElementType(val.controlTypes, this.currentElementId);
+        });
+        this.settingsForm = this.formInit();
+        this.settingsForm.valueChanges.subscribe(val => {
+          this.shiftReportingService.changeSettingElement(val, this.currentElementId);
+        });
+      });
+
   }
+
+  formTypeInit(): FormGroup {
+    const result = this.fb.group({
+      controlTypes: [this.controlTypes],
+    });
+    return result;
+  }
+
 
   formInit(): FormGroup {
     const group: FormGroup = this.fb.group({});
@@ -68,8 +71,10 @@ export class FormSettingComponent implements OnInit, OnChanges {
     });
     return group;
   }
-  deleteItem() {
-    // console.log('deleteItem');
-    this.deleteElement.emit()
-  }
+
+  // deleteItem() {
+  //   this.deleteElement.emit();
+  // }
+
+
 }

@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormSettingComponent } from './components/form-setting/form-setting.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ElementsModule } from './elements/elements.module';
+import { NewElementComponent } from './components/new-element/new-element.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ElementsModule } from './elements/elements.module';
     ContainerComponent,
     InputComponent,
     FormSettingComponent,
+    NewElementComponent,
   ],
   imports: [
     BrowserModule,
