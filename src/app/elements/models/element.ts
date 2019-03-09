@@ -3,7 +3,7 @@ import { InputComponent, CheckboxComponent } from '../elements';
 
 export class Element {
   componentKey: string;
-  component: any;
+  component?: any;
   name?: string;
   key?: string;
   isRequired?: boolean;

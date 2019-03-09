@@ -1,14 +1,16 @@
 <span>Type </span>
-<select [formControl]="elementType">
-  <option *ngFor="let controlType of controlTypes" [ngValue]="controlType">{{controlType.value}}</option>
-</select>
+<form [formGroup]="elementType" class="settingsForm__item">
+  <select formControlName="controlTypes">
+    <option *ngFor="let controlType of controlTypes" [ngValue]="controlType">{{controlType.value}}</option>
+  </select>
+</form>
 
 <form [formGroup]="settingsForm" class="settingsForm">
   <div *ngFor="let item of element.settings" class="settingsForm__item" [class.inLine]="item.componentKey==='checkbox'">
     <label for={{item.key}}>{{item.label}}</label>
-    <div class="
-    element">
-      <app-elements [element]="item" [form]="settingsForm" [isNoBorder]="item.componentKey === 'checkbox'"></app-elements>
+    <div class="element">
+      <app-elements [element]="item" [form]="settingsForm" [isNoBorder]="item.componentKey === 'checkbox'">
+      </app-elements>
     </div>
   </div>
 </form>

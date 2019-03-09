@@ -29,12 +29,13 @@ export class ContainerComponent implements OnInit {
     this.getDashboard();
     this.containerForm = this.formInit();
   }
+
   getDashboard(): void {
-    this.shiftReportingService.dashboard
-      .subscribe(value => {
-        this.dashboard = value;
-      });
+    this.shiftReportingService.dashboard.subscribe(value => {
+      this.dashboard = this.shiftReportingService.createDashboard(value);
+    });
   }
+
   formInit(): FormGroup {
     const group: FormGroup = this.fb.group({});
     this.dashboard.map((item, id) => {
@@ -42,7 +43,7 @@ export class ContainerComponent implements OnInit {
     });
     return group;
   }
-  submit () {
-    console.log(this.containerForm.value);
+  submit() {
+    // console.log(this.containerForm.value);
   }
 }
