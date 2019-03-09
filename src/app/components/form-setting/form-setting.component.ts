@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter, OnDestroy, HostListener } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { ShiftReportingService } from 'src/app/shift-reporting.service';
 import { ControlType } from 'src/app/models';
@@ -11,6 +11,8 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./form-setting.component.scss']
 })
 export class FormSettingComponent implements OnInit, OnDestroy {
+
+
   private _currentElementIdSubscribe: Subscription;
   private _settingsFormSubscribe: Subscription;
   private _elementTypeSubscribe: Subscription;
@@ -26,6 +28,13 @@ export class FormSettingComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
   ) { }
 
+  @HostListener('document:keyup', ['$event'])
+  handleDeleteKeyboardEvent(event: KeyboardEvent) {
+    if (event.key === 'Delete') {
+      this.removeElement();
+    }
+  }
+
   ngOnInit() {
     this.controlTypes = this.shiftReportingService.getControlTypes();
     this.onChangeElementId();
@@ -35,23 +44,23 @@ export class FormSettingComponent implements OnInit, OnDestroy {
   }
 
   onChangeElementId() {
-    this._currentElementIdSubscribe = this.shiftReportingService.currentElementId
-      .subscribe(value => {
-        this.currentElementId = value;
-        this.element = this.shiftReportingService.getDashboardBuildElementById(value);
-        this.elementType = this.formTypeInit();
-        this.elementType.patchValue({
-          controlTypes: this.shiftReportingService.getControlTypeByKey(this.element.componentKey),
-          name: this.shiftReportingService.getControlTypeByKey(this.element.componentKey).value
-        });
-        this.elementType.valueChanges.subscribe(val => {
-          this.shiftReportingService.changeElementType(val.controlTypes, this.currentElementId);
-        });
-        this.settingsForm = this.formInit();
-        this.settingsForm.valueChanges.subscribe(val => {
-          this.shiftReportingService.changeSettingElement(val, this.currentElementId);
-        });
+    this._currentElementIdSubscribe = this.shiftReportingService.currentElementId.subscribe(value => {
+      if (value === null) { return 0; }
+      this.currentElementId = value;
+      this.element = this.shiftReportingService.getDashboardBuildElementById(value);
+      this.elementType = this.formTypeInit();
+      this.elementType.patchValue({
+        controlTypes: this.shiftReportingService.getControlTypeByKey(this.element.componentKey),
+        name: this.shiftReportingService.getControlTypeByKey(this.element.componentKey).value
       });
+      this.elementType.valueChanges.subscribe(val => {
+        this.shiftReportingService.changeElementType(val.controlTypes, this.currentElementId);
+      });
+      this.settingsForm = this.formInit();
+      this.settingsForm.valueChanges.subscribe(val => {
+        this.shiftReportingService.changeSettingElement(val, this.currentElementId);
+      });
+    });
 
   }
 
@@ -72,9 +81,7 @@ export class FormSettingComponent implements OnInit, OnDestroy {
     return group;
   }
 
-  // deleteItem() {
-  //   this.deleteElement.emit();
-  // }
-
-
+  removeElement() {
+    this.shiftReportingService.removeElementDashboardBuild(this.currentElementId);
+  }
 }

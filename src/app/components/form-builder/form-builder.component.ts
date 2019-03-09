@@ -9,19 +9,18 @@ import { FormElement, ControlType } from '../../models';
   styleUrls: ['./form-builder.component.scss']
 })
 export class FormBuilderComponent implements OnInit {
-
   dashboard: FormElement[];
   resaltDashboard: FormElement[];
   currentElement: FormElement = null;
   currentElementId: number;
-  itemDragResize: GridsterItem;
+  isItemChange: boolean = false;
 
   options: GridsterConfig = {
-    itemChangeCallback: () => this.shiftReportingService.updateDashboardBuild(this.dashboard),
+    itemChangeCallback: () => this.gridsterItemChange(),
     emptyCellDropCallback: this.emptyCellClick.bind(this),
     displayGrid: 'always',
     draggable: {
-      start: (item) => this.itemDragResize = { ...item },
+      // start: (item) => this.itemDragResize = { ...item },
       delayStart: 0,
       // ToDo
       enabled: true,
@@ -31,11 +30,9 @@ export class FormBuilderComponent implements OnInit {
     },
     resizable: {
       enabled: true,
-      start: (item) => this.itemDragResize = { ...item },
+      // start: (item) => this.itemDragResize = { ...item },
     },
   };
-
-
   constructor(
     private shiftReportingService: ShiftReportingService
   ) { }
@@ -44,6 +41,11 @@ export class FormBuilderComponent implements OnInit {
     Object.assign(this.options, this.shiftReportingService.getGridsterOptions());
     this.getDashboard();
     this.shiftReportingService.currentElementId.subscribe(id => this.currentElementId = id);
+  }
+
+  gridsterItemChange(): void {
+    this.shiftReportingService.updateDashboardBuild(this.dashboard);
+    this.isItemChange = true;
   }
 
   confirmDashboard(): void {
@@ -58,22 +60,12 @@ export class FormBuilderComponent implements OnInit {
 
   setCurrentElement(item): void {
     event.preventDefault();
-    let isDragResize = false;
-    // for (const key in item.gridster) {
-    //   if (item.gridster.hasOwnProperty(key)) {
-    //     if (item.gridster[key] !== this.itemDragResize[key] && !isDragResize) {
-    //       isDragResize = true;
-    //     }
-    //     const element = item[key];
-    //   }
-    // }
-    if (this.currentElement !== item && !isDragResize) {
-      this.currentElement = item;
+    if (this.currentElementId !== this.getElementId(item)) {
       this.shiftReportingService.updateCurrentElementId(this.getElementId(item));
-    } else {
-      // this.shiftReportingService.updateCurrentElementId(null);
-      this.currentElement = null;
+    } else if (!this.isItemChange) {
+      this.shiftReportingService.updateCurrentElementId(null);
     }
+    this.isItemChange = false;
   }
 
   getElementId(element): number {

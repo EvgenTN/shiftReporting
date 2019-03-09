@@ -7,7 +7,7 @@
     <p class="title">New Element</p>
     <app-new-element></app-new-element>
     <hr>
-    <div *ngIf="currentElement">
+    <div *ngIf="currentElementId !== null">
       <p class="title">Element Settings</p>
       <app-form-setting></app-form-setting>
     </div>

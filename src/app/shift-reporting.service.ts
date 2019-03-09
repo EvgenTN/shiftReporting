@@ -57,6 +57,17 @@ export class ShiftReportingService {
     return res;
   }
 
+  removeElementDashboardBuild(id: number): void {
+    console.log(id);
+    let dboard: FormElement[];
+    const dboardSubscribe = this.dashboardBuild.subscribe(value => dboard = value);
+    dboardSubscribe.unsubscribe();
+    dboard.splice(id, 1);
+    this.dashboardBuildSource.next(dboard);
+    this.updateCurrentElementId(null);
+  }
+
+
   getDashboardBuildElementById(id: number): ElementType {
     let res: FormElement;
     const dboardSubscribe = this.dashboardBuild.subscribe(value => res = this.createElement(value[id]));
