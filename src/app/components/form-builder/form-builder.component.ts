@@ -48,9 +48,9 @@ export class FormBuilderComponent implements OnInit {
     this.isItemChange = true;
   }
 
-  confirmDashboard(): void {
-    this.shiftReportingService.updateDashboard(this.dashboard);
-  }
+  // confirmDashboard(): void {
+  //   this.shiftReportingService.updateDashboard(this.dashboard);
+  // }
 
   getDashboard(): void {
     this.shiftReportingService.dashboardBuild.subscribe(value => {

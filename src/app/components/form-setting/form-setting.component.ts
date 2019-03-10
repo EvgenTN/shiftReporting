@@ -27,13 +27,13 @@ export class FormSettingComponent implements OnInit, OnDestroy {
     private shiftReportingService: ShiftReportingService,
     private fb: FormBuilder,
   ) { }
-
-  @HostListener('document:keyup', ['$event'])
-  handleDeleteKeyboardEvent(event: KeyboardEvent) {
-    if (event.key === 'Delete') {
-      this.removeElement();
-    }
-  }
+  // Function Removing element press key "delete"
+  // @HostListener('document:keyup', ['$event'])
+  // handleDeleteKeyboardEvent(event: KeyboardEvent) {
+  //   if (event.key === 'Delete') {
+  //     this.removeElement();
+  //   }
+  // }
 
   ngOnInit() {
     this.controlTypes = this.shiftReportingService.getControlTypes();

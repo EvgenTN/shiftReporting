@@ -1,6 +1,6 @@
 .container {
   position: relative;
-  height: 600px ;
+  height: calc(100% - 30px);
   display: flex;
   padding: 15px;
 }
@@ -9,11 +9,11 @@
   font-weight: 700;
   margin: 15px 0;
 }
-gridster {
+.gridster {
   position: relative;
   box-sizing: border-box;
+
   background:rgba(73, 73, 72, 0.267);
-  max-width: 1000px;
   overflow-x: hidden;
   overflow: visible;
   margin: 0 auto;

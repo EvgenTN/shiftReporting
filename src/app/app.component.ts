@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { appRouters } from './app-routing.module';
+import { ShiftReportingService } from './shift-reporting.service';
+
 
 @Component({
   selector: 'app-root',
@@ -9,4 +11,11 @@ import { appRouters } from './app-routing.module';
 export class AppComponent {
   appRouters = appRouters;
   title = 'Shift Reporting';
+  constructor (
+    private srs: ShiftReportingService
+  ) {}
+
+  save(event) {
+    this.srs.save(event);
+  }
 }

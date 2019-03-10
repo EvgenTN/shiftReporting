@@ -24,11 +24,20 @@ export class ShiftReportingService {
 
   constructor() { }
 
+  save(event) {
+    const path = event.target.formAction.slice(event.target.baseURI.length);
+    switch (path) {
+      case 'form-build':
+        return this.updateDashboard(this.dashboardBuildSource.value);
+      case 'container':
+        return console.log('container');
+      default:
+        return console.log('Save default');
+    }
+  }
+
   initialDashboardBuild(): FormElement[] {
-    let res: FormElement[];
-    this.dashboard.subscribe(val => res = val);
-    res = this.createDashboard(res);
-    return res;
+    return this.createDashboard(this.dashboardSource.value);
   }
 
   updateDashboardBuild(dboardBuild: FormElement[]): void {
@@ -58,47 +67,31 @@ export class ShiftReportingService {
   }
 
   removeElementDashboardBuild(id: number): void {
-    console.log(id);
-    let dboard: FormElement[];
-    const dboardSubscribe = this.dashboardBuild.subscribe(value => dboard = value);
-    dboardSubscribe.unsubscribe();
+    let dboard: FormElement[] = this.dashboardBuildSource.value;
     dboard.splice(id, 1);
-    this.dashboardBuildSource.next(dboard);
+    this.updateDashboardBuild(dboard);
     this.updateCurrentElementId(null);
   }
 
 
   getDashboardBuildElementById(id: number): ElementType {
-    let res: FormElement;
-    const dboardSubscribe = this.dashboardBuild.subscribe(value => res = this.createElement(value[id]));
-    dboardSubscribe.unsubscribe();
-    return res.element;
+    return this.dashboardBuildSource.value[id].element;
   }
 
   changeElementType(elementType: ControlType, elementId: number): void {
-    let elementVar;
-    let dboardBuild;
-    const dboardBuildSubscribe = this.dashboardBuild.subscribe(value => {
-      dboardBuild = value;
-      elementVar = JSON.parse(JSON.stringify(value[elementId]));
-      elementVar.element = { componentKey: elementType.key };
-    });
-    dboardBuildSubscribe.unsubscribe();
+    const elementVar = JSON.parse(JSON.stringify(this.dashboardBuildSource.value[elementId]));;
+    const dboardBuild = this.dashboardBuildSource.value;
+    elementVar.element = { componentKey: elementType.key };
     dboardBuild[elementId] = this.createElement(elementVar);
-    this.dashboardBuildSource.next(dboardBuild);
+    this.updateDashboardBuild(dboardBuild);
   }
 
   changeSettingElement(element: {}, elementId: number): void {
-    let elementVar;
-    let dboardBuild;
-    const dboardBuildSubscribe = this.dashboardBuild.subscribe(value => {
-      dboardBuild = value;
-      // elementVar = JSON.parse(JSON.stringify(value[elementId]));
-    });
-    dboardBuildSubscribe.unsubscribe();
+    const dboardBuild = this.dashboardBuildSource.value;
     Object.assign(dboardBuild[elementId].element, element);
-    this.dashboardBuildSource.next(dboardBuild);
+    this.updateDashboardBuild(dboardBuild);
   }
+  
   updateDashboard(data: FormElement[]): void {
     const delProp = [
       'gridsterItemOptions',
