@@ -22,13 +22,24 @@ export class ShiftReportingService {
   private dashboardBuildSource = new BehaviorSubject<FormElement[]>(this.initialDashboardBuild());
   dashboardBuild = this.dashboardBuildSource.asObservable();
 
+  private gridsterOptionsSource = new BehaviorSubject<GridsterConfig>(options);
+  gridsterOptions = this.gridsterOptionsSource.asObservable();
+
   constructor() { }
+
+  updateGridsterOptions(data: GridsterConfig): void {
+    this.gridsterOptionsSource.next(data);
+  }
 
   save(event) {
     const path = event.target.formAction.slice(event.target.baseURI.length);
     switch (path) {
       case 'form-build':
-        return this.updateDashboard(this.dashboardBuildSource.value);
+        this.updateCurrentElementId(null);
+        this.updateDashboard(this.dashboardBuildSource.value);
+        alert('Dashboard ' + JSON.stringify(this.dashboardSource.value));
+        alert('Gridster options ' + JSON.stringify(this.gridsterOptionsSource.value));
+        return;
       case 'container':
         return console.log('container');
       default:
@@ -91,7 +102,7 @@ export class ShiftReportingService {
     Object.assign(dboardBuild[elementId].element, element);
     this.updateDashboardBuild(dboardBuild);
   }
-  
+
   updateDashboard(data: FormElement[]): void {
     const delProp = [
       'gridsterItemOptions',

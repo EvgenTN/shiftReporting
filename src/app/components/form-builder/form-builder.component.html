@@ -1,11 +1,15 @@
 <div class="container">
 
   <div class="sidebar">
+      <p class="title" (click)="isShowGridsterSettings = !isShowGridsterSettings">Gridster settings</p>
+      <app-gridster-settings *ngIf="isShowGridsterSettings"></app-gridster-settings>
+      <hr>
+  
     <!-- <div>
       <button class="button" (click)="confirmDashboard()">Confirm</button>
     </div> -->
-    <p class="title">New Element</p>
-    <app-new-element></app-new-element>
+    <p class="title" (click)="isShowNewElement = !isShowNewElement">New Element</p>
+    <app-new-element *ngIf="isShowNewElement"></app-new-element>
     <hr>
     <div *ngIf="currentElementId !== null">
       <p class="title">Element Settings</p>
@@ -13,7 +17,7 @@
     </div>
   </div>
 
-  <gridster [options]="options">
+  <gridster [options]="options" [style.background-color]="options.bgColor">
     <gridster-item [class.isCurrent]='i === currentElementId' *ngFor="let item of dashboard; let i = index" [item]="item.gridster"
       (click)="setCurrentElement(item)">
       <app-elements [element]="item.element"></app-elements>

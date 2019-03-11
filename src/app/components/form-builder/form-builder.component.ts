@@ -13,7 +13,9 @@ export class FormBuilderComponent implements OnInit {
   resaltDashboard: FormElement[];
   currentElement: FormElement = null;
   currentElementId: number;
-  isItemChange: boolean = false;
+  isItemChange = false;
+  isShowNewElement = false;
+  isShowGridsterSettings = false;
 
   options: GridsterConfig = {
     itemChangeCallback: () => this.gridsterItemChange(),
@@ -34,17 +36,21 @@ export class FormBuilderComponent implements OnInit {
     },
   };
   constructor(
-    private shiftReportingService: ShiftReportingService
+    private srService: ShiftReportingService
   ) { }
 
   ngOnInit() {
-    Object.assign(this.options, this.shiftReportingService.getGridsterOptions());
     this.getDashboard();
-    this.shiftReportingService.currentElementId.subscribe(id => this.currentElementId = id);
+    this.srService.gridsterOptions.subscribe(value => {
+      // console.log(value);
+      Object.assign(this.options, value);
+      this.changedOptions();
+    });
+    this.srService.currentElementId.subscribe(id => this.currentElementId = id);
   }
 
   gridsterItemChange(): void {
-    this.shiftReportingService.updateDashboardBuild(this.dashboard);
+    this.srService.updateDashboardBuild(this.dashboard);
     this.isItemChange = true;
   }
 
@@ -53,7 +59,7 @@ export class FormBuilderComponent implements OnInit {
   // }
 
   getDashboard(): void {
-    this.shiftReportingService.dashboardBuild.subscribe(value => {
+    this.srService.dashboardBuild.subscribe(value => {
       this.dashboard = value;
     });
   }
@@ -61,9 +67,9 @@ export class FormBuilderComponent implements OnInit {
   setCurrentElement(item): void {
     event.preventDefault();
     if (this.currentElementId !== this.getElementId(item)) {
-      this.shiftReportingService.updateCurrentElementId(this.getElementId(item));
+      this.srService.updateCurrentElementId(this.getElementId(item));
     } else if (!this.isItemChange) {
-      this.shiftReportingService.updateCurrentElementId(null);
+      this.srService.updateCurrentElementId(null);
     }
     this.isItemChange = false;
   }
@@ -78,18 +84,18 @@ export class FormBuilderComponent implements OnInit {
   }
 
   emptyCellClick(event: MouseEvent, item: GridsterItem) {
-    const typeNewElement = this.shiftReportingService.getTypeNewElement();
+    const typeNewElement = this.srService.getTypeNewElement();
     const element = new typeNewElement;
     Object.assign(item, element.getGridsterItemOptions());
     this.dashboard.push({ gridster: item, element: element });
-    this.shiftReportingService.updateDashboardBuild(this.dashboard);
+    this.srService.updateDashboardBuild(this.dashboard);
   }
 
   changedOptions() {
     if (this.options.api && this.options.api.optionsChanged) {
       this.options.api.optionsChanged();
     }
-    this.shiftReportingService.updateDashboardBuild(this.dashboard);
+    this.srService.updateDashboardBuild(this.dashboard);
   }
   selectSubmit(e): void {
     this.currentElement = null;
