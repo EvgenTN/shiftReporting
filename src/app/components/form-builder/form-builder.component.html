@@ -17,7 +17,7 @@
     </div>
   </div>
 
-  <gridster [options]="options">
+  <gridster [options]="options" [style.background-color]="options.bgColor">
     <gridster-item [class.isCurrent]='i === currentElementId' *ngFor="let item of dashboard; let i = index" [item]="item.gridster"
       (click)="setCurrentElement(item)">
       <app-elements [element]="item.element"></app-elements>

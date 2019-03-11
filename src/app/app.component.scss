@@ -52,5 +52,9 @@ button {
   outline: none;
   &.active {
     color: green;
-  }  
+  }
+  &:hover {
+    color: red;
+    border-color: red;
+  }
 }
