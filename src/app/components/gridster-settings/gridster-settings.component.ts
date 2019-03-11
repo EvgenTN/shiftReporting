@@ -20,14 +20,14 @@ export class GridsterSettingsComponent implements OnInit {
 
   ngOnInit() {
     this.srService.gridsterOptions.subscribe(value => {
-      console.log(value);
+      // console.log(value);
       this.gridsterOptoins = value;
     });
     // this.gridsterOptoins = this.srs.getGridsterOptions.s\;
     // console.log(this.gridsterOptoins);
     this.formInit();
     this.gridsterOptoinsForm.valueChanges.subscribe(value => {
-      console.log(value);
+      // console.log(value);
       if (this.gridsterOptoinsForm.status === 'VALID') {
         this.srService.updateGridsterOptions(this.updateGridsterOptions());
       }

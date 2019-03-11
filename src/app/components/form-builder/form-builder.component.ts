@@ -42,7 +42,7 @@ export class FormBuilderComponent implements OnInit {
   ngOnInit() {
     this.getDashboard();
     this.srService.gridsterOptions.subscribe(value => {
-      console.log(value);
+      // console.log(value);
       Object.assign(this.options, value);
       this.changedOptions();
     });
