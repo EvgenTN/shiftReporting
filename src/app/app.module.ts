@@ -12,6 +12,7 @@ import { FormSettingComponent } from './components/form-setting/form-setting.com
 import { AppRoutingModule } from './app-routing.module';
 import { ElementsModule } from './elements/elements.module';
 import { NewElementComponent } from './components/new-element/new-element.component';
+import { GridsterSettingsComponent } from './components/gridster-settings/gridster-settings.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { NewElementComponent } from './components/new-element/new-element.compon
     InputComponent,
     FormSettingComponent,
     NewElementComponent,
+    GridsterSettingsComponent,
   ],
   imports: [
     BrowserModule,

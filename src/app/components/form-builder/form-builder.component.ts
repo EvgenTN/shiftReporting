@@ -14,6 +14,8 @@ export class FormBuilderComponent implements OnInit {
   currentElement: FormElement = null;
   currentElementId: number;
   isItemChange: boolean = false;
+  isShowNewElement: boolean = false;
+  isShowGridsterSettings: boolean = true;
 
   options: GridsterConfig = {
     itemChangeCallback: () => this.gridsterItemChange(),

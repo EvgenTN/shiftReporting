@@ -28,7 +28,9 @@ export class ShiftReportingService {
     const path = event.target.formAction.slice(event.target.baseURI.length);
     switch (path) {
       case 'form-build':
-        return this.updateDashboard(this.dashboardBuildSource.value);
+        this.updateCurrentElementId(null);
+        this.updateDashboard(this.dashboardBuildSource.value)
+        return;
       case 'container':
         return console.log('container');
       default:
@@ -91,7 +93,7 @@ export class ShiftReportingService {
     Object.assign(dboardBuild[elementId].element, element);
     this.updateDashboardBuild(dboardBuild);
   }
-  
+
   updateDashboard(data: FormElement[]): void {
     const delProp = [
       'gridsterItemOptions',
