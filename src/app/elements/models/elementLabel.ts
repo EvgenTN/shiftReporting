@@ -11,6 +11,7 @@ export class ElementLabel extends Element {
     rows: 1,
     maxItemCols: Infinity,
     maxItemRows: 1,
+    resizeEnabled: true,
   };
 
   constructor(label?: string) {

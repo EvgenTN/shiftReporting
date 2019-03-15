@@ -13,6 +13,7 @@ export class ElementDropdown extends Element {
     rows: 1,
     maxItemCols: Infinity,
     maxItemRows: 1,
+    resizeEnabled: true,
   };
 
   value: { key: string, value: string };

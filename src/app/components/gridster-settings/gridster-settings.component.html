@@ -1,9 +1,8 @@
 <form [formGroup]="gridsterOptoinsForm">
-  <label for="">Cell Size 
-    <input type="number" formControlName="cellSize" max="60" min="30" />
-  </label>
-  <br>
-  <label>BG color
-    <input type="color" formControlName="bgColor">
-  </label>
+  <mat-form-field>
+    <input matInput placeholder="Cell Size" type="number" formControlName="cellSize" max="60" min="30" />
+  </mat-form-field>
+  <mat-form-field>
+    <input placeholder="BG color" matInput type="color" formControlName="bgColor">
+  </mat-form-field>
 </form>

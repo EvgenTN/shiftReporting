@@ -1,9 +1,11 @@
 .drag-new-element {
+  display: flex;
+  align-items: center;
   max-width: 200px;
   margin-bottom: 10px;
   border: 2px solid grey;
   border-radius: 3px;
-  padding: 4px;
+  // padding: 4px;
   font-style: italic;
   background: rgba(5, 112, 59, 0.192);
 }

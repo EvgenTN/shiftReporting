@@ -1,28 +1,74 @@
 <div class="container">
+  <!-- <mat-divider class="sidebar"> -->
 
-  <div class="sidebar">
-      <p class="title" (click)="isShowGridsterSettings = !isShowGridsterSettings">Gridster settings</p>
-      <app-gridster-settings *ngIf="isShowGridsterSettings"></app-gridster-settings>
-      <hr>
-  
-    <!-- <div>
+  <mat-accordion class="sidebar" [multi]="true">
+
+    <mat-expansion-panel [expanded]="step === 0" hideToggle>
+      <mat-expansion-panel-header class="AICentre">
+          <mat-panel-title> Grid settings </mat-panel-title>
+          <mat-icon>settings</mat-icon>
+
+      </mat-expansion-panel-header>
+      <app-gridster-settings></app-gridster-settings>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel [expanded]="step === 0" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title> New Element </mat-panel-title>
+        <mat-icon>add</mat-icon>
+      </mat-expansion-panel-header>
+      <app-new-element></app-new-element>
+    </mat-expansion-panel>
+
+
+    <mat-expansion-panel *ngIf="currentElementId !== null" [expanded]="true" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title> Element settings </mat-panel-title>
+        <mat-icon>tune</mat-icon>
+      </mat-expansion-panel-header>
+      <app-form-setting></app-form-setting>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <!-- </mat-divider> -->
+
+
+
+
+  <!-- <p class="title" (click)="isShowGridsterSettings = !isShowGridsterSettings">Gridster settings</p>
+    <app-gridster-settings *ngIf="isShowGridsterSettings"></app-gridster-settings>
+    <hr> -->
+  <!-- <div>
       <button class="button" (click)="confirmDashboard()">Confirm</button>
     </div> -->
-    <p class="title" (click)="isShowNewElement = !isShowNewElement">New Element</p>
+  <!-- <p class="title" (click)="isShowNewElement = !isShowNewElement">New Element</p>
     <app-new-element *ngIf="isShowNewElement"></app-new-element>
     <hr>
     <div *ngIf="currentElementId !== null">
       <p class="title">Element Settings</p>
-      <app-form-setting></app-form-setting>
-    </div>
+      <app-form-setting></app-form-setting> -->
+
+
+  <!-- </div> -->
+
+
+
+  <!-- <div class="gridster">
+    <gridster [options]="options" [style.background-color]="options.bgColor">
+      <gridster-item [class.isCurrent]='i === currentElementId' *ngFor="let item of dashboard; let i = index"
+        [item]="item.gridster" (click)="setCurrentElement(item)">
+
+        <app-elements [element]="item.element"></app-elements>
+      </gridster-item>
+    </gridster>
+  </div> -->
+
+
+
+  <div class="gridster">
+    <app-gridster [appointment]="'build'" (emptyCellDrop)="emptyCellDrop()"></app-gridster>
   </div>
 
-  <gridster [options]="options" [style.background-color]="options.bgColor">
-    <gridster-item [class.isCurrent]='i === currentElementId' *ngFor="let item of dashboard; let i = index" [item]="item.gridster"
-      (click)="setCurrentElement(item)">
-      <app-elements [element]="item.element"></app-elements>
-    </gridster-item>
-  </gridster>
+
 </div>
 
 

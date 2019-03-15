@@ -1,0 +1,15 @@
+.gridster {
+  width: 100%;
+//   position: relative;
+//   box-sizing: border-box;
+
+//   background:rgba(73, 73, 72, 0.267);
+//   overflow-x: hidden;
+//   overflow: visible;
+//   margin: 0 auto;
+//   cursor: default;
+}
+.isCurrent {
+  z-index: 2;
+  box-shadow: 0 0 5px 5px rgba(0, 131, 136, 0.2), 0 6px 10px 0 rgba(0, 131, 136,.14), 0 1px 18px 0 rgba(0, 131, 136,.12);
+}

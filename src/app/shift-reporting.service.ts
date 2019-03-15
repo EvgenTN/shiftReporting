@@ -13,6 +13,9 @@ export class ShiftReportingService {
 
   private typeNewElement = null;
 
+  private formFillSource = new BehaviorSubject(null);
+  formFill = this.formFillSource.asObservable();
+
   private currentElementIdSource = new BehaviorSubject<number>(null);
   currentElementId = this.currentElementIdSource.asObservable();
 
@@ -27,21 +30,36 @@ export class ShiftReportingService {
 
   constructor() { }
 
+
+  updateFormFill(data: GridsterConfig): void {
+    this.formFillSource.next(data);
+  }
+
+
+
+  createNewDashboardElement(gridserItem: GridsterItem) {
+    const element = new this.typeNewElement;
+    Object.assign(gridserItem, element.getGridsterItemOptions());
+    const dboard = this.dashboardBuildSource.value;
+    dboard.push({ gridster: gridserItem, element: element });
+    this.updateDashboardBuild(dboard);
+  }
+
   updateGridsterOptions(data: GridsterConfig): void {
     this.gridsterOptionsSource.next(data);
   }
 
-  save(event) {
-    const path = event.target.formAction.slice(event.target.baseURI.length);
-    switch (path) {
+  save(pathname) {
+    switch (pathname) {
       case 'form-build':
         this.updateCurrentElementId(null);
         this.updateDashboard(this.dashboardBuildSource.value);
-        alert('Dashboard ' + JSON.stringify(this.dashboardSource.value));
-        alert('Gridster options ' + JSON.stringify(this.gridsterOptionsSource.value));
+        alert('Dashboard => ' + JSON.stringify(this.dashboardSource.value));
+        alert('Gridster options => ' + JSON.stringify(this.gridsterOptionsSource.value));
         return;
-      case 'container':
-        return console.log('container');
+      case 'form-filler':
+        alert('Form => ' + JSON.stringify(this.formFillSource.value));
+        return;
       default:
         return console.log('Save default');
     }
@@ -78,7 +96,7 @@ export class ShiftReportingService {
   }
 
   removeElementDashboardBuild(id: number): void {
-    let dboard: FormElement[] = this.dashboardBuildSource.value;
+    const dboard: FormElement[] = this.dashboardBuildSource.value;
     dboard.splice(id, 1);
     this.updateDashboardBuild(dboard);
     this.updateCurrentElementId(null);
@@ -97,9 +115,9 @@ export class ShiftReportingService {
     this.updateDashboardBuild(dboardBuild);
   }
 
-  changeSettingElement(element: {}, elementId: number): void {
+  changeSettingElement(elementSet: {}, elementId: number): void {
     const dboardBuild = this.dashboardBuildSource.value;
-    Object.assign(dboardBuild[elementId].element, element);
+    dboardBuild[elementId].element.setValue(elementSet);
     this.updateDashboardBuild(dboardBuild);
   }
 
@@ -109,11 +127,15 @@ export class ShiftReportingService {
       'settings',
       '_gridsterItemOptions',
       '_settings',
+      'maxItemCols',
+      'maxItemRows',
+      'resizeEnabled',
     ];
     const result: FormElement[] = data.map(item => {
       const varItem = JSON.parse(JSON.stringify(item));
       delProp.map(prop => {
         delete varItem.element[prop];
+        delete varItem.gridster[prop];
       });
       return varItem;
     });

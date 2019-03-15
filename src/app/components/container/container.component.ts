@@ -25,13 +25,13 @@ export class ContainerComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    Object.assign(this.options, this.shiftReportingService.getGridsterOptions());
     this.getDashboard();
     this.containerForm = this.formInit();
   }
 
   getDashboard(): void {
     this.shiftReportingService.dashboard.subscribe(value => {
+      // this.dashboard = value;
       this.dashboard = this.shiftReportingService.createDashboard(value);
     });
   }
@@ -42,8 +42,5 @@ export class ContainerComponent implements OnInit {
       group.addControl(item.element.key, this.fb.control(item.element.getValue('value')));
     });
     return group;
-  }
-  submit() {
-    // console.log(this.containerForm.value);
   }
 }

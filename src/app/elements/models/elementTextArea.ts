@@ -10,6 +10,7 @@ export class ElementTextArea extends Element {
     private _gridsterItemOptions = {
         maxItemRows: Infinity,
         maxItemCols: Infinity,
+        resizeEnabled: true,
     };
 
     constructor(key?: string) {

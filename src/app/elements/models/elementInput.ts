@@ -19,7 +19,8 @@ export class ElementInput extends Element {
   private _gridsterItemOptions = {
     rows: 1,
     maxItemCols: Infinity,
-    maxItemRows: 1
+    maxItemRows: 1,
+    resizeEnabled: true,
   };
 
   constructor(key?: string) {

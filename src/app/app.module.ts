@@ -13,6 +13,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { ElementsModule } from './elements/elements.module';
 import { NewElementComponent } from './components/new-element/new-element.component';
 import { GridsterSettingsComponent } from './components/gridster-settings/gridster-settings.component';
+import { GridsterComponent } from './components/gridster/gridster.component';
+import { FormFillerComponent } from './components/form-filler/form-filler.component';
+import { CustomMaterialModule } from './custom-material.module';
 
 @NgModule({
   declarations: [
@@ -23,13 +26,16 @@ import { GridsterSettingsComponent } from './components/gridster-settings/gridst
     FormSettingComponent,
     NewElementComponent,
     GridsterSettingsComponent,
+    GridsterComponent,
+    FormFillerComponent,
   ],
   imports: [
     BrowserModule,
     GridsterModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    ElementsModule
+    ElementsModule,
+    CustomMaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
