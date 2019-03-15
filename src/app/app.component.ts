@@ -16,6 +16,6 @@ export class AppComponent {
   ) {}
 
   save(event) {
-    this.srs.save(event);
+    this.srs.save(window.location.pathname.slice(1));
   }
 }

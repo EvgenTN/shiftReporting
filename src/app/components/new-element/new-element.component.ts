@@ -11,13 +11,13 @@ export class NewElementComponent implements OnInit {
   controlTypes: ControlType[] = [];
 
   constructor(
-    private shiftReportingService: ShiftReportingService
+    private srService: ShiftReportingService
   ) { }
 
   ngOnInit() {
-    this.controlTypes = this.shiftReportingService.getControlTypes();
+    this.controlTypes = this.srService.getControlTypes();
   }
   setTypeNewElement(elementClass) {
-    this.shiftReportingService.setTypeNewElement(elementClass);
+    this.srService.setTypeNewElement(elementClass);
   }
 }

@@ -1,14 +1,17 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<section class="shiftRep">
+<section class="section">
   <div class="header">
     <div class="wrapper">
       <h1>
         {{title}}
       </h1>
       <div>
-        <button *ngFor="let item of appRouters" routerLinkActive="active" routerLink="/{{item.path}}">
+        <a class="routerLink" mat-raised-button *ngFor="let item of appRouters" routerLinkActive="active"
+          routerLink="/{{item.path}}">
           {{item.title}}
-        </button>
+
+          <mat-icon>{{item.icon}}</mat-icon>
+        </a>
       </div>
     </div>
   </div>
@@ -16,8 +19,6 @@
     <router-outlet></router-outlet>
   </div>
   <div class="footer">
-    <div class="wrapper">
-      <button (click)="save($event)">SAVE</button>
-    </div>
+    <button mat-raised-button  (click)="save($event)">SAVE</button>
   </div>
 </section>

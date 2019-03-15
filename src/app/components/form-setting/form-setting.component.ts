@@ -61,7 +61,6 @@ export class FormSettingComponent implements OnInit, OnDestroy {
         this.shiftReportingService.changeSettingElement(val, this.currentElementId);
       });
     });
-
   }
 
   formTypeInit(): FormGroup {

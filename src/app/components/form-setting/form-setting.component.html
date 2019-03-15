@@ -1,9 +1,15 @@
-<span>Type </span>
-<form [formGroup]="elementType" class="settingsForm__item">
-  <select formControlName="controlTypes">
+<!-- <form [formGroup]="elementType" class="settingsForm__item"> -->
+  <mat-form-field [formGroup]="elementType" class="settingsForm__item">
+    <mat-select formControlName="controlTypes" placeholder="Type">
+      <mat-option *ngFor="let controlType of controlTypes" [value]="controlType">{{controlType.value}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+  <!-- <select formControlName="controlTypes">
     <option *ngFor="let controlType of controlTypes" [ngValue]="controlType">{{controlType.value}}</option>
-  </select>
-</form>
+  </select> -->
+<!-- </form> -->
 
 <form [formGroup]="settingsForm" class="settingsForm">
   <div *ngFor="let item of element.settings" class="settingsForm__item" [class.inLine]="item.componentKey==='checkbox'">
@@ -14,4 +20,4 @@
     </div>
   </div>
 </form>
-<button class="button" (click)="removeElement()">Delete</button>
+<button mat-raised-button class="button" (click)="removeElement()">Delete</button>

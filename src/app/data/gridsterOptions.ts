@@ -10,13 +10,16 @@ export const options: GridsterConfig = {
   margin: 0,
   mobileBreakpoint: 100,
   pushItems: false,
-  outerMarginTop: 15,
-  outerMarginBottom: 15,
-  outerMarginLeft: 15,
-  outerMarginRight: 15,
+  // outerMarginTop: 15,
+  // outerMarginBottom: 15,
+  // outerMarginLeft: 15,
+  // outerMarginRight: 15,
   enableEmptyCellDrop: true,
   // enableEmptyCellClick: true,
   // emptyCellClickCallback: this.emptyCellClick.bind(this),
   swap: false,
-
 };
+
+
+
+

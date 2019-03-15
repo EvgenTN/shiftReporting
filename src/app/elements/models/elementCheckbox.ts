@@ -9,6 +9,7 @@ export class ElementCheckbox extends Element {
     cols: 1,
     maxItemCols: 1,
     maxItemRows: 1,
+    resizeEnabled: false,
   };
 
   constructor(value?: boolean, key?: string) {

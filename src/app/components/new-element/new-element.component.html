@@ -1,5 +1,6 @@
 <!-- <p class="title">New Element</p> -->
 <div draggable="true" class="drag-new-element" *ngFor="let ctrlType of controlTypes"
   (mousedown)="setTypeNewElement(ctrlType.elementClass)">
+  <mat-icon>drag_indicator</mat-icon>
   <p>New {{ctrlType.value}}</p>
 </div>
