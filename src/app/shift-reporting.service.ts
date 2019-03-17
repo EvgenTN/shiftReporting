@@ -38,9 +38,23 @@ export class ShiftReportingService {
 
 
   createNewDashboardElement(gridserItem: GridsterItem) {
-    const element = new this.typeNewElement;
-    Object.assign(gridserItem, element.getGridsterItemOptions());
+    console.log('createNewDashboardElement');
     const dboard = this.dashboardBuildSource.value;
+    // TODO  maxLength - length of new element
+    let maxLength = 5;
+    for (let i = 1; i <= maxLength; i++) {
+      dboard.map(item => {
+        if (item.gridster.x === gridserItem.x + i
+          && item.gridster.y <= gridserItem.y
+          && item.gridster.y + item.gridster.rows - 1 >= gridserItem.y) {
+          maxLength = i;
+        }
+      });
+    }
+
+    const element = new this.typeNewElement;
+    gridserItem.cols = maxLength;
+    Object.assign(gridserItem, element.getGridsterItemOptions());
     dboard.push({ gridster: gridserItem, element: element });
     this.updateDashboardBuild(dboard);
   }
@@ -108,7 +122,7 @@ export class ShiftReportingService {
   }
 
   changeElementType(elementType: ControlType, elementId: number): void {
-    const elementVar = JSON.parse(JSON.stringify(this.dashboardBuildSource.value[elementId]));;
+    const elementVar = JSON.parse(JSON.stringify(this.dashboardBuildSource.value[elementId]));
     const dboardBuild = this.dashboardBuildSource.value;
     elementVar.element = { componentKey: elementType.key };
     dboardBuild[elementId] = this.createElement(elementVar);
