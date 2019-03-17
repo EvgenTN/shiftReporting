@@ -5,6 +5,7 @@ export class ElementLabel extends Element {
   label: string;
   private _settings = [
     { key: 'label', componentKey: 'input', component: InputComponent, label: 'Label' },
+  
   ];
 
   private _gridsterItemOptions = {

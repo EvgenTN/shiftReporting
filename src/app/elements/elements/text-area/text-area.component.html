@@ -1,7 +1,9 @@
 <form class="form" [formGroup]="_form">
-  <textarea class="textarea" 
-  [placeholder]="_element.placeholder" 
-  [formControlName]="_element.key" 
-  [value]="_element.value"
-  ></textarea>
+  <textarea *ngIf="_isGridster" class="textarea" [placeholder]="_element.placeholder" [formControlName]="_element.key"
+    [value]="_element.value"></textarea>
+
+  <mat-form-field class="form" *ngIf="!_isGridster">
+    <textarea matInput class="textarea" rows="3"  [placeholder]="_element.label" [formControlName]="_element.key"
+      [value]="_element.value"></textarea>
+  </mat-form-field>
 </form>

@@ -1,7 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatInputModule, MatExpansionModule, MatCardModule, MatDividerModule, MatSelectModule } from '@angular/material';
-import {MatIconModule} from '@angular/material/icon';
+import {
+  MatButtonModule, MatInputModule,
+  MatExpansionModule, MatCardModule,
+  MatDividerModule, MatSelectModule,
+  MatCheckboxModule
+} from '@angular/material';
+import { MatIconModule } from '@angular/material/icon';
 
 const MODULES = [
   BrowserAnimationsModule,
@@ -12,6 +17,7 @@ const MODULES = [
   MatCardModule,
   MatDividerModule,
   MatSelectModule,
+  MatCheckboxModule,
 ];
 
 @NgModule({

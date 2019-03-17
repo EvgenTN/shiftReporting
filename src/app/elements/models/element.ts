@@ -18,7 +18,6 @@ export class Element {
     this.value = '';
     this.settings = [
       { key: 'name', componentKey: 'input', label: 'Name', placeholder: 'Enter name' },
-      { key: 'isRequired', componentKey: 'checkbox', label: 'Required' }
     ];
   }
 

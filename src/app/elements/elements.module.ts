@@ -7,12 +7,14 @@ import { DropdownComponent } from './elements/dropdown/dropdown.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CheckboxComponent } from './elements/checkbox/checkbox.component';
 import { TextAreaComponent } from './elements/text-area/text-area.component';
+import { CustomMaterialModule } from '../custom-material.module';
 
 @NgModule({
   declarations: [ElementsComponent, LabelComponent, InputComponent, DropdownComponent, TextAreaComponent, CheckboxComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    CustomMaterialModule,
   ],
   exports: [
     ElementsComponent,

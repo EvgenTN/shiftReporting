@@ -9,7 +9,7 @@
 <gridster [options]="options" [style.background-color]="options.bgColor">
   <gridster-item [class.isCurrent]='i === currentElementId' *ngFor="let item of dashboard; let i = index"
     [item]="item.gridster" (click)="setCurrentElement(i)">
-    <app-elements [element]="item.element" [form]="form"></app-elements>
+    <app-elements [isGridster]="true" [element]="item.element" [form]="form"></app-elements>
   </gridster-item>
 </gridster>
 

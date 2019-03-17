@@ -16,6 +16,7 @@ import { GridsterSettingsComponent } from './components/gridster-settings/gridst
 import { GridsterComponent } from './components/gridster/gridster.component';
 import { FormFillerComponent } from './components/form-filler/form-filler.component';
 import { CustomMaterialModule } from './custom-material.module';
+import { EditComponent } from './components/edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { CustomMaterialModule } from './custom-material.module';
     GridsterSettingsComponent,
     GridsterComponent,
     FormFillerComponent,
+    EditComponent,
   ],
   imports: [
     BrowserModule,

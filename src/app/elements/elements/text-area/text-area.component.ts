@@ -11,7 +11,9 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 export class TextAreaComponent implements OnInit {
 
   private _element: ElementType;
-  private _form: FormGroup;
+  private _form: FormGroup = new FormGroup({});
+  private _isGridster: boolean;
+
 
   constructor(
     private elementsService: ElementsService,
@@ -19,14 +21,13 @@ export class TextAreaComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.elementsService.element
-      .subscribe(value => {
-        this._element = value;
-      });
-    this.getForm();
+    this.getData();
   }
 
-  getForm(): void {
+  getData(): void {
+    this._isGridster = this.elementsService.getIsGridster();
+    this.elementsService.element
+      .subscribe(value => this._element = value);
     this.elementsService.form
       .subscribe(value => {
         if (value) {
@@ -36,9 +37,10 @@ export class TextAreaComponent implements OnInit {
         }
       });
   }
+
   formInit(): FormGroup {
     const group = this.fb.group({});
-    group.addControl(this._element.key, this.fb.control(this._element.value));
+    group.addControl(this._element.key, this.fb.control(''));
     return group;
   }
 }

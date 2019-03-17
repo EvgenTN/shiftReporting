@@ -13,24 +13,22 @@ export class DropdownComponent implements OnInit {
 
   private _element: ElementType;
   private _form: FormGroup = new FormGroup({});
+  private _isGridster: boolean;
+
 
   constructor(
     private elementsService: ElementsService,
     private fb: FormBuilder,
-  ) {
-
-  }
+  ) { }
 
   ngOnInit() {
-    this.elementsService.element
-      .subscribe(value => {
-        this._element = value;
-      });
-    this.getForm();
-
+    this.getData();
   }
 
-  getForm(): void {
+  getData(): void {
+    this._isGridster = this.elementsService.getIsGridster();
+    this.elementsService.element
+      .subscribe(value => this._element = value);
     this.elementsService.form
       .subscribe(value => {
         if (value) {
@@ -40,9 +38,37 @@ export class DropdownComponent implements OnInit {
         }
       });
   }
+
   formInit(): FormGroup {
     const group = this.fb.group({});
-    group.addControl(this._element.key, this.fb.control(this._element.value));
+    group.addControl(this._element.key, this.fb.control(''));
     return group;
   }
 }
+
+
+//   ngOnInit() {
+//     this.elementsService.element
+//       .subscribe(value => {
+//         this._element = value;
+//       });
+//     this.getForm();
+
+//   }
+
+//   getForm(): void {
+//     this.elementsService.form
+//       .subscribe(value => {
+//         if (value) {
+//           this._form = value;
+//         } else {
+//           this._form = this.formInit();
+//         }
+//       });
+//   }
+//   formInit(): FormGroup {
+//     const group = this.fb.group({});
+//     group.addControl(this._element.key, this.fb.control(this._element.value));
+//     return group;
+//   }
+// }

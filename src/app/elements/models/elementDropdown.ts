@@ -5,7 +5,9 @@ export class ElementDropdown extends Element {
 
 
   private _settings = [
+    { key: 'placeholder', componentKey: 'input', component: InputComponent, label: 'Placeholder' },
     { key: 'options', componentKey: 'textarea', component: TextAreaComponent, label: 'Options' },
+    { key: 'isRequired', componentKey: 'checkbox', label: 'Required' }
 
   ];
 
@@ -18,17 +20,16 @@ export class ElementDropdown extends Element {
 
   value: { key: string, value: string };
   options: Array<{ key: string, value: string }>;
+  placeholder: string;
 
   constructor(key?: string) {
     super();
-    this.options = [
-      { key: 'test1', value: 'test 1' },
-      { key: 'test2', value: 'test 2' },
-      { key: 'test3', value: 'test 3' }];
+    this.options = [];
     this.componentKey = 'dropdown';
     this.component = DropdownComponent;
     this.key = key ? key : 'dropdown' + Date.now();
     this.settings = this.settings.concat(this._settings);
+    this.placeholder = '';
     Object.assign(this.gridsterItemOptions, this._gridsterItemOptions);
   }
 

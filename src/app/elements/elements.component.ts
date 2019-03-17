@@ -17,6 +17,7 @@ export class ElementsComponent implements OnInit, OnChanges {
   @Input() element: ElementType;
   @Input() form: FormGroup;
   @Input() isNoBorder: boolean;
+  @Input() isGridster: boolean;
 
   component: any = '';
 
@@ -26,6 +27,7 @@ export class ElementsComponent implements OnInit, OnChanges {
   ) { }
 
   ngOnChanges() {
+    this.elementsService.setIsCridster(this.isGridster ? true : false);
     this.elementsService.setElement(this.element);
     this.elementsService.setForm(this.form);
     this.component = this.shiftReportingService.getControlTypeComponentByKey(this.element.componentKey);

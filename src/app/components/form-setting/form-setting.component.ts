@@ -52,6 +52,7 @@ export class FormSettingComponent implements OnInit, OnDestroy {
       this.elementType.patchValue({
         controlTypes: this.shiftReportingService.getControlTypeByKey(this.element.componentKey),
         name: this.shiftReportingService.getControlTypeByKey(this.element.componentKey).value
+        // placeholder: 
       });
       this.elementType.valueChanges.subscribe(val => {
         this.shiftReportingService.changeElementType(val.controlTypes, this.currentElementId);

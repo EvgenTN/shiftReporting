@@ -1,11 +1,15 @@
 <form class="form" *ngIf="_form && _element" [formGroup]="_form">
-  <input class="input"
-  [placeholder]="_element.placeholder" 
-  [type]="_element.type" 
-  [formControlName]="_element.key"
-  [value]="_element.value"
-  >
+  <input *ngIf="_isGridster" class="input" [placeholder]="_element.placeholder" [type]="_element.type"
+    [formControlName]="_element.key" [value]="_element.value">
+
+  <mat-form-field class="form" *ngIf="!_isGridster" >
+    <input matInput class="input" [placeholder]="_element.label" [type]="_element.type"
+      [formControlName]="_element.key" [value]="_element.value">
+  </mat-form-field>
 </form>
+
+
+
 
 <!-- <input *ngIf="!_form && _element"
  class="input" 

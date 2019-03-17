@@ -12,19 +12,19 @@ export class CheckboxComponent implements OnInit {
 
   private _element: ElementType;
   private _form: FormGroup = new FormGroup({});
+  private _isGridster: boolean;
 
   constructor(
     private elementsService: ElementsService,
     private fb: FormBuilder,
-  ) {
-
-  }
+  ) { }
 
   ngOnInit() {
     this.getData();
   }
 
   getData(): void {
+    this._isGridster = this.elementsService.getIsGridster();
     this.elementsService.element
       .subscribe(value => this._element = value);
     this.elementsService.form

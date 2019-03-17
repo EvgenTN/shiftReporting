@@ -11,6 +11,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 export class InputComponent implements OnInit {
   private _element: ElementType;
   private _form: FormGroup;
+  private _isGridster: boolean;
 
   constructor(
     private elementsService: ElementsService,
@@ -22,16 +23,17 @@ export class InputComponent implements OnInit {
   }
 
   getData(): void {
+    this._isGridster = this.elementsService.getIsGridster();
     this.elementsService.element
       .subscribe(value => this._element = value);
     this.elementsService.form
       .subscribe(value => {
-          if (value) {
-            this._form = value;
-          } else {
-            this._form = this.formInit();
-          }
-        });
+        if (value) {
+          this._form = value;
+        } else {
+          this._form = this.formInit();
+        }
+      });
   }
 
   formInit(): FormGroup {

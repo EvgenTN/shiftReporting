@@ -1,23 +1,23 @@
 <!-- <form [formGroup]="elementType" class="settingsForm__item"> -->
-  <mat-form-field [formGroup]="elementType" class="settingsForm__item">
-    <mat-select formControlName="controlTypes" placeholder="Type">
-      <mat-option *ngFor="let controlType of controlTypes" [value]="controlType">{{controlType.value}}</mat-option>
-    </mat-select>
-  </mat-form-field>
+
+  
+<mat-form-field [formGroup]="elementType" class="settingsForm__item">
+  <mat-select formControlName="controlTypes" placeholder="Element type">
+    <mat-option *ngFor="let controlType of controlTypes" [value]="controlType">{{controlType.value}}</mat-option>
+  </mat-select>
+</mat-form-field>
 
 
-  <!-- <select formControlName="controlTypes">
+<!-- <select formControlName="controlTypes">
     <option *ngFor="let controlType of controlTypes" [ngValue]="controlType">{{controlType.value}}</option>
   </select> -->
 <!-- </form> -->
 
 <form [formGroup]="settingsForm" class="settingsForm">
-  <div *ngFor="let item of element.settings" class="settingsForm__item" [class.inLine]="item.componentKey==='checkbox'">
-    <label for={{item.key}}>{{item.label}}</label>
-    <div class="element">
-      <app-elements [element]="item" [form]="settingsForm" [isNoBorder]="item.componentKey === 'checkbox'">
-      </app-elements>
-    </div>
+  <div *ngFor="let item of element.settings" class="settingsForm__item">
+    <!-- <label id={{item.key}} [class.inLine]="item.componentKey==='checkbox'"> {{item.label}} -->
+    <app-elements [element]="item" [form]="settingsForm" [isNoBorder]="true"></app-elements>
+    <!-- </label> -->
   </div>
 </form>
-<button mat-raised-button class="button" (click)="removeElement()">Delete</button>
+<button mat-raised-button color="warn" class="button" (click)="removeElement()">Delete <mat-icon>delete</mat-icon></button>

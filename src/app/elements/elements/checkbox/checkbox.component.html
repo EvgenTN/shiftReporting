@@ -1,9 +1,9 @@
-<form class="checkbox" *ngIf="_form && _element" [formGroup]="_form">
+<!-- <form class="checkbox" *ngIf="_form && _element" [formGroup]="_form">
   <label class="container">
     <input  type="checkbox" id={{_element.key}} [formControlName]="_element.key" [value]="_element.value">
     <span class="checkmark"></span>   
   </label>
-</form>
+</form> -->
 
 <!-- <form class="checkbox" *ngIf="_form && _element" [formGroup]="_form">
   <input class="input" type="checkbox" id={{_element.key}} [formControlName]="_element.key" [value]="_element.value">
@@ -16,3 +16,6 @@
     </svg>
   </label>
 </form> -->
+<form class="checkbox" [class.isGridster]='_isGridster' *ngIf="_form && _element" [formGroup]="_form">
+  <mat-checkbox id={{_element.key}} [formControlName]="_element.key" [value]="_element.value" [labelPosition]="'before'">{{_element.label}}</mat-checkbox>
+</form>

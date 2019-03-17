@@ -1,5 +1,15 @@
-<form class="dropdown" *ngIf="_form && _element" [formGroup]="_form">
-  <select id={{_element.key}} [formControlName]="_element.key">
+<form class="dropdown" *ngIf="_form && _element && _isGridster" [formGroup]="_form">
+
+  <select id={{_element.key}} [class.placeholder]="value === 0" [formControlName]="_element.key">
+    <option class="placeholder"  disabled hidden selected  [ngValue]="''">{{_element.placeholder}}</option>
     <option *ngFor="let option of _element.options" [ngValue]="option.key">{{option.value}}</option>
   </select>
 </form>
+
+
+<mat-form-field class="dropdown" *ngIf="_form && _element && !_isGridster" [formGroup]="_form">
+  <mat-select class="dropdown" [placeholder]="_element.label" id={{_element.key}} [formControlName]="_element.key">
+    <mat-option *ngFor="let option of _element.options" [value]="option.key">
+      {{option.value}} </mat-option>
+  </mat-select>
+</mat-form-field>

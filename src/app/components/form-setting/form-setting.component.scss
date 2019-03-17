@@ -1,12 +1,12 @@
 .settingsForm {
+  margin-bottom: 15px;
+
   &__item {
-    margin-bottom: 15px;
     width: 100%;
   }
-  
 }
 .inLine {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+  // display: flex;
+  // justify-content: space-between;
+  // align-items: center;
+}
