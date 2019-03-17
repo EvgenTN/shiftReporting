@@ -8,11 +8,11 @@
   max-width: 1340px;
 }
 
-.title {
-  font-weight: 700;
-  margin: 15px 0;
-  cursor: pointer;
-}
+// .title {
+//   font-weight: 700;
+//   margin: 15px 0;
+//   cursor: pointer;
+// }
 .gridster {
   width: 100%;
   max-width: 1140px;
@@ -25,10 +25,10 @@
 //   margin: 0 auto;
   // cursor: default;
 }
-.isCurrent {
-  z-index: 2;
-  box-shadow: 0 0 5px 5px rgba(0, 131, 136, 0.2), 0 6px 10px 0 rgba(0, 131, 136,.14), 0 1px 18px 0 rgba(0, 131, 136,.12);
-}
+// .isCurrent {
+//   z-index: 2;
+//   box-shadow: 0 0 5px 5px rgba(0, 131, 136, 0.2), 0 6px 10px 0 rgba(0, 131, 136,.14), 0 1px 18px 0 rgba(0, 131, 136,.12);
+// }
 
 .sidebar{
   max-width: 200px;
@@ -41,12 +41,12 @@
   // overflow: auto;
 
 }
-.drag-new-element {
-  max-width: 200px;
-  margin-bottom: 10px;
-  border: 2px solid grey;
-  border-radius: 3px;
-  padding: 4px;
-  font-style: italic;
-  background: rgba(5, 112, 59, 0.192);
-}
+// .drag-new-element {
+//   max-width: 200px;
+//   margin-bottom: 10px;
+//   border: 2px solid grey;
+//   border-radius: 3px;
+//   padding: 4px;
+//   font-style: italic;
+//   background: rgba(5, 112, 59, 0.192);
+// }

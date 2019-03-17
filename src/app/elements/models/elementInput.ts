@@ -6,6 +6,7 @@ const types: Array<{ key: string, value: string }> = [
   { key: 'password', value: 'Password' },
   { key: 'date', value: 'Date' },
   { key: 'number', value: 'Number' },
+  { key: 'color', value: 'Color' },
 ];
 
 export class ElementInput extends Element {

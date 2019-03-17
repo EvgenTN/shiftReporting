@@ -1,8 +1,19 @@
-<form [formGroup]="gridsterOptoinsForm">
+<!-- <form [formGroup]="gridsterOptoinsForm">
+
+
   <mat-form-field>
     <input matInput placeholder="Cell Size" type="number" formControlName="cellSize" max="60" min="30" />
   </mat-form-field>
   <mat-form-field>
     <input placeholder="BG color" matInput type="color" formControlName="bgColor">
   </mat-form-field>
+</form> -->
+
+
+<form [formGroup]="gridsterOptoinsForm">
+  <div *ngFor="let item of settings" class="settingsForm__item">
+    <!-- <label id={{item.key}} [class.inLine]="item.componentKey==='checkbox'"> {{item.label}} -->
+    <app-elements [element]="item" [form]="gridsterOptoinsForm" [isNoBorder]="true"></app-elements>
+    <!-- </label> -->
+  </div>
 </form>

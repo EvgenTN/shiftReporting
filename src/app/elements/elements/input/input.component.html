@@ -1,5 +1,5 @@
 <form class="form" *ngIf="_form && _element" [formGroup]="_form">
-  <input *ngIf="_isGridster" class="input" [placeholder]="_element.placeholder" [type]="_element.type"
+  <input *ngIf="_isGridster" class="inputGridster" [placeholder]="_element.placeholder" [type]="_element.type"
     [formControlName]="_element.key" [value]="_element.value">
 
   <mat-form-field class="form" *ngIf="!_isGridster" >
