@@ -24,6 +24,14 @@ export class GridsterSettingsComponent implements OnInit {
         ]
       },
       {
+        key: 'minCols', componentKey: 'input', label: 'Cols',
+        placeholder: 'Cols', type: 'number',
+      },
+      {
+        key: 'minRows', componentKey: 'input', label: 'Rows',
+        placeholder: 'Rows', type: 'number',
+      },
+      {
         key: 'bgColor', componentKey: 'input', label: 'BG color',
         placeholder: 'Color', type: 'color'
       },
@@ -46,20 +54,15 @@ export class GridsterSettingsComponent implements OnInit {
     this.formInit();
     this.gridsterOptoinsForm = this.formInit();
     // console.log(this.gridsterOptoinsForm);
-    
+
     this.gridsterOptoinsForm.valueChanges.subscribe(value => {
       console.log(value);
 
       if (this.gridsterOptoinsForm.status === 'VALID') {
-        // console.log('valid');
-        // console.log(this.updateGridsterOptions());
-
-
         this.srService.updateGridsterOptions(this.updateGridsterOptions());
       }
     });
   }
-
   formInit(): FormGroup {
     const group: FormGroup = this.fb.group({});
     this.settings.map((item, id) => {
@@ -67,22 +70,9 @@ export class GridsterSettingsComponent implements OnInit {
       group.addControl(item.key, this.fb.control(this.gridsterOptoins[item.key], item.validators));
     });
     // console.log(group);
-    
+
     return group;
   }
-
-
-  // formInit() {
-  //   this.gridsterOptoinsForm = this.fb.group({
-  //     cellSize: [this.gridsterOptoins.fixedColWidth, this.cellSizeValidator],
-  //     bgColor: this.gridsterOptoins.bgColor,
-  //   });
-  // }
-  // formFill() {
-  //   this.gridsterOptoinsForm({})
-  // }
-
-
 
   cellSizeValidator(control: FormControl) {
     if (control.value < 30 || control.value > 60) {
@@ -91,14 +81,13 @@ export class GridsterSettingsComponent implements OnInit {
     return null;
   }
   updateGridsterOptions(): GridsterConfig {
-
-
     const res = {
+      minCols: this.gridsterOptoinsForm.value.minCols,
+      minRows: this.gridsterOptoinsForm.value.minRows,
       bgColor: this.gridsterOptoinsForm.value.bgColor,
       fixedColWidth: +this.gridsterOptoinsForm.value.fixedColWidth,
       fixedRowHeight: +this.gridsterOptoinsForm.value.fixedColWidth
     };
     return Object.assign(this.gridsterOptoins, res);
   }
-
 }

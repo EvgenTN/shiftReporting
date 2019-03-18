@@ -14,7 +14,9 @@ export class GridsterComponent implements OnInit {
   @Input() form: FormGroup;
   @Output() clickItem: EventEmitter<any> = new EventEmitter<any>();
 
-  config: GridsterConfig = {};
+  // config: GridsterConfig = {};
+  width: string;
+  height: string;
 
   optionsBuild: GridsterConfig = {
     itemChangeCallback: () => this.gridsterItemChange(),
@@ -53,6 +55,14 @@ export class GridsterComponent implements OnInit {
     this.getData(this.appointment);
     this.srService.gridsterOptions.subscribe(value => {
       Object.assign(this.options, value, this.optionsAppointment);
+      this.width = (value.minCols * value.fixedColWidth
+        + value.outerMarginLeft
+        + value.outerMarginRight + 5) + 'px'
+        ;
+        this.height = (value.minRows * value.fixedColWidth
+          + value.outerMarginTop
+          + value.outerMarginBottom + 5) + 'px'
+          ;
       this.changedOptions();
     });
   }
